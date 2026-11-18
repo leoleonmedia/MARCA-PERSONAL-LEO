@@ -1,0 +1,24 @@
+WEB DE LEO LEÓN — VERSIÓN HTML ORIGINAL CONECTADA
+
+Esta versión usa EXACTAMENTE el diseño HTML de los 4 archivos que enviaste.
+index.html = copia de tu inicio.html (portada real).
+inicio.html = misma portada para compatibilidad.
+recursos.html = catálogo original.
+recurso.html = ficha de ejemplo original.
+notas.html = listado de artículos.
+nota.html = artículo original.
+
+PARA PUBLICAR EN GITHUB
+1. Descomprime el ZIP.
+2. En tu repositorio marcapersonal-leo, sube los archivos sueltos de esta carpeta (NO el ZIP).
+3. Si tienes archivos antiguos con el mismo nombre, reemplázalos.
+4. Para evitar que el sitio siga usando las plantillas antiguas, elimina _config.yml y los archivos de Jekyll anteriores, o publica desde un repositorio limpio.
+5. En Settings > Pages deja main y / (root).
+6. Abre https://leonardoleonredes-ctrl.github.io/marcapersonal-leo/
+
+PENDIENTES REALES
+- Los 4 HTML son maquetas que incluyen enlaces de ejemplo. Las fichas distintas del catálogo todavía comparten la página de ejemplo recurso.html.
+- Solo hay un artículo de muestra; el blog aún no es un gestor de contenidos.
+- Los formularios necesitan un servicio real para recibir datos; no asumas que guardan contactos.
+- Los videos necesitan sus identificadores reales; y las fotos son marcadores de posición.
+- Esta versión no depende de Jekyll para que se vea correctamente.
