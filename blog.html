@@ -696,6 +696,12 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
 .footer{padding-bottom:clamp(56px,7vw,112px)!important;overflow:hidden}
 .footer .marca,.footer .marca:last-child{margin-bottom:0!important;padding-bottom:.10em!important;line-height:1.04!important;overflow:visible!important}
 @media(max-width:640px){.footer{padding-bottom:56px!important}.footer .marca{font-size:clamp(3.8rem,18vw,8rem)!important;white-space:nowrap!important;letter-spacing:-.065em!important}}
+
+/* Instagram: conservar contornos; el CSS general rellena todos los SVG y produce un cuadrado. */
+a.social-link[href*="instagram.com"] svg,
+a.social-link[href*="ig.me/"] svg { fill: none !important; stroke: currentColor; }
+a.social-link[href*="instagram.com"] svg circle:last-child,
+a.social-link[href*="ig.me/"] svg circle:last-child { fill: currentColor !important; }
 </style><link rel="icon" href="https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/favicon.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/apple-touch-icon.png" sizes="180x180">
 <style id="leo-fixes-shared">
