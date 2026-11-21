@@ -1,5 +1,11 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Blog · Leo León</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet"><style>:root{
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blog | Leo León Media · IA y contenido</title>
+<meta name="description" content="Ideas útiles sobre IA, marketing de contenidos, guiones y estrategia digital en el blog de Leo León Media.">
+<link rel="canonical" href="https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/notas.html">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<style>:root{
   --negro:#0B0B0B; --gris:#1F1F1F; --gris2:#161616; --linea:#2A2A2A;
   --crema:#F5F1EA; --naranja:#FF7A00; --ambar:#FFB347; --naranja-osc:#A84800;
   --txt:#F5F1EA; --txt2:#CFC8BD;
@@ -235,6 +241,11 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
 .foot-row{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding:28px 0;border-top:1px solid var(--linea);font-size:.9rem;color:var(--txt2)}
 .foot-row nav{display:flex;gap:28px;flex-wrap:wrap}
 .foot-row a:hover{color:var(--txt)}
+.social-link{display:inline-flex;align-items:center;gap:8px;transition:color .25s ease,transform .25s ease}
+.social-link svg{width:19px;height:19px;flex:none;fill:currentColor;transition:fill .25s ease,transform .25s ease}
+.social-link:hover{color:var(--naranja)!important;transform:translateY(-2px)}
+.social-link:hover svg{transform:scale(1.08)}
+.social-link:focus-visible{outline:2px solid var(--naranja);outline-offset:5px;border-radius:3px}
 .marca{font-family:Poppins;font-weight:800;font-size:clamp(4.2rem,19vw,17rem);line-height:.95;padding-top:.08em;letter-spacing:-.06em;text-transform:uppercase;white-space:nowrap;text-align:center;background:linear-gradient(180deg,rgba(255,179,71,.95),rgba(255,122,0,.35));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:-.12em;user-select:none}
 
 /* ---------- barra flotante móvil ---------- */
@@ -396,95 +407,275 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
   .r,.card-m{opacity:1;transform:none}
   .riel i,.barra i{transform:none}
 }
-</style></head><body><header class="nav" id="nav">
-  <div class="wrap">
-    <a href="index.html" class="logo">Leo León<span>.</span></a>
-    <nav class="menu" id="menu">
-      <a href="index.html#casos">Casos</a>
-      <a href="index.html#metodo">Método</a>
-      <a href="notas.html" class="activo">Notas</a>
-      <a href="recursos.html" class="activo">Recursos gratis</a>
-    </nav>
-    <a href="recursos.html" class="btn btn-crema">Regalo gratis <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></a>
-    <button class="burger" id="burger" aria-label="Abrir menú"><i></i><i></i></button>
-  </div>
-</header>
-<main><section class="page-hero amb der"><div class="wrap"><span class="label r">Blog</span><h1 class="page-tit r d1">Notas<span class="n">.</span></h1><p class="lead r d2">Lo que funcionó, por qué funcionó y cómo hacerlo de nuevo. Sin humo.</p></div></section>
-<section class="sec" style="padding-top:0"><div class="wrap"><div class="head"><div><span class="label">Artículos</span><h2>Ideas que sí sirven.</h2></div></div><div class="notas notas-lista"><a href="nota.html" class="nota r"><div class="nota-tag">IA sin humo · 4 min de lectura</div><h3>La IA no te da respuestas genéricas. Tú le haces preguntas genéricas</h3><p>Por qué ChatGPT, Claude o Gemini te responden lo mismo que a todos, y cómo pedirle las cosas para que te dé ideas que sí sirven.</p><span class="flecha">→</span></a></div></div></section></main><footer class="footer">
-  <div class="footer-glow" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="foot-row">
-      <span>Piensa bien. Crea mejor.</span>
-      <nav>
-        <a href="notas.html">Notas</a>
-        <a href="recursos.html">Recursos gratis</a>
-        <a href="https://www.tiktok.com/@leoleonmedia" target="_blank" rel="noopener">TikTok</a>
-        <a href="https://www.instagram.com/leoleonmedia" target="_blank" rel="noopener">Instagram</a>
-      </nav>
-      <span>@leoleonmedia</span>
-    </div>
-  </div>
-  <div class="marca" aria-hidden="true">Leo León</div>
-</footer>
-<div class="flota" id="flota"><a href="recursos.html" class="btn btn-crema">Quiero mi regalo gratis <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></a></div><script>(()=>{
-  const $=(q,c=document)=>c.querySelector(q), $$=(q,c=document)=>[...c.querySelectorAll(q)];
-  const nav=$('#nav'), flota=$('#flota');
 
-  // barra superior y botón flotante (móvil)
-  let formVisible=false;
-  const onScroll=()=>{
-    const y=scrollY;
-    nav && nav.classList.toggle('solid',y>40);
-    flota && flota.classList.toggle('show',y>innerHeight*.8 && !formVisible);
-  };
-  addEventListener('scroll',onScroll,{passive:true}); onScroll();
-  const formIO=new IntersectionObserver(es=>{formVisible=es.some(e=>e.isIntersecting);onScroll();},{threshold:.1});
-  $$('.form-regalo').forEach(f=>formIO.observe(f));
+/* Botones de regalo: negro sólido, texto blanco y subrayado naranja fino */
+.btn-regalo{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:#080808!important;
+  color:#FFFFFF!important;
+  border:1px solid #343434;
+  border-bottom:2px solid #FF7A00;
+  box-shadow:none!important;
+  font-weight:600;
+  transition:transform .25s var(--ease),border-color .25s;
+}
+.btn-regalo::before,.btn-regalo::after{content:none!important;display:none!important}
+.btn-regalo:hover{
+  transform:translateY(-2px);
+  background:#080808!important;
+  color:#FFFFFF!important;
+  border-color:#555;
+  border-bottom-color:#FF7A00;
+  box-shadow:none!important;
+}
+.btn-regalo:focus-visible{outline:2px solid #FF7A00;outline-offset:3px}
+.btn-regalo svg{color:inherit}
+@media(prefers-reduced-motion:reduce){.btn-regalo{transition:none}.btn-regalo:hover{transform:none}}
 
-  // menú móvil
-  const burger=$('#burger');
-  if(burger){ burger.onclick=()=>nav.classList.toggle('open'); $$('#menu a').forEach(a=>a.onclick=()=>nav.classList.remove('open')); }
+/* === AJUSTES LEO LEÓN MEDIA 2026 === */
+.logo-imagen {display:inline-flex;align-items:center;flex:none;width:clamp(142px,17vw,218px);height:auto}
+.logo-imagen img {width:100%;height:auto;object-fit:contain}
+.nav .wrap {gap:18px}
+.hero .foto img,.yo .foto img {position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero .foto:has(img) .ph-tag,.yo .foto:has(img) .ph-tag{display:none}
+.caso-main {position:relative;isolation:isolate;overflow:hidden}
+.caso-main .evidencia-img {position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
+.caso-main:has(.evidencia-img)::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 32%,rgba(0,0,0,.88));z-index:-1}
+/* interacción de letras más ágil */
+.sigla b {transition:background .20s ease,color .20s ease,border-color .20s ease,transform .20s ease}
+.card-m:hover .sigla b:nth-child(n){transition-delay:0s}
+.card-m:hover .sigla b {transform:translateY(-2px)}
+.met-head {margin-bottom:clamp(44px,6vw,76px)}
+#regalos .head{margin-bottom:clamp(34px,4vw,56px)}
+.footer{padding-bottom:clamp(72px,10vw,140px)}
+.footer .marca {margin-bottom:0;font-size:clamp(3.8rem,16vw,14rem)}
+#notas .nota:only-child .ph {min-height:0}
+#notas .nota:only-child .ph img {position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* captación de leads */
+.lead-hub{max-width:780px;margin:48px auto 0;text-align:left}
+.lead-form{padding:clamp(24px,4vw,42px);border:1px solid rgba(255,122,0,.3);border-radius:26px;background:linear-gradient(160deg,#20170f,#121212 55%);display:grid;gap:14px}
+.lead-form label:not(.lead-channel):not(.lead-check),.lead-form legend {font-size:.9rem;font-weight:600;color:var(--crema)}
+.lead-form input:not([type=checkbox]):not([type=radio]),.lead-form select {width:100%;min-width:0;padding:14px 16px;border-radius:12px;background:#191919;color:#f5f1ea;border:1px solid #444;outline:none;font:inherit}
+.lead-form input:focus,.lead-form select:focus {border-color:var(--naranja)}
+.lead-fields {display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.lead-fields>div{display:grid;gap:8px}
+.lead-form>label:not(.lead-check){margin-top:6px}
+.lead-channels {border:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:8px}
+.lead-channels legend {margin-bottom:12px}
+.lead-channel{display:block;cursor:pointer;min-width:0}
+.lead-channel input{position:absolute;opacity:0;width:1px;height:1px}
+.lead-channel>span{display:flex;flex-direction:column;min-height:116px;align-items:flex-start;gap:6px;padding:14px;border:1px solid #444;border-radius:14px;background:#181818;transition:border-color .18s,background .18s;font-size:1.1rem}
+.lead-channel strong{font-size:.95rem}
+.lead-channel small{font-size:.73rem;line-height:1.35;color:#bbb}
+.lead-channel input:checked+span{border-color:#ff7a00;background:#301e0e}
+.lead-channel input:focus-visible+span{outline:2px solid #fff;outline-offset:2px}
+.lead-check{display:flex;gap:10px;align-items:flex-start;text-align:left;color:#d4d0ca;font-size:.79rem;line-height:1.5;cursor:pointer}
+.lead-check input {width:17px;height:17px;flex:none;margin-top:2px;accent-color:#ff7a00}
+.lead-send{justify-content:center;width:100%;margin-top:6px}
+.lead-feedback {font-size:.88rem;line-height:1.5;color:#ffb347;min-height:1.4em}
+.lead-privacy {font-size:.75rem;color:#aaa;line-height:1.5}
+@media(max-width:860px){.logo-imagen{width:160px}}
+@media(max-width:600px){.lead-fields,.lead-channels{grid-template-columns:1fr}.lead-channel>span{min-height:0}.lead-form{padding:22px}.logo-imagen{width:144px}}
 
-  // contadores
-  const count=el=>{
-    const end=+el.dataset.count, t0=performance.now(), d=1400;
-    const step=t=>{const p=Math.min((t-t0)/d,1), e=1-Math.pow(1-p,3); el.textContent=Math.round(end*e); if(p<1) requestAnimationFrame(step);};
-    requestAnimationFrame(step);
-  };
+/* FLUJO DE LEADS - 3 pasos compactos */
+.lead-steps{display:flex;flex-wrap:wrap;gap:8px 16px;color:#bdb6ac;font-size:.79rem;line-height:1.4;margin-bottom:5px}
+.lead-steps span{display:inline-flex;align-items:center;gap:7px}
+.lead-steps b{color:#ff8a18;font-weight:700}
+.lead-profile{display:grid;gap:8px;margin-top:5px}
+.lead-optional{font-weight:400;color:#b6b6b6}
+.lead-help{font-size:.75rem;color:#aaa;line-height:1.35}
+.lead-summary{padding:11px 14px;border:1px solid #5d3818;border-radius:12px;background:#26190d;color:#ead9c4;font-size:.82rem;line-height:1.45}
+.lead-summary strong{color:#fff}
+.lead-form .lead-channels{margin-top:6px}
+.lead-form .lead-send:disabled{opacity:.6;cursor:wait}
+.lead-form .lead-fields input{margin-top:0}
+@media(max-width:640px){.lead-steps{font-size:.73rem;gap:7px 12px}}
 
-  // aparición al hacer scroll
-  const io=new IntersectionObserver(es=>es.forEach(e=>{
-    if(!e.isIntersecting) return;
-    e.target.classList.add('in');
-    $$('[data-count]',e.target).forEach(count);
-    io.unobserve(e.target);
-  }),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-  $$('.r').forEach(el=>io.observe(el));
+/* WhatsApp: selector mundial de banderas y prefijos telefónicos */
+#lead-phone-wrap[hidden],#lead-contacto[hidden]{display:none!important}
+#lead-phone-wrap{min-width:0}
+#lead-phone-wrap .iti{width:100%;--iti-dropdown-bg:#171717;--iti-dropdown-text-color:#f5f1ea;--iti-dropdown-border-color:#555;--iti-hover-color:#34271b;--iti-border-color:#555;--iti-path-flags-1x:url("https://cdn.jsdelivr.net/npm/intl-tel-input@29.5.8/dist/img/flags.webp");--iti-path-flags-2x:url("https://cdn.jsdelivr.net/npm/intl-tel-input@29.5.8/dist/img/flags@2x.webp");--iti-path-globe-1x:url("https://cdn.jsdelivr.net/npm/intl-tel-input@29.5.8/dist/img/globe.webp");--iti-path-globe-2x:url("https://cdn.jsdelivr.net/npm/intl-tel-input@29.5.8/dist/img/globe@2x.webp")}
+#lead-phone-wrap .iti input{width:100%;padding-left:108px!important}
+#lead-phone-wrap .iti__selected-country-primary{background:transparent}
+#lead-phone-wrap .iti__selected-dial-code{color:#f5f1ea;font-size:.9rem}
+#lead-phone-wrap .iti__country-container{z-index:2}
+.iti__dropdown-content{background:#171717!important;color:#f5f1ea!important;border:1px solid #444!important;box-shadow:0 16px 36px rgba(0,0,0,.6)!important;z-index:9999!important}
+.iti__search-input{background:#202020!important;color:#f5f1ea!important;border:1px solid #555!important}
+.iti__country.iti__highlight,.iti__country:hover{background:#382414!important}
+.iti__dial-code{color:#d8c9b8!important}
 
-  // filtros (notas y recursos)
-  $$('[data-filtro-scope]').forEach(scope=>{
-    const botones=$$('.filtro',scope), items=$$('[data-cat]',scope);
-    botones.forEach(b=>b.onclick=()=>{
-      botones.forEach(x=>x.classList.toggle('on',x===b));
-      items.forEach(n=>{ n.hidden=!(b.dataset.f==='todas'||n.dataset.cat.split(' ').includes(b.dataset.f)); if(!n.hidden) n.classList.add('in'); });
-    });
-  });
+/* Ajustes de alineación del formulario de regalos — 2026-11-21 */
+.lead-hub {width:100%;max-width:780px;margin-inline:auto;}
+.lead-form {width:100%;min-width:0;text-align:left;align-items:stretch;gap:16px;}
+.lead-form > * {min-width:0;}
+.lead-form > label:not(.lead-check),
+.lead-form > .lead-profile > label,
+.lead-form .lead-fields label {display:block;margin:0;line-height:1.4;}
+.lead-steps {display:flex;align-items:center;justify-content:flex-start;gap:10px 18px;margin:0 0 8px;}
+.lead-steps span {display:inline-flex;align-items:center;gap:7px;white-space:nowrap;}
+.lead-channels {width:100%;padding:0;margin:0!important;align-items:stretch;}
+.lead-channels legend {display:block;padding:0;margin-bottom:12px;}
+.lead-channel {height:100%;}
+.lead-channel > span {height:100%;min-height:112px;box-sizing:border-box;justify-content:flex-start;}
+.lead-fields {width:100%;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:16px;}
+.lead-fields > div {display:flex;flex-direction:column;align-items:stretch;gap:8px;min-width:0;}
+.lead-fields label {min-height:21px;}
+.lead-form .lead-fields input:not([type=checkbox]):not([type=radio]),
+.lead-form .lead-profile select,
+.lead-form > select {height:52px;box-sizing:border-box;}
+.lead-profile {width:100%;margin:0;gap:8px;}
+.lead-help {display:block;line-height:1.45;min-height:1.45em;margin:0;}
+#lead-phone-wrap {width:100%;}
+#lead-phone-wrap .iti {width:100%;}
+#lead-phone-wrap .iti input {height:52px;}
+.lead-summary {width:100%;margin:0;box-sizing:border-box;}
+.lead-check {width:100%;margin:0;align-items:flex-start;}
+.lead-check input {margin-top:2px;}
+.lead-send {min-height:52px;margin:0;}
+.lead-feedback {margin:0;}
+.lead-privacy {margin:0;text-align:left;}
+@media(max-width:640px) {
+  .lead-form {gap:14px;}
+  .lead-steps {justify-content:flex-start;gap:7px 13px;}
+  .lead-steps span {white-space:normal;}
+  .lead-fields {grid-template-columns:minmax(0,1fr);gap:14px;}
+  .lead-channels {grid-template-columns:minmax(0,1fr);}
+  .lead-channel > span {min-height:0;height:auto;}
+}
 
-  // videos: el reproductor oficial solo carga al tocar
-  $$('.reel').forEach(r=>r.addEventListener('click',()=>{
-    if(r.querySelector('iframe')) return;
-    const tk=r.dataset.tiktok, ig=r.dataset.ig;
-    const src= tk ? `https://www.tiktok.com/embed/v2/${tk}` : ig ? `https://www.instagram.com/reel/${ig}/embed` : null;
-    if(!src){ r.querySelector('.tit').textContent='Pega el ID del video en el código'; return; }
-    r.insertAdjacentHTML('beforeend',`<iframe src="${src}" allow="autoplay; encrypted-media; fullscreen" loading="lazy" title="Video de Leo León"></iframe>`);
-  }));
+/* Selector de países: panel oscuro, legible y sin recortes */
+#lead-phone-wrap .iti {display:block;width:100%;}
+#lead-phone-wrap .iti__selected-country {color:#F5F1EA!important;}
+#lead-phone-wrap .iti__selected-country-primary {background:#191919!important;}
+#lead-phone-wrap .iti__selected-dial-code {color:#F5F1EA!important;}
+/* El panel se inserta en body, fuera de las cajas con overflow:hidden. */
+.iti--container {z-index:100000!important; font-family:Inter,system-ui,sans-serif!important;}
+.iti--container .iti__dropdown-content,
+.iti__dropdown-content {
+  background:#181818!important;
+  color:#F5F1EA!important;
+  border:1px solid #555!important;
+  border-radius:12px!important;
+  box-shadow:0 18px 45px rgba(0,0,0,.78)!important;
+  overflow:hidden!important;
+}
+.iti--container .iti__country-list,
+.iti__country-list {
+  background:#181818!important;
+  color:#F5F1EA!important;
+  max-height:min(320px,45vh)!important;
+  overflow-y:auto!important;
+  scrollbar-color:#6B4A2C #1B1B1B;
+}
+.iti--container .iti__country,
+.iti__country {background:#181818!important;color:#F5F1EA!important;min-height:38px;}
+.iti--container .iti__country-name,
+.iti__country-name {color:#F5F1EA!important;opacity:1!important;}
+.iti--container .iti__dial-code,
+.iti__dial-code {color:#CDBBA6!important;opacity:1!important;}
+.iti--container .iti__country.iti__highlight,
+.iti--container .iti__country:hover,
+.iti__country.iti__highlight,
+.iti__country:hover {background:#49301D!important;color:#FFFFFF!important;}
+.iti--container .iti__country.iti__highlight .iti__country-name,
+.iti--container .iti__country:hover .iti__country-name {color:#FFFFFF!important;}
+.iti--container .iti__search-input,
+.iti__search-input {
+  background:#222!important;color:#F5F1EA!important;
+  border:1px solid #555!important;border-radius:8px!important;
+  box-shadow:none!important;outline:none!important;
+  font-family:Inter,system-ui,sans-serif!important;font-size:14px!important;
+  min-height:44px!important;
+}
+.iti--container .iti__search-input::placeholder,
+.iti__search-input::placeholder {color:#BDB5AA!important;opacity:1!important;}
+.iti__search-input:focus {border-color:#FF7A00!important;}
+.iti__search-icon {color:#D1C3B4!important;}
+.iti__no-results, .iti__no-countries {color:#D8CEC2!important;}
+@media(max-width:640px) {
+ .iti--container .iti__dropdown-content {max-width:calc(100vw - 20px)!important;}
+ .iti__country-list {max-height:min(280px,40vh)!important;}
+}
 
-  // formularios: si aún no hay servicio conectado, solo muestra "Listo"
-  $$('.form-regalo').forEach(f=>f.addEventListener('submit',e=>{
-    if(f.getAttribute('action')) return;
-    e.preventDefault();
-    f.style.display='none';
-    const g=f.nextElementSibling; if(g && g.classList.contains('gracias')) g.style.display='block';
-  }));
-})();
-</script></body></html>
+/* Leo Leon Media — footer con aire y doble enlace de videos */
+.video-social-links {display:flex; flex-wrap:wrap; align-items:center; gap:12px;}
+.video-social-links .btn {font-size:.9rem;padding:.75em 1.15em;}
+.footer {padding-bottom:clamp(40px,6vw,110px)!important;}
+.footer .marca {margin-bottom:0!important; padding-bottom:.12em!important;
+ font-size:clamp(4rem,16vw,15rem)!important;line-height:1.03!important;white-space:nowrap;}
+@media(max-width:640px){.video-social-links {width:100%;}
+ .video-social-links .btn {flex:1;justify-content:center;white-space:normal;text-align:center;}
+ .footer .marca {font-size:clamp(3.1rem,16vw,6rem)!important;}}
+
+/* Formulario de leads — orden y contraste consistentes */
+.lead-hub{max-width:780px;margin:44px auto 0!important;}
+.lead-form{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:16px!important;padding:clamp(22px,3.4vw,38px)!important;}
+.lead-form>label:not(.lead-check),.lead-profile>label,.lead-fields label{margin:0!important;min-height:0!important;line-height:1.45!important;}
+.lead-steps{display:flex;flex-wrap:wrap;gap:10px 18px;margin:0 0 5px!important;}
+.lead-channels{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px!important;width:100%;margin:0!important;padding:0!important;border:0!important;}
+.lead-channels legend{float:none;margin:0 0 12px!important;padding:0!important;}
+.lead-channel>span{min-height:110px!important;padding:15px!important;gap:7px!important;}
+.lead-fields{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:16px!important;}
+.lead-fields>div{min-width:0;display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:8px!important;}
+.lead-fields #lead-contact-wrap{min-width:0;}
+.lead-form select,.lead-form input:not([type=checkbox]):not([type=radio]){box-sizing:border-box;min-height:52px;width:100%;}
+.lead-help{min-height:0!important;margin:0!important;color:#bdb7af;}
+.lead-form input:-webkit-autofill,.lead-form input:-webkit-autofill:hover,.lead-form input:-webkit-autofill:focus{-webkit-text-fill-color:#f5f1ea!important;-webkit-box-shadow:0 0 0 100px #1c1c1c inset!important;box-shadow:0 0 0 100px #1c1c1c inset!important;caret-color:#fff;transition:background-color 9999s ease-in-out 0s;}
+.lead-form .lead-send{display:flex!important;align-items:center;justify-content:center!important;text-align:center;width:100%;min-height:54px;border-radius:99px;white-space:normal;}
+.lead-feedback:empty{display:none!important;}
+.lead-feedback{margin:0!important;padding:9px 0!important;overflow-wrap:anywhere;}
+.lead-privacy{margin:0!important;line-height:1.6!important;font-size:.77rem;color:#aaa;}
+.lead-dm-panel[hidden]{display:none!important;}
+.lead-dm-panel{display:grid;gap:12px;border:1px solid #7a4517;border-radius:16px;padding:18px;background:#211910;min-width:0;}
+.lead-dm-header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.lead-dm-keyword{font-size:.77rem;color:#ffb347;border-radius:999px;background:#3c270f;padding:5px 11px;border:1px solid #6a411f;}
+.lead-dm-text{color:#f5f1ea;line-height:1.6;overflow-wrap:anywhere;font-size:.88rem;}
+.lead-dm-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+.lead-copy-btn,.lead-open-btn{border:1px solid #815021;background:#26201a;border-radius:10px;padding:12px;min-height:46px;text-align:center;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:.88rem;cursor:pointer;}
+.lead-open-btn{background:#ff7a00;color:#0b0b0b;border-color:#ff7a00;}
+.lead-copy-btn:hover{border-color:#ff9d40;}.lead-open-btn:hover{background:#ff9b36;}
+.lead-dm-panel small{font-size:.78rem;color:#c9bfb4;line-height:1.5;}
+@media(max-width:640px){.lead-form{padding:22px 16px!important;gap:14px!important;}.lead-channels,.lead-fields{grid-template-columns:1fr!important;}.lead-channel>span{min-height:0!important;}.lead-dm-actions{grid-template-columns:1fr;}.lead-steps{gap:6px 12px;}}
+
+/* Tarjeta destacada del Blog: bloque único alineado, sin texto solapado */
+#notas .notas{display:grid;grid-template-columns:minmax(0,1fr)!important;}
+#notas .nota,#notas .nota:only-child{display:grid!important;grid-template-columns:minmax(0,44%) minmax(0,56%)!important;align-items:stretch;min-height:355px;overflow:hidden;position:relative;border:1px solid #39312b;border-radius:26px;}
+#notas .nota .ph,#notas .nota:only-child .ph{grid-column:1;grid-row:1;min-height:355px!important;aspect-ratio:auto!important;position:relative;overflow:hidden;}
+#notas .nota .body,#notas .nota:only-child .body{grid-column:2;grid-row:1;display:flex!important;flex-direction:column;justify-content:center;gap:17px;min-width:0;padding:clamp(24px,3.5vw,54px)!important;background:linear-gradient(140deg,#191919,#111111);position:relative;z-index:1;}
+#notas .nota .body .meta{display:flex;align-items:center;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;margin:0;}
+#notas .nota .body h3,#notas .nota:first-child h3,#notas .nota:only-child h3{font-size:clamp(1.4rem,2.4vw,2.15rem)!important;line-height:1.2!important;margin:0;overflow-wrap:break-word;}
+#notas .nota .body .desc{color:#cfc8bd;line-height:1.6;margin:0;max-width:48ch;font-size:.93rem;}
+#notas .nota .body .leer{color:#fd7106;font-weight:700;margin-top:2px;font-size:.92rem;}
+#notas .nota .body .n{color:#fd7106;}
+@media(max-width:740px){#notas .nota,#notas .nota:only-child{display:flex!important;flex-direction:column!important;min-height:0;}#notas .nota .ph,#notas .nota:only-child .ph{width:100%;min-height:0!important;aspect-ratio:16/9!important;flex:none;}#notas .nota .body,#notas .nota:only-child .body{padding:24px!important;gap:12px;}}
+
+/* Página BLOG: estructura consistente, sin superposición */
+.blog-page{padding:145px 0 85px;min-height:calc(100svh - 360px)}
+.blog-page .intro{margin-bottom:75px;}
+.blog-page .intro .label{margin-bottom:22px;}
+.blog-page .intro h1{font-size:clamp(3rem,6vw,5.5rem);margin:12px 0 18px;letter-spacing:-.04em;}
+.blog-page .intro p{color:#cfc8bd;max-width:56ch;font-size:1.08rem;}
+.blog-page .section-name{margin-bottom:30px;}
+.blog-page .section-name h2{margin:16px 0 0;}
+.blog-item{display:grid;grid-template-columns:minmax(0,42%) minmax(0,58%);background:#181818;min-height:360px;border:1px solid #39312b;border-radius:26px;overflow:hidden;text-decoration:none;transition:transform .25s,border-color .25s;}
+.blog-item:hover{transform:translateY(-4px);border-color:#fd7106;}
+.blog-item .cover{min-height:360px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 80% 18%,rgba(253,113,6,.45),transparent 60%),linear-gradient(135deg,#321a0b,#101010 78%);}
+.blog-item .cover img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.blog-item .cover .cover-label{position:absolute;left:24px;bottom:25px;padding:8px 12px;color:#ffbb7d;background:rgba(0,0,0,.55);border:1px solid rgba(253,113,6,.35);border-radius:999px;font-size:.78rem;font-weight:700;}
+.blog-item .info{min-width:0;display:flex;flex-direction:column;justify-content:center;gap:18px;padding:clamp(28px,4vw,56px);}
+.blog-item .meta{display:flex;align-items:center;flex-wrap:wrap;justify-content:space-between;gap:8px 18px;color:#cfc8bd;font-size:.82rem;}
+.blog-item .meta strong{color:#fd7106;text-transform:uppercase;letter-spacing:.08em;}
+.blog-item h3{font-family:Poppins,sans-serif;font-size:clamp(1.55rem,2.6vw,2.25rem);line-height:1.2;letter-spacing:-.025em;overflow-wrap:break-word;}
+.blog-item .info p{color:#cfc8bd;font-size:1rem;line-height:1.7;}
+.blog-item .read{color:#fd7106;font-weight:700;font-size:.94rem;}
+.blog-item .accent{color:#fd7106;}
+@media(max-width:760px){.blog-page{padding-top:120px;}.blog-page .intro{margin-bottom:50px;}.blog-item{display:flex;flex-direction:column;min-height:0;}.blog-item .cover{min-height:0;aspect-ratio:16/9;}.blog-item .info{padding:26px;gap:12px;}}
+</style></head><body>
+<header class="nav solid" id="nav"><div class="wrap"><a href="index.html" class="logo">Leo León<span>.</span></a><nav class="menu" id="menu"><a href="index.html#casos">Casos</a><a href="index.html#metodo">Método</a><a href="notas.html" class="activo" aria-current="page">Blog</a><a href="recursos.html">Recursos gratis</a></nav><a href="index.html#regalo" class="btn btn-crema btn-regalo">Regalo gratis ↗</a><button class="burger" id="burger" aria-label="Abrir menú"><i></i><i></i></button></div></header>
+<main class="blog-page"><div class="wrap"><section class="intro"><span class="label">Blog</span><h1>Ideas que <span class="n">sí sirven.</span></h1><p>Lo que funcionó, por qué funcionó y cómo hacerlo de nuevo. Sin humo.</p></section><section aria-labelledby="articulos-heading"><div class="section-name"><span class="label">Artículos</span><h2 id="articulos-heading">Ideas para <span class="n">crear mejor.</span></h2></div>
+<a class="blog-item" href="nota.html"><div class="cover"><span class="cover-label">IA SIN HUMO · 4 MIN</span><!-- Para tu portada: <img src="imagenes/blog-ia.webp" alt="Portada del artículo sobre preguntas para IA"> --></div><div class="info"><div class="meta"><strong>IA sin humo</strong><span>4 min de lectura</span></div><h3>La <span class="accent">IA</span> no te da respuestas genéricas. Tú le haces <span class="accent">preguntas genéricas.</span></h3><p>Por qué ChatGPT, Claude o Gemini te responden lo mismo que a todos, y cómo pedirles las cosas para conseguir ideas que sí sirvan.</p><span class="read">Leer artículo ↗</span></div></a>
+</section></div></main>
+<footer class="footer"><div class="footer-glow"></div><div class="wrap"><div class="foot-row"><span>Piensa bien. Crea mejor.</span><nav><a href="notas.html">Blog</a><a href="recursos.html">Recursos gratis</a><a href="https://www.tiktok.com/@leoleonmedia" target="_blank" rel="noopener">TikTok</a><a href="https://www.instagram.com/leoleonmedia/" target="_blank" rel="noopener">Instagram</a></nav></div></div><div class="marca">LEO LEÓN</div></footer>
+<script>document.getElementById('burger')?.addEventListener('click',()=>document.getElementById('nav').classList.toggle('open'));</script></body></html>
