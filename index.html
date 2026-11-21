@@ -626,6 +626,48 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
 @media(max-width:640px){.video-social-links {width:100%;}
  .video-social-links .btn {flex:1;justify-content:center;white-space:normal;text-align:center;}
  .footer .marca {font-size:clamp(3.1rem,16vw,6rem)!important;}}
+
+/* Formulario de leads — orden y contraste consistentes */
+.lead-hub{max-width:780px;margin:44px auto 0!important;}
+.lead-form{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:16px!important;padding:clamp(22px,3.4vw,38px)!important;}
+.lead-form>label:not(.lead-check),.lead-profile>label,.lead-fields label{margin:0!important;min-height:0!important;line-height:1.45!important;}
+.lead-steps{display:flex;flex-wrap:wrap;gap:10px 18px;margin:0 0 5px!important;}
+.lead-channels{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px!important;width:100%;margin:0!important;padding:0!important;border:0!important;}
+.lead-channels legend{float:none;margin:0 0 12px!important;padding:0!important;}
+.lead-channel>span{min-height:110px!important;padding:15px!important;gap:7px!important;}
+.lead-fields{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:16px!important;}
+.lead-fields>div{min-width:0;display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:8px!important;}
+.lead-fields #lead-contact-wrap{min-width:0;}
+.lead-form select,.lead-form input:not([type=checkbox]):not([type=radio]){box-sizing:border-box;min-height:52px;width:100%;}
+.lead-help{min-height:0!important;margin:0!important;color:#bdb7af;}
+.lead-form input:-webkit-autofill,.lead-form input:-webkit-autofill:hover,.lead-form input:-webkit-autofill:focus{-webkit-text-fill-color:#f5f1ea!important;-webkit-box-shadow:0 0 0 100px #1c1c1c inset!important;box-shadow:0 0 0 100px #1c1c1c inset!important;caret-color:#fff;transition:background-color 9999s ease-in-out 0s;}
+.lead-form .lead-send{display:flex!important;align-items:center;justify-content:center!important;text-align:center;width:100%;min-height:54px;border-radius:99px;white-space:normal;}
+.lead-feedback:empty{display:none!important;}
+.lead-feedback{margin:0!important;padding:9px 0!important;overflow-wrap:anywhere;}
+.lead-privacy{margin:0!important;line-height:1.6!important;font-size:.77rem;color:#aaa;}
+.lead-dm-panel[hidden]{display:none!important;}
+.lead-dm-panel{display:grid;gap:12px;border:1px solid #7a4517;border-radius:16px;padding:18px;background:#211910;min-width:0;}
+.lead-dm-header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.lead-dm-keyword{font-size:.77rem;color:#ffb347;border-radius:999px;background:#3c270f;padding:5px 11px;border:1px solid #6a411f;}
+.lead-dm-text{color:#f5f1ea;line-height:1.6;overflow-wrap:anywhere;font-size:.88rem;}
+.lead-dm-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+.lead-copy-btn,.lead-open-btn{border:1px solid #815021;background:#26201a;border-radius:10px;padding:12px;min-height:46px;text-align:center;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:.88rem;cursor:pointer;}
+.lead-open-btn{background:#ff7a00;color:#0b0b0b;border-color:#ff7a00;}
+.lead-copy-btn:hover{border-color:#ff9d40;}.lead-open-btn:hover{background:#ff9b36;}
+.lead-dm-panel small{font-size:.78rem;color:#c9bfb4;line-height:1.5;}
+@media(max-width:640px){.lead-form{padding:22px 16px!important;gap:14px!important;}.lead-channels,.lead-fields{grid-template-columns:1fr!important;}.lead-channel>span{min-height:0!important;}.lead-dm-actions{grid-template-columns:1fr;}.lead-steps{gap:6px 12px;}}
+
+/* Tarjeta destacada del Blog: bloque único alineado, sin texto solapado */
+#notas .notas{display:grid;grid-template-columns:minmax(0,1fr)!important;}
+#notas .nota,#notas .nota:only-child{display:grid!important;grid-template-columns:minmax(0,44%) minmax(0,56%)!important;align-items:stretch;min-height:355px;overflow:hidden;position:relative;border:1px solid #39312b;border-radius:26px;}
+#notas .nota .ph,#notas .nota:only-child .ph{grid-column:1;grid-row:1;min-height:355px!important;aspect-ratio:auto!important;position:relative;overflow:hidden;}
+#notas .nota .body,#notas .nota:only-child .body{grid-column:2;grid-row:1;display:flex!important;flex-direction:column;justify-content:center;gap:17px;min-width:0;padding:clamp(24px,3.5vw,54px)!important;background:linear-gradient(140deg,#191919,#111111);position:relative;z-index:1;}
+#notas .nota .body .meta{display:flex;align-items:center;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;margin:0;}
+#notas .nota .body h3,#notas .nota:first-child h3,#notas .nota:only-child h3{font-size:clamp(1.4rem,2.4vw,2.15rem)!important;line-height:1.2!important;margin:0;overflow-wrap:break-word;}
+#notas .nota .body .desc{color:#cfc8bd;line-height:1.6;margin:0;max-width:48ch;font-size:.93rem;}
+#notas .nota .body .leer{color:#fd7106;font-weight:700;margin-top:2px;font-size:.92rem;}
+#notas .nota .body .n{color:#fd7106;}
+@media(max-width:740px){#notas .nota,#notas .nota:only-child{display:flex!important;flex-direction:column!important;min-height:0;}#notas .nota .ph,#notas .nota:only-child .ph{width:100%;min-height:0!important;aspect-ratio:16/9!important;flex:none;}#notas .nota .body,#notas .nota:only-child .body{padding:24px!important;gap:12px;}}
 </style></head><body><header class="nav" id="nav">
   <div class="wrap">
     <a href="index.html" class="logo logo-imagen" aria-label="Leo León Media, inicio"><img src="logo-leonardo-leon.png" width="2048" height="534" alt="Leonardo León" loading="eager"></a>
@@ -852,7 +894,7 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
       <a href="notas.html" class="btn btn-linea r d2">Explorar el blog <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></a>
     </div>
     <div class="notas">
-      <a href="nota.html" class="nota r" data-cat="ia"><div class="ph"><!-- <img src="imagenes/blog-ia.webp" alt="Imagen del artículo sobre prompts de IA" loading="lazy" width="1600" height="900"> --></div><div class="body"><div class="meta"><b>IA sin humo</b><span>4 min de lectura</span></div><h3>La IA no te da respuestas genéricas. Tú le haces preguntas genéricas</h3></div></a>
+      <a href="nota.html" class="nota r" data-cat="ia"><div class="ph"><!-- <img src="imagenes/blog-ia.webp" alt="Imagen del artículo sobre prompts de IA" loading="lazy" width="1600" height="900"> --></div><div class="body"><div class="meta"><b>IA sin humo</b><span>4 min de lectura</span></div><h3>La <span class="n">IA</span> no te da respuestas genéricas. Tú le haces <span class="n">preguntas genéricas</span></h3><p class="desc">Por qué ChatGPT, Claude o Gemini te responden lo mismo que a todos, y cómo pedirles ideas que realmente sirvan.</p><span class="leer">Leer artículo ↗</span></div></a>
     </div>
   </div>
 </section>
@@ -887,9 +929,15 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
         <p class="lead-summary" id="lead-summary">Solicitarás: <strong>20 ideas de videos con IA</strong> · Por correo</p>
         <label class="lead-check"><input type="checkbox" id="lead-consent" required> <span>Autorizo usar mi nombre y contacto únicamente para gestionar este recurso. <strong>Es obligatorio para realizar la solicitud.</strong></span></label>
         <label class="lead-check"><input type="checkbox" id="lead-marketing"> <span>También deseo recibir novedades y consejos (opcional).</span></label>
-        <button type="submit" class="btn btn-crema btn-regalo lead-send" id="lead-send">Solicitar mi regalo ↗</button>
+        <a href="#" class="btn btn-crema btn-regalo lead-send" id="lead-send" role="button">Solicitar mi regalo ↗</a>
         <p id="lead-feedback" class="lead-feedback" role="status" aria-live="polite"></p>
-        <p class="lead-privacy">Tu contacto, recurso y fecha se guardarán en nuestra hoja de solicitudes cuando activemos la conexión con Google Sheets. En WhatsApp o Instagram también debes enviar el mensaje para iniciar la conversación. Para comunicaciones comerciales solicitamos permiso aparte.</p>
+        <div id="lead-dm-panel" class="lead-dm-panel" hidden>
+          <div class="lead-dm-header"><strong>Mensaje de tu solicitud</strong><span id="lead-dm-keyword" class="lead-dm-keyword"></span></div>
+          <p class="lead-dm-text" id="lead-dm-text"></p>
+          <div class="lead-dm-actions"><button id="lead-copy" class="lead-copy-btn" type="button">Copiar mensaje</button><a id="lead-open" class="lead-open-btn" href="https://ig.me/m/leoleonmedia" target="_blank" rel="noopener noreferrer">Abrir conversación ↗</a></div>
+          <small id="lead-dm-help">En Instagram debes pegar el mensaje y pulsar Enviar; los enlaces normales no pueden escribirlo dentro del DM.</small>
+        </div>
+        <p class="lead-privacy">Tu solicitud se envía a nuestra hoja de registro. Para recibir atención por WhatsApp o Instagram, también debes enviar el mensaje en esa aplicación. Solo recibirás novedades comerciales si marcas la casilla opcional.</p>
       </form>
     </div>
   </div>
@@ -970,9 +1018,11 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
      Instagram NO acepta texto prellenado: copiamos la palabra clave.
      La hoja nunca se publica; el script se ejecuta con tu propia cuenta. */
   const LEO_LEADS = {
-    sheetsWebAppUrl: '', // PEGA AQUÍ la URL /exec de tu implementación de Apps Script
+    sheetsWebAppUrl: 'https://script.google.com/macros/s/AKfycbxzSFBamHr8X7wXhZ57ZX3oQLyeZ-CgExZ2CPah4cyRP7SI9xzUuB1QRCvqimxd4WRT/exec', // PEGA AQUÍ la URL /exec de tu implementación de Apps Script
     whatsappNumber: '51939143052',
-    instagramUrl: 'https://ig.me/m/leoleonmedia'
+    instagramUrl: 'https://ig.me/m/leoleonmedia',
+    // Cuando ManyChat genere el enlace de referencia, pégalo en el valor que corresponda.
+    manychatLinks: { ideas: '', pica: '', ganchos: '' }
   };
   const fixedKeywords = {ideas:'IDEAS',pica:'PICA',ganchos:'GANCHOS'};
   const keywordFor = key => fixedKeywords[key] || (String(key || 'RECURSO').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9]+/g,' ').trim().split(' ')[0] || 'RECURSO').toUpperCase().slice(0,20);
@@ -1101,6 +1151,8 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
     summary.append(titleNode,` · Por ${canalLabels[canal]}`);
     sendButton.textContent=canal==='email'?'Registrar solicitud por correo ↗':canal==='whatsapp'?'Hablar por WhatsApp ↗':'Abrir DM de Instagram ↗';
     feedback.textContent='';
+    const panel=$('#lead-dm-panel');if(panel) panel.hidden=true;
+    sendButton.href='#';sendButton.removeAttribute('target');sendButton.removeAttribute('rel');
   }
   if(leadForm){
     $$('input[name="canal"]',leadForm).forEach(x=>x.addEventListener('change',leadUpdate));
@@ -1134,7 +1186,7 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
     } else {
       feedback.textContent='Se abrió tu canal de contacto, pero el registro no se confirmó. Vuelve a intentarlo o escríbenos directamente.';
     }
-    sendButton.disabled=false;
+    sendButton.removeAttribute('aria-disabled');
     pendingLead=null;
   });
   function sendToSheets(payload){
@@ -1154,28 +1206,48 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
     }
     document.body.append(f);
     pendingLead={codigo:payload.codigo,canal:payload.canal};
-    sendButton.disabled=true;
+    sendButton.setAttribute('aria-disabled','true');
     f.submit();f.remove();
     // Si el navegador bloquea el mensaje de confirmación, no afirmamos que se guardó.
     return true;
   }
-  if(leadForm)leadForm.addEventListener('submit',async e=>{
-    e.preventDefault();
-    feedback.textContent='';
-    if(!leadForm.reportValidity())return;
+  const dmPanel=$('#lead-dm-panel');
+  const dmMessage=$('#lead-dm-text');
+  const dmKeyword=$('#lead-dm-keyword');
+  const dmOpen=$('#lead-open');
+  const dmCopy=$('#lead-copy');
+  let latestDM='';
+  if(dmCopy)dmCopy.addEventListener('click',async()=>{
+    if(!latestDM)return;
+    try{
+      await navigator.clipboard.writeText(latestDM);
+      dmCopy.textContent='¡Copiado! Pégalo en Instagram';
+    }catch{
+      // Método alternativo cuando el navegador bloquea Clipboard API.
+      const area=document.createElement('textarea');area.value=latestDM;
+      area.style.position='fixed';area.style.opacity='0';document.body.append(area);area.select();
+      const ok=document.execCommand('copy');area.remove();
+      dmCopy.textContent=ok?'¡Copiado! Pégalo en Instagram':'Selecciona y copia el mensaje de arriba';
+    }
+  });
+  // Un enlace real, activado por clic, evita los bloqueadores de ventanas emergentes.
+  if(leadForm)leadForm.addEventListener('submit',event=>event.preventDefault());
+  if(sendButton)sendButton.addEventListener('click',async event=>{
     const canal=leadChannel();
+    feedback.textContent='';
+    if(!leadForm.reportValidity()){event.preventDefault();return;}
     const recurso=$('#lead-recurso').value;
     const nombre=$('#lead-nombre').value.trim();
     const telefono=canal==='whatsapp'?fullWhatsappNumber():null;
     const contacto=telefono?telefono.full:contact.value.trim();
     const perfil=$('#lead-perfil').value;
     const marketing=$('#lead-marketing').checked;
-    if(!nombre){feedback.textContent='Indica tu nombre.';return}
-    if(canal==='whatsapp' && (!intlPhone || !/^\+[1-9]\d{5,14}$/.test(contacto))){feedback.textContent='Selecciona el país e introduce un número de WhatsApp válido.';phoneInput.focus();return}
-    if(canal==='instagram' && !/^@?[a-zA-Z0-9._]{1,30}$/.test(contacto)){feedback.textContent='Escribe tu usuario de Instagram, por ejemplo @usuario.';contact.focus();return}
+    if(!nombre){event.preventDefault();feedback.textContent='Indica tu nombre.';return;}
+    if(canal==='whatsapp' && (!intlPhone || !/^\+[1-9]\d{5,14}$/.test(contacto))){event.preventDefault();feedback.textContent='Selecciona el país e introduce un número de WhatsApp válido.';phoneInput.focus();return;}
+    if(canal==='instagram' && !/^@?[a-zA-Z0-9._]{1,30}$/.test(contacto)){event.preventDefault();feedback.textContent='Escribe tu usuario de Instagram, por ejemplo @usuario.';contact.focus();return;}
     const codigo='LEO-'+Date.now().toString(36).toUpperCase();
     const palabra=keywordFor(recurso);
-    const recursoNombre=resourceLabels[recurso] || recurso;
+    const recursoNombre=resourceLabels[recurso]||recurso;
     const payload={
       codigo,nombre,contacto,recurso:recursoNombre,recurso_id:recurso,palabra_clave:palabra,
       canal,pais:telefono?.countryName||'',codigo_pais:telefono?.country||'',prefijo_telefonico:telefono?.dial||'',
@@ -1183,28 +1255,44 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
       fecha_cliente:new Date().toISOString(),origen:'Web Leo León Media',website:''
     };
     const mensaje=`Hola, Leo. Soy ${nombre}. Quiero el recurso: ${recursoNombre}. Palabra clave: ${palabra}. Código: ${codigo}.`;
-    // Apertura directa desde el clic: no se bloquea por espera de red.
-    if(canal==='whatsapp'){
-      window.open(`https://wa.me/${LEO_LEADS.whatsappNumber}?text=${encodeURIComponent(mensaje)}`,'_blank','noopener,noreferrer');
+    if(canal==='email'){
+      event.preventDefault();
+      const sent=sendToSheets(payload);
+      if(sent) feedback.textContent='Registrando tu solicitud… Revisa la confirmación antes de cerrar la página.';
+      return;
     }
     if(canal==='instagram'){
-      // ig.me abre el DM, pero NO permite precargar texto. Copiamos la palabra clave.
-      window.open(LEO_LEADS.instagramUrl,'_blank','noopener,noreferrer');
-      try{await navigator.clipboard.writeText(palabra)}catch{}
-      feedback.textContent=`DM abierto: escribe o pega ${palabra} para pedir «${recursoNombre}». Si no se copió, puedes escribirla manualmente.`;
+      // Instagram NO permite precargar un DM con un enlace estándar.
+      // Mostrar texto copiable y abrir DM con un enlace real.
+      latestDM=mensaje;
+      dmMessage.textContent=mensaje;
+      dmKeyword.textContent='Palabra clave: '+palabra;
+      dmPanel.hidden=false;
+      dmCopy.textContent='Copiar mensaje';
+      const manychatURL=LEO_LEADS.manychatLinks[recurso] || '';
+      dmOpen.href=manychatURL || LEO_LEADS.instagramUrl;
+      dmOpen.textContent=manychatURL ? 'Abrir entrega automática en Instagram ↗' : 'Abrir Instagram DM ↗';
+      $('#lead-dm-help').textContent=manychatURL ? 'Este enlace activará el flujo correspondiente de ManyChat cuando lo publiques y esté disponible en Instagram.' : 'Hasta conectar ManyChat: abre el DM y pega el mensaje con la palabra clave. Instagram no permite precargar mensajes por URL.';
+      sendButton.href=manychatURL || LEO_LEADS.instagramUrl;
+      sendButton.target='_blank';sendButton.rel='noopener noreferrer';
+      // Intenta copiarlo en el clic del usuario; sin afirmar éxito si no se puede.
+      if(navigator.clipboard?.writeText) navigator.clipboard.writeText(mensaje).then(()=>{feedback.textContent=manychatURL ? 'Enlace ManyChat preparado. Si el flujo no aparece, envía la palabra clave copiada.' : 'Mensaje copiado: abre el DM, pégalo y pulsa Enviar.';}).catch(()=>{feedback.textContent='Abre el DM y usa «Copiar mensaje» aquí abajo para enviarlo.';});
+    }else{
+      const url=`https://wa.me/${LEO_LEADS.whatsappNumber}?text=${encodeURIComponent(mensaje)}`;
+      latestDM=mensaje;
+      dmMessage.textContent=mensaje;
+      dmKeyword.textContent='Palabra clave: '+palabra;
+      dmPanel.hidden=false;
+      dmCopy.textContent='Copiar mensaje';
+      dmOpen.href=url;dmOpen.textContent='Abrir WhatsApp ↗';
+      $('#lead-dm-help').textContent='WhatsApp abrirá el chat con Leo (+51 939 143 052) y el mensaje escrito. Solo pulsa Enviar.';
+      sendButton.href=url;sendButton.target='_blank';sendButton.rel='noopener noreferrer';
+      feedback.textContent='WhatsApp abrirá el mensaje ya preparado. Pulsa Enviar dentro de WhatsApp.';
     }
+    // El formulario envía el lead a Sheets y el enlace se abre por acción directa.
+    // Si las ventanas están bloqueadas, el enlace de respaldo queda visible.
     const sent=sendToSheets(payload);
-    if(sent){
-      feedback.textContent=canal==='instagram'
-        ? `DM abierto. Escribe «${palabra}» en Instagram. Registrando la solicitud en Google Sheets…`
-        : canal==='whatsapp'
-          ? 'WhatsApp abierto con tu solicitud. Pulsa Enviar. Registrando el contacto…'
-          : 'Registrando tu solicitud en Google Sheets…';
-    } else if(canal==='instagram'){
-      feedback.textContent=`DM abierto: envía «${palabra}». Aún falta conectar Google Sheets para registrar el lead.`;
-    } else if(canal==='whatsapp'){
-      feedback.textContent='WhatsApp abierto con el recurso que pediste. Pulsa Enviar. Aún falta conectar Google Sheets.';
-    }
+    if(!sent)feedback.textContent='El registro no está configurado; puedes enviar el mensaje por el canal seleccionado.';
   });
 })();
 </script></body></html>
