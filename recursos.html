@@ -396,13 +396,30 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
   .r,.card-m{opacity:1;transform:none}
   .riel i,.barra i{transform:none}
 }
-</style></head><body><header class="nav" id="nav">
+</style><link rel="icon" href="https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/favicon.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/apple-touch-icon.png" sizes="180x180">
+<link rel="canonical" href="https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/recursos.html">
+<style id="leo-fixes-shared">
+/* LEO MEDIA: componentes compartidos - corrección unificada */
+:root{--naranja:#fd7106}
+.logo.logo-imagen{display:inline-flex;align-items:center;justify-content:flex-start;width:clamp(145px,15vw,202px);flex:none;line-height:1}
+.logo.logo-imagen img{display:block;width:100%;max-width:100%;height:auto;object-fit:contain}
+.footer{position:relative!important;overflow:hidden!important;padding-top:clamp(62px,8vw,112px)!important;padding-bottom:clamp(88px,10vw,150px)!important}
+.footer .marca{display:block!important;position:relative!important;max-width:100%!important;box-sizing:border-box!important;width:100%!important;margin:0 auto!important;padding:.08em .05em .22em!important;font-size:clamp(2.6rem,16vw,13rem)!important;line-height:1.14!important;letter-spacing:-.055em!important;white-space:nowrap!important;overflow:visible!important;text-align:center!important;transform:none!important}
+.foot-row nav{display:flex;align-items:center;gap:clamp(13px,2vw,28px);flex-wrap:wrap}
+.foot-row .social-link{display:inline-flex;align-items:center;gap:7px}
+.foot-row .social-link svg{width:18px;height:18px;flex:none}
+.foot-row .social-link:hover{color:#fd7106}
+@media(max-width:860px){.logo.logo-imagen{width:clamp(130px,35vw,172px)}.footer{padding-bottom:84px!important}.footer .marca{font-size:clamp(2.4rem,15.5vw,8rem)!important;padding-bottom:.28em!important}}
+@media(max-width:560px){.footer{padding-bottom:72px!important}.footer .marca{font-size:clamp(2rem,15.5vw,5.2rem)!important;letter-spacing:-.065em!important}.foot-row nav{row-gap:14px}}
+</style>
+</head><body><header class="nav" id="nav">
   <div class="wrap">
-    <a href="index.html" class="logo">Leo León<span>.</span></a>
+    <a href="index.html" class="logo logo-imagen" aria-label="Leo León Media, inicio"><img src="logo-leonardo-leon.png" alt="Leonardo León" width="2048" height="534" decoding="async"></a>
     <nav class="menu" id="menu">
       <a href="index.html#casos">Casos</a>
       <a href="index.html#metodo">Método</a>
-      <a href="notas.html" class="activo">Notas</a>
+      <a href="blog.html">Blog</a>
       <a href="recursos.html" class="activo">Recursos gratis</a>
     </nav>
     <a href="recursos.html" class="btn btn-crema">Regalo gratis <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></a>
@@ -415,12 +432,7 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
   <div class="wrap">
     <div class="foot-row">
       <span>Piensa bien. Crea mejor.</span>
-      <nav>
-        <a href="notas.html">Notas</a>
-        <a href="recursos.html">Recursos gratis</a>
-        <a href="https://www.tiktok.com/@leoleonmedia" target="_blank" rel="noopener">TikTok</a>
-        <a href="https://www.instagram.com/leoleonmedia" target="_blank" rel="noopener">Instagram</a>
-      </nav>
+      <nav aria-label="Enlaces y redes sociales del pie de página"><a href="blog.html">Blog</a><a href="recursos.html">Recursos gratis</a><a class="social-link" href="https://www.tiktok.com/@leoleonmedia" target="_blank" rel="noopener noreferrer" aria-label="TikTok de Leo León"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 1.9c.3 2.5 1.7 4 4.2 4.2v4.3a10 10 0 0 1-4.2-1.1v6.9a7.1 7.1 0 1 1-7.1-7.1l1.1.1v4.4a3 3 0 1 0 1.7 2.7V1.9h4.3Z"/></svg><span>TikTok</span></a><a class="social-link" href="https://www.instagram.com/leoleonmedia/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Leo León"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.7" cy="6.4" r="1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a></nav>
       <span>@leoleonmedia</span>
     </div>
   </div>

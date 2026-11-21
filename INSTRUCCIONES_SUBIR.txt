@@ -1,0 +1,11 @@
+LEO LEÓN MEDIA — CORRECCIÓN INTEGRAL
+
+1. Guarda una copia de seguridad de tu repositorio de GitHub.
+2. Descomprime este ZIP. Abre la carpeta MARCA-PERSONAL-LEO-main.
+3. Desde GitHub entra a tu repositorio y utiliza Add file > Upload files para subir los archivos de ESTA carpeta a la raíz del repositorio main. Confirma el reemplazo de los archivos existentes.
+4. Comprueba después de publicar: /recursos.html, /blog.html, /nota.html, /recurso.html, /favicon.png.
+5. En el navegador usa Ctrl+F5 y, si persiste, prueba una ventana privada.
+
+CORREGIDO: Enlaces Blog, redirección de notas.html, favicon cuadrado, logo, iconos de redes en footer, margen inferior, sitemap.
+Conservado: sistema de leads de index.html, Google Sheets, WhatsApp, preparación ManyChat, tarjetas y artículos existentes.
+ManyChat todavía necesita URL real de flujo por recurso. No se ha probado una entrega real.

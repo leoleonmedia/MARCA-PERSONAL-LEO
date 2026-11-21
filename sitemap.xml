@@ -1,5 +1,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/</loc>
-  </url>
+  <url><loc>https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/</loc></url>
+  <url><loc>https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/blog.html</loc></url>
+  <url><loc>https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/nota.html</loc></url>
+  <url><loc>https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/recursos.html</loc></url>
+  <url><loc>https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/recurso.html</loc></url>
 </urlset>
