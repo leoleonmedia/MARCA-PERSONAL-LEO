@@ -616,6 +616,16 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
  .iti--container .iti__dropdown-content {max-width:calc(100vw - 20px)!important;}
  .iti__country-list {max-height:min(280px,40vh)!important;}
 }
+
+/* Leo Leon Media — footer con aire y doble enlace de videos */
+.video-social-links {display:flex; flex-wrap:wrap; align-items:center; gap:12px;}
+.video-social-links .btn {font-size:.9rem;padding:.75em 1.15em;}
+.footer {padding-bottom:clamp(40px,6vw,110px)!important;}
+.footer .marca {margin-bottom:0!important; padding-bottom:.12em!important;
+ font-size:clamp(4rem,16vw,15rem)!important;line-height:1.03!important;white-space:nowrap;}
+@media(max-width:640px){.video-social-links {width:100%;}
+ .video-social-links .btn {flex:1;justify-content:center;white-space:normal;text-align:center;}
+ .footer .marca {font-size:clamp(3.1rem,16vw,6rem)!important;}}
 </style></head><body><header class="nav" id="nav">
   <div class="wrap">
     <a href="index.html" class="logo logo-imagen" aria-label="Leo León Media, inicio"><img src="logo-leonardo-leon.png" width="2048" height="534" alt="Leonardo León" loading="eager"></a>
@@ -816,7 +826,10 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
         <span class="label r">Videos</span>
         <h2 class="r d1">Lo más visto.</h2>
       </div>
-      <a href="https://www.tiktok.com/@leoleonmedia" target="_blank" rel="noopener noreferrer" class="btn btn-linea r d2">Ver todos en TikTok <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></a>
+      <div class="video-social-links r d2" aria-label="Visita mis videos en redes sociales">
+        <a href="https://www.tiktok.com/@leoleonmedia" target="_blank" rel="noopener noreferrer" class="btn btn-linea">Ver en TikTok ↗</a>
+        <a href="https://www.instagram.com/leoleonmedia/" target="_blank" rel="noopener noreferrer" class="btn btn-linea">Ver en Instagram ↗</a>
+      </div>
     </div>
     <!-- Para cada video, pega el ID en data-tiktok (ej. 7301234567890123456) o data-ig (ej. C1AbCdEfGhI). El reproductor solo carga al tocar: la web no se pone lenta. -->
     <div class="reels">
@@ -876,7 +889,7 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
         <label class="lead-check"><input type="checkbox" id="lead-marketing"> <span>También deseo recibir novedades y consejos (opcional).</span></label>
         <button type="submit" class="btn btn-crema btn-regalo lead-send" id="lead-send">Solicitar mi regalo ↗</button>
         <p id="lead-feedback" class="lead-feedback" role="status" aria-live="polite"></p>
-        <p class="lead-privacy">No se registra ninguna solicitud hasta conectar el servicio de recepción de leads. WhatsApp e Instagram requieren que envíes el mensaje para iniciar la conversación.</p>
+        <p class="lead-privacy">Tu contacto, recurso y fecha se guardarán en nuestra hoja de solicitudes cuando activemos la conexión con Google Sheets. En WhatsApp o Instagram también debes enviar el mensaje para iniciar la conversación. Para comunicaciones comerciales solicitamos permiso aparte.</p>
       </form>
     </div>
   </div>
@@ -952,16 +965,17 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
     r.insertAdjacentHTML('beforeend',`<iframe src="${src}" allow="autoplay; encrypted-media; fullscreen" loading="lazy" title="Video de Leo León"></iframe>`);
   }));
 
-  /* LEADS - Edita únicamente estos dos campos para activar la captación.
-     formEndpoint: URL pública de tu formulario (p.ej. https://formspree.io/f/xxxxxxxx).
-     El endpoint debe admitir POST desde el navegador y devolver HTTP 2xx.
-     whatsappNumber: tu WhatsApp Business con código de país, sin + ni espacios.
-     No incluyas contraseñas, tokens privados ni números de terceros. */
+  /* LEADS - Pega la URL pública /exec de Google Apps Script en sheetsWebAppUrl.
+     WhatsApp usa tu número y el DM abre https://ig.me/m/leoleonmedia.
+     Instagram NO acepta texto prellenado: copiamos la palabra clave.
+     La hoja nunca se publica; el script se ejecuta con tu propia cuenta. */
   const LEO_LEADS = {
-    formEndpoint: '',
-    whatsappNumber: '',
-    instagramUrl: 'https://www.instagram.com/leoleonmedia/'
+    sheetsWebAppUrl: '', // PEGA AQUÍ la URL /exec de tu implementación de Apps Script
+    whatsappNumber: '51939143052',
+    instagramUrl: 'https://ig.me/m/leoleonmedia'
   };
+  const fixedKeywords = {ideas:'IDEAS',pica:'PICA',ganchos:'GANCHOS'};
+  const keywordFor = key => fixedKeywords[key] || (String(key || 'RECURSO').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9]+/g,' ').trim().split(' ')[0] || 'RECURSO').toUpperCase().slice(0,20);
   // Respaldo inicial para el modo sin conexión. Al abrir la web publicada,
   // el catálogo se sincroniza con las tarjetas «Disponible» de recursos.html.
   const resourceLabels = {
@@ -1057,7 +1071,7 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
     const configs={
       email:{title:'Tu correo electrónico',type:'email',placeholder:'tu@email.com',autocomplete:'email',help:'Lo necesitamos para enviarte el recurso.'},
       whatsapp:{title:'Tu número de WhatsApp',type:'tel',placeholder:'Número de WhatsApp',autocomplete:'tel-national',help:'Selecciona tu país por su bandera y escribe el número. El prefijo se añade automáticamente.'},
-      instagram:{title:'Tu usuario de Instagram',type:'text',placeholder:'@tuusuario',autocomplete:'off',help:'Escribe tu @usuario para poder reconocer tu DM.'}
+      instagram:{title:'Tu usuario de Instagram',type:'text',placeholder:'@tuusuario',autocomplete:'off',help:'Abre directamente nuestro DM. Enviarás la palabra clave del recurso que elegiste.'}
     };
     const cfg=configs[canal];
     contactLabel.textContent=cfg.title;
@@ -1085,7 +1099,7 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
     const titleNode=document.createElement('strong');
     titleNode.textContent=resourceLabels[recurso] || 'el recurso elegido';
     summary.append(titleNode,` · Por ${canalLabels[canal]}`);
-    sendButton.textContent=canal==='email'?'Solicitar por correo ↗':canal==='whatsapp'?'Abrir WhatsApp ↗':'Continuar a Instagram ↗';
+    sendButton.textContent=canal==='email'?'Registrar solicitud por correo ↗':canal==='whatsapp'?'Hablar por WhatsApp ↗':'Abrir DM de Instagram ↗';
     feedback.textContent='';
   }
   if(leadForm){
@@ -1100,6 +1114,51 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
       leadUpdate();
     }
   }));
+  // Registro con respuesta verificable mediante postMessage desde Apps Script.
+  // Un formulario/iframe aislado evita el bloqueo CORS propio de Apps Script.
+  let pendingLead=null;
+  const sheetIframe=document.createElement('iframe');
+  sheetIframe.name='leo-sheets-receiver';
+  sheetIframe.title='Registro de solicitud';
+  sheetIframe.hidden=true;
+  sheetIframe.setAttribute('aria-hidden','true');
+  document.body.append(sheetIframe);
+  window.addEventListener('message',event=>{
+    if(!pendingLead || !/^https:\/\/(script\.google\.com|script\.googleusercontent\.com)$/.test(event.origin))return;
+    const data=event.data;
+    if(!data || data.source!=='leo-leads-sheets' || data.codigo!==pendingLead.codigo)return;
+    if(data.ok){
+      feedback.textContent=pendingLead.canal==='email'
+        ? (data.entrega==='Correo enviado' ? '¡Solicitud registrada! Enviamos el enlace a tu correo.' : 'Solicitud registrada en nuestra hoja. El envío automático del recurso está pendiente de configurar.')
+        : 'Solicitud registrada en nuestra hoja. Recuerda enviar el mensaje en el canal elegido.';
+    } else {
+      feedback.textContent='Se abrió tu canal de contacto, pero el registro no se confirmó. Vuelve a intentarlo o escríbenos directamente.';
+    }
+    sendButton.disabled=false;
+    pendingLead=null;
+  });
+  function sendToSheets(payload){
+    if(!LEO_LEADS.sheetsWebAppUrl){
+      feedback.textContent='El registro en Google Sheets aún no está conectado. Puedes escribirnos por WhatsApp o Instagram.';
+      return false;
+    }
+    if(!/^https:\/\/script\.google\.com\/macros\/s\/.+\/exec$/.test(LEO_LEADS.sheetsWebAppUrl)){
+      feedback.textContent='La URL de Google Sheets no está configurada correctamente.';
+      return false;
+    }
+    const f=document.createElement('form');
+    f.method='POST';f.action=LEO_LEADS.sheetsWebAppUrl;f.target=sheetIframe.name;
+    f.hidden=true;f.acceptCharset='UTF-8';
+    for(const [key,value] of Object.entries(payload)){
+      const el=document.createElement('input');el.type='hidden';el.name=key;el.value=String(value??'');f.append(el);
+    }
+    document.body.append(f);
+    pendingLead={codigo:payload.codigo,canal:payload.canal};
+    sendButton.disabled=true;
+    f.submit();f.remove();
+    // Si el navegador bloquea el mensaje de confirmación, no afirmamos que se guardó.
+    return true;
+  }
   if(leadForm)leadForm.addEventListener('submit',async e=>{
     e.preventDefault();
     feedback.textContent='';
@@ -1111,56 +1170,41 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
     const contacto=telefono?telefono.full:contact.value.trim();
     const perfil=$('#lead-perfil').value;
     const marketing=$('#lead-marketing').checked;
+    if(!nombre){feedback.textContent='Indica tu nombre.';return}
     if(canal==='whatsapp' && (!intlPhone || !/^\+[1-9]\d{5,14}$/.test(contacto))){feedback.textContent='Selecciona el país e introduce un número de WhatsApp válido.';phoneInput.focus();return}
-    if(canal==='instagram' && !/^@?[a-zA-Z0-9._]{1,30}$/.test(contacto)){feedback.textContent='Escribe tu nombre de usuario de Instagram, por ejemplo @usuario.';contact.focus();return}
-    const identifier='LEO-'+Date.now().toString(36).toUpperCase();
+    if(canal==='instagram' && !/^@?[a-zA-Z0-9._]{1,30}$/.test(contacto)){feedback.textContent='Escribe tu usuario de Instagram, por ejemplo @usuario.';contact.focus();return}
+    const codigo='LEO-'+Date.now().toString(36).toUpperCase();
+    const palabra=keywordFor(recurso);
+    const recursoNombre=resourceLabels[recurso] || recurso;
     const payload={
-      codigo:identifier, nombre, contacto, recurso:resourceLabels[recurso],recurso_id:recurso,
-      canal, ...(telefono?{pais:telefono.countryName,codigo_pais:telefono.country,prefijo_telefonico:telefono.dial}:{}), perfil,consentimiento_recurso:'sí',consentimiento_marketing:marketing?'sí':'no',
-      fecha:new Date().toISOString(),origen:'Web Leo León Media'
+      codigo,nombre,contacto,recurso:recursoNombre,recurso_id:recurso,palabra_clave:palabra,
+      canal,pais:telefono?.countryName||'',codigo_pais:telefono?.country||'',prefijo_telefonico:telefono?.dial||'',
+      perfil,consentimiento_recurso:'sí',consentimiento_marketing:marketing?'sí':'no',
+      fecha_cliente:new Date().toISOString(),origen:'Web Leo León Media',website:''
     };
-    const mensaje=`Hola, Leo. Soy ${nombre}. 🎁 Quiero el recurso: ${resourceLabels[recurso]}. Mi contacto es ${contacto}. Código: ${identifier}.`;
-    let guardado=false;
-    if(LEO_LEADS.formEndpoint){
-      try{
-        sendButton.disabled=true;
-        feedback.textContent='Registrando tu solicitud…';
-        const r=await fetch(LEO_LEADS.formEndpoint,{
-          method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},
-          body:JSON.stringify(payload)
-        });
-        if(!r.ok) throw new Error('No se confirmó el registro');
-        guardado=true;
-      }catch(err){
-        feedback.textContent='No pudimos guardar tus datos. Comprueba la conexión e inténtalo otra vez.';
-        sendButton.disabled=false;return;
-      }finally{sendButton.disabled=false}
-    }
-    if(canal==='email'){
-      feedback.textContent=guardado
-        ? 'Tu solicitud quedó registrada. Revisa tu correo: la entrega del regalo debe configurarse en el servicio de email.'
-        : 'Falta activar la recepción de contactos por correo. Por ahora, elige Instagram para escribirnos.';
-      return;
-    }
+    const mensaje=`Hola, Leo. Soy ${nombre}. Quiero el recurso: ${recursoNombre}. Palabra clave: ${palabra}. Código: ${codigo}.`;
+    // Apertura directa desde el clic: no se bloquea por espera de red.
     if(canal==='whatsapp'){
-      if(!LEO_LEADS.whatsappNumber){
-        feedback.textContent='El WhatsApp del negocio todavía no está configurado. Elige Instagram DM.';
-        return;
-      }
       window.open(`https://wa.me/${LEO_LEADS.whatsappNumber}?text=${encodeURIComponent(mensaje)}`,'_blank','noopener,noreferrer');
-      feedback.textContent=(guardado?'Tus datos quedaron registrados. ':'')+'En WhatsApp, pulsa Enviar para que llegue tu solicitud con el nombre y el regalo.';
-      return;
     }
-    // Instagram no admite un mensaje prellenado universal desde el navegador.
-    // Abrimos el perfil, copiamos un texto con código y dejamos que la persona lo envíe.
-    window.open(LEO_LEADS.instagramUrl,'_blank','noopener,noreferrer');
-    try{
-      await navigator.clipboard.writeText(mensaje);
-      feedback.textContent=(guardado?'Tus datos quedaron registrados. ':'')+'Copiamos el mensaje. En Instagram pulsa Mensaje, pega el texto y envíalo.';
-    }catch{
-      feedback.textContent='En Instagram envía este texto: '+mensaje;
+    if(canal==='instagram'){
+      // ig.me abre el DM, pero NO permite precargar texto. Copiamos la palabra clave.
+      window.open(LEO_LEADS.instagramUrl,'_blank','noopener,noreferrer');
+      try{await navigator.clipboard.writeText(palabra)}catch{}
+      feedback.textContent=`DM abierto: escribe o pega ${palabra} para pedir «${recursoNombre}». Si no se copió, puedes escribirla manualmente.`;
+    }
+    const sent=sendToSheets(payload);
+    if(sent){
+      feedback.textContent=canal==='instagram'
+        ? `DM abierto. Escribe «${palabra}» en Instagram. Registrando la solicitud en Google Sheets…`
+        : canal==='whatsapp'
+          ? 'WhatsApp abierto con tu solicitud. Pulsa Enviar. Registrando el contacto…'
+          : 'Registrando tu solicitud en Google Sheets…';
+    } else if(canal==='instagram'){
+      feedback.textContent=`DM abierto: envía «${palabra}». Aún falta conectar Google Sheets para registrar el lead.`;
+    } else if(canal==='whatsapp'){
+      feedback.textContent='WhatsApp abierto con el recurso que pediste. Pulsa Enviar. Aún falta conectar Google Sheets.';
     }
   });
 })();
 </script></body></html>
-
