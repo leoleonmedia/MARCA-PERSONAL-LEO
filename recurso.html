@@ -593,8 +593,12 @@ const countries=[
 ['pe','Perú','51'],['ar','Argentina','54'],['bo','Bolivia','591'],['br','Brasil','55'],['cl','Chile','56'],['co','Colombia','57'],['cr','Costa Rica','506'],['cu','Cuba','53'],['do','República Dominicana','1'],['ec','Ecuador','593'],['sv','El Salvador','503'],['gt','Guatemala','502'],['hn','Honduras','504'],['mx','México','52'],['ni','Nicaragua','505'],['pa','Panamá','507'],['py','Paraguay','595'],['pr','Puerto Rico','1'],['uy','Uruguay','598'],['ve','Venezuela','58'],['us','Estados Unidos','1'],['ca','Canadá','1'],['es','España','34'],['pt','Portugal','351'],['fr','Francia','33'],['de','Alemania','49'],['it','Italia','39'],['gb','Reino Unido','44'],['ie','Irlanda','353'],['nl','Países Bajos','31'],['be','Bélgica','32'],['ch','Suiza','41'],['at','Austria','43'],['se','Suecia','46'],['no','Noruega','47'],['dk','Dinamarca','45'],['fi','Finlandia','358'],['pl','Polonia','48'],['gr','Grecia','30'],['tr','Turquía','90'],['ua','Ucrania','380'],['ru','Rusia','7'],['ma','Marruecos','212'],['eg','Egipto','20'],['za','Sudáfrica','27'],['ng','Nigeria','234'],['ke','Kenia','254'],['in','India','91'],['pk','Pakistán','92'],['bd','Bangladés','880'],['cn','China','86'],['jp','Japón','81'],['kr','Corea del Sur','82'],['tw','Taiwán','886'],['hk','Hong Kong','852'],['sg','Singapur','65'],['my','Malasia','60'],['id','Indonesia','62'],['ph','Filipinas','63'],['th','Tailandia','66'],['vn','Vietnam','84'],['ae','Emiratos Árabes Unidos','971'],['sa','Arabia Saudita','966'],['il','Israel','972'],['au','Australia','61'],['nz','Nueva Zelanda','64']
 ];
 const countrySelect=el('rl-pais');
+const flagEmoji=iso=>String(iso||'').toUpperCase().replace(/./g,char=>String.fromCodePoint(127397+char.charCodeAt(0)));
 for(const [iso,name,dial] of countries){
- const option=document.createElement('option');option.value=iso;option.textContent=name+' (+'+dial+')';option.dataset.dial=dial;
+ const option=document.createElement('option');
+ option.value=iso;
+ option.textContent=flagEmoji(iso)+' '+name+' (+'+dial+')';
+ option.dataset.dial=dial;
  if(iso==='pe')option.selected=true;
  countrySelect.appendChild(option);
 }
