@@ -55,18 +55,35 @@
 .format-empty{padding:30px;text-align:center;background:#1d1d21;border-radius:16px;color:#cfc8bd}
 @media(max-width:1050px){.format-grid{grid-template-columns:1fr}.format-card{grid-template-columns:minmax(190px,39%) minmax(0,1fr)}}
 @media(max-width:640px){.visual-formats{padding:45px 0}.format-toolbar{padding:15px}.format-count{text-align:left;width:100%}.format-card{grid-template-columns:1fr}.format-demo{min-height:292px;border-right:0;border-bottom:1px solid #2e2e33}.format-body{padding:20px}.format-spec strong{font-size:23px}.canvas-sim.vertical{height:240px}.canvas-sim.portrait{height:235px}.canvas-sim.square{height:210px}}
+
+
+/* LEONES DIGITALES · cabecera compartida, v3 */
+header.ld-header{position:relative;top:auto;z-index:30;background:#0a0a0c;border-bottom:1px solid #28272a;backdrop-filter:none;color:#f8f6f2}
+header.ld-header .ld-shell{width:min(1180px,calc(100% - 40px));margin-inline:auto}
+header.ld-header .ld-top{display:grid;grid-template-columns:208px minmax(0,1fr);align-items:center;column-gap:28px;padding:15px 0}
+header.ld-header .ld-brand{display:flex;align-items:center;justify-content:flex-start;text-decoration:none;min-width:0;padding:0;border:none;background:none}
+header.ld-header .ld-brand img{display:block;width:198px;max-width:100%;height:auto;max-height:80px;object-fit:contain;object-position:left center}
+header.ld-header .ld-menu{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,auto);gap:8px;align-items:stretch;min-width:0;margin:0;padding:0}
+header.ld-header .ld-menu a{display:flex;justify-content:center;align-items:center;text-align:center;min-width:0;min-height:38px;padding:8px 8px;border:1px solid #303035;border-radius:10px;background:#151518;color:#ddd8d0;text-decoration:none;font:700 12px/1.3 Inter,system-ui,Arial,sans-serif;white-space:normal;letter-spacing:0;transition:background .16s,color .16s,border-color .16s}
+header.ld-header .ld-menu a:hover{background:#24201b;color:#ffad63;border-color:#a25924}
+header.ld-header .ld-menu a[aria-current="page"]{background:#ff7a00;color:#14100b;border-color:#ff7a00}
+header.ld-header .ld-menu a:focus-visible,header.ld-header .ld-brand:focus-visible{outline:2px solid #ff7a00;outline-offset:3px}
+header.ld-header .ld-sub{border-top:1px solid #252528}
+header.ld-header .ld-breadcrumb{padding:8px 0 10px;color:#aaa4a0;font:500 12px/1.45 Inter,system-ui,Arial,sans-serif}
+header.ld-header .ld-breadcrumb a{color:#e1dad4;text-decoration:none}
+header.ld-header .ld-breadcrumb a:hover{color:#ff7a00}
+@media(max-width:880px){header.ld-header .ld-top{grid-template-columns:1fr;gap:13px;justify-items:center;padding:13px 0}header.ld-header .ld-brand img{width:190px;max-height:76px}header.ld-header .ld-menu{width:100%}}
+@media(max-width:590px){header.ld-header .ld-shell{width:calc(100% - 28px)}header.ld-header .ld-top{gap:11px}header.ld-header .ld-brand img{width:180px}header.ld-header .ld-menu{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto;gap:7px}header.ld-header .ld-menu a{min-height:38px;padding:7px 5px;font-size:11px}header.ld-header .ld-breadcrumb{font-size:11px}}
+
+/* Ajustes finales de navegación v4: imagen idéntica y dos filas compactas */
+header.ld-header .ld-top{grid-template-columns:168px minmax(0,1fr);column-gap:22px;padding:12px 0}
+header.ld-header .ld-brand img{width:160px;height:auto;max-height:62px;object-fit:contain;object-position:left center;filter:none!important;opacity:1!important;mix-blend-mode:normal!important}
+header.ld-header .ld-menu{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(38px,auto));gap:7px 8px}
+header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;font-size:11.5px;line-height:1.23}
+@media(max-width:880px){header.ld-header .ld-top{grid-template-columns:1fr;gap:11px;justify-items:center}header.ld-header .ld-brand img{width:160px;max-height:62px}header.ld-header .ld-menu{width:100%}}
+@media(max-width:590px){header.ld-header .ld-menu{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto}header.ld-header .ld-brand img{width:148px}}
 </style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Guía de medidas y formatos para Reels, TikTok y YouTube", "applicationCategory": "EducationalApplication", "operatingSystem": "Any", "inLanguage": "es", "isAccessibleForFree": true, "author": {"@type": "Person", "name": "Leo León"}, "url": "https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/guia-formatos.html"}</script></head><body>
-<header class="academy-header">
-<div class="wrap academy-bar">
-<a aria-label="Ir a Academia Leones Digitales" class="academy-brand" href="academia.html">
-<img alt="Academia Leones Digitales" src="logo-leones-digitales.png"/>
-</a>
-<nav aria-label="Navegación Academia Leones Digitales" class="academy-nav">
-<a class="" href="academia.html">Academia</a><a class="" href="diccionario.html">Diccionario</a><a class="" href="generador-hooks.html">Generador de hooks</a><a class="active" href="guia-formatos.html">Medidas y formatos</a><a class="" href="calculadora-engagement.html">Calculadora de engagement</a><a class="" href="biblioteca-prompts.html">Biblioteca de prompts</a>
-</nav>
-</div>
-<div class="wrap academy-breadcrumb"><a href="academia.html">Academia</a> / <span>Medidas y formatos</span></div>
-</header><main><header class="hero"><div class="wrap"><div class="eyebrow">Recurso gratuito · Leo León</div><h1>MEDIDAS PARA CREAR <em>SIN ADIVINAR.</em></h1><p>Formatos y resoluciones de referencia para exportar contenido con intención, sin perderte entre números.</p></div></header><section class="visual-formats" id="catalogo-formatos"><div class="wrap">
+<header class="ld-header"><div class="ld-shell ld-top"><a aria-label="Academia Leones Digitales" class="ld-brand" href="academia.html"><img alt="Academia Leones Digitales" height="62" src="logo-leones-digitales.png" style="filter:none;mix-blend-mode:normal;opacity:1" width="160"/></a><nav aria-label="Navegación de Academia Leones Digitales" class="ld-menu"><a href="index.html">Inicio</a><a href="academia.html">Academia</a><a href="diccionario.html">Diccionario digital</a><a href="generador-hooks.html">Generador de hooks</a><a aria-current="page" href="guia-formatos.html">Medidas y formatos</a><a href="calculadora-engagement.html">Calculadora de engagement</a><a href="biblioteca-prompts.html">Biblioteca de prompts</a><a href="calculadora-ads.html">Meta y TikTok Ads</a></nav></div><div class="ld-sub"><div class="ld-shell ld-breadcrumb"><a href="index.html">Inicio</a> / <a href="academia.html">Academia</a> / <span>Medidas y formatos</span></div></div></header><main><header class="hero"><div class="wrap"><div class="eyebrow">Recurso gratuito · Leo León</div><h1>MEDIDAS PARA CREAR <em>SIN ADIVINAR.</em></h1><p>Formatos y resoluciones de referencia para exportar contenido con intención, sin perderte entre números.</p></div></header><section class="visual-formats" id="catalogo-formatos"><div class="wrap">
 <div class="eyebrow">GUÍA VISUAL · MEDIDAS SIN REPETICIONES</div>
 <h2 class="section-title">Un tamaño. <span style="color:var(--orange)">Todos sus usos.</span></h2>
 <p class="desc">Cada cuadro mantiene la <strong>proporción real</strong> del formato. Reunimos las plataformas compatibles en una ficha, en lugar de repetir 1080 × 1920 para cada red social. Las medidas son referencias de trabajo, no una garantía de aceptación en todas las funciones.</p>
