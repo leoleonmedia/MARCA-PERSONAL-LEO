@@ -2,7 +2,7 @@
 <meta name="description" content="Leo León comparte estrategias de contenido, guiones para Reels y TikTok, métodos PICA y META e inteligencia artificial para crear con criterio.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/">
-<link rel="icon" type="image/png" sizes="140x164" href="favicon.png">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_PE">
@@ -22,6 +22,7 @@
   "inLanguage": "es"
 }
 </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@29.5.8/dist/css/intlTelInput.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet"><style>:root{
   --negro:#0B0B0B; --gris:#1F1F1F; --gris2:#161616; --linea:#2A2A2A;
   --crema:#F5F1EA; --naranja:#FF7A00; --ambar:#FFB347; --naranja-osc:#A84800;
@@ -450,16 +451,181 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
 .btn-regalo:focus-visible{outline:2px solid #FF7A00;outline-offset:3px}
 .btn-regalo svg{color:inherit}
 @media(prefers-reduced-motion:reduce){.btn-regalo{transition:none}.btn-regalo:hover{transform:none}}
+
+/* === AJUSTES LEO LEÓN MEDIA 2026 === */
+.logo-imagen {display:inline-flex;align-items:center;flex:none;width:clamp(142px,17vw,218px);height:auto}
+.logo-imagen img {width:100%;height:auto;object-fit:contain}
+.nav .wrap {gap:18px}
+.hero .foto img,.yo .foto img {position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero .foto:has(img) .ph-tag,.yo .foto:has(img) .ph-tag{display:none}
+.caso-main {position:relative;isolation:isolate;overflow:hidden}
+.caso-main .evidencia-img {position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
+.caso-main:has(.evidencia-img)::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 32%,rgba(0,0,0,.88));z-index:-1}
+/* interacción de letras más ágil */
+.sigla b {transition:background .20s ease,color .20s ease,border-color .20s ease,transform .20s ease}
+.card-m:hover .sigla b:nth-child(n){transition-delay:0s}
+.card-m:hover .sigla b {transform:translateY(-2px)}
+.met-head {margin-bottom:clamp(44px,6vw,76px)}
+#regalos .head{margin-bottom:clamp(34px,4vw,56px)}
+.footer{padding-bottom:clamp(72px,10vw,140px)}
+.footer .marca {margin-bottom:0;font-size:clamp(3.8rem,16vw,14rem)}
+#notas .nota:only-child .ph {min-height:0}
+#notas .nota:only-child .ph img {position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* captación de leads */
+.lead-hub{max-width:780px;margin:48px auto 0;text-align:left}
+.lead-form{padding:clamp(24px,4vw,42px);border:1px solid rgba(255,122,0,.3);border-radius:26px;background:linear-gradient(160deg,#20170f,#121212 55%);display:grid;gap:14px}
+.lead-form label:not(.lead-channel):not(.lead-check),.lead-form legend {font-size:.9rem;font-weight:600;color:var(--crema)}
+.lead-form input:not([type=checkbox]):not([type=radio]),.lead-form select {width:100%;min-width:0;padding:14px 16px;border-radius:12px;background:#191919;color:#f5f1ea;border:1px solid #444;outline:none;font:inherit}
+.lead-form input:focus,.lead-form select:focus {border-color:var(--naranja)}
+.lead-fields {display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.lead-fields>div{display:grid;gap:8px}
+.lead-form>label:not(.lead-check){margin-top:6px}
+.lead-channels {border:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:8px}
+.lead-channels legend {margin-bottom:12px}
+.lead-channel{display:block;cursor:pointer;min-width:0}
+.lead-channel input{position:absolute;opacity:0;width:1px;height:1px}
+.lead-channel>span{display:flex;flex-direction:column;min-height:116px;align-items:flex-start;gap:6px;padding:14px;border:1px solid #444;border-radius:14px;background:#181818;transition:border-color .18s,background .18s;font-size:1.1rem}
+.lead-channel strong{font-size:.95rem}
+.lead-channel small{font-size:.73rem;line-height:1.35;color:#bbb}
+.lead-channel input:checked+span{border-color:#ff7a00;background:#301e0e}
+.lead-channel input:focus-visible+span{outline:2px solid #fff;outline-offset:2px}
+.lead-check{display:flex;gap:10px;align-items:flex-start;text-align:left;color:#d4d0ca;font-size:.79rem;line-height:1.5;cursor:pointer}
+.lead-check input {width:17px;height:17px;flex:none;margin-top:2px;accent-color:#ff7a00}
+.lead-send{justify-content:center;width:100%;margin-top:6px}
+.lead-feedback {font-size:.88rem;line-height:1.5;color:#ffb347;min-height:1.4em}
+.lead-privacy {font-size:.75rem;color:#aaa;line-height:1.5}
+@media(max-width:860px){.logo-imagen{width:160px}}
+@media(max-width:600px){.lead-fields,.lead-channels{grid-template-columns:1fr}.lead-channel>span{min-height:0}.lead-form{padding:22px}.logo-imagen{width:144px}}
+
+/* FLUJO DE LEADS - 3 pasos compactos */
+.lead-steps{display:flex;flex-wrap:wrap;gap:8px 16px;color:#bdb6ac;font-size:.79rem;line-height:1.4;margin-bottom:5px}
+.lead-steps span{display:inline-flex;align-items:center;gap:7px}
+.lead-steps b{color:#ff8a18;font-weight:700}
+.lead-profile{display:grid;gap:8px;margin-top:5px}
+.lead-optional{font-weight:400;color:#b6b6b6}
+.lead-help{font-size:.75rem;color:#aaa;line-height:1.35}
+.lead-summary{padding:11px 14px;border:1px solid #5d3818;border-radius:12px;background:#26190d;color:#ead9c4;font-size:.82rem;line-height:1.45}
+.lead-summary strong{color:#fff}
+.lead-form .lead-channels{margin-top:6px}
+.lead-form .lead-send:disabled{opacity:.6;cursor:wait}
+.lead-form .lead-fields input{margin-top:0}
+@media(max-width:640px){.lead-steps{font-size:.73rem;gap:7px 12px}}
+
+/* WhatsApp: selector mundial de banderas y prefijos telefónicos */
+#lead-phone-wrap[hidden],#lead-contacto[hidden]{display:none!important}
+#lead-phone-wrap{min-width:0}
+#lead-phone-wrap .iti{width:100%;--iti-dropdown-bg:#171717;--iti-dropdown-text-color:#f5f1ea;--iti-dropdown-border-color:#555;--iti-hover-color:#34271b;--iti-border-color:#555;--iti-path-flags-1x:url("https://cdn.jsdelivr.net/npm/intl-tel-input@29.5.8/dist/img/flags.webp");--iti-path-flags-2x:url("https://cdn.jsdelivr.net/npm/intl-tel-input@29.5.8/dist/img/flags@2x.webp");--iti-path-globe-1x:url("https://cdn.jsdelivr.net/npm/intl-tel-input@29.5.8/dist/img/globe.webp");--iti-path-globe-2x:url("https://cdn.jsdelivr.net/npm/intl-tel-input@29.5.8/dist/img/globe@2x.webp")}
+#lead-phone-wrap .iti input{width:100%;padding-left:108px!important}
+#lead-phone-wrap .iti__selected-country-primary{background:transparent}
+#lead-phone-wrap .iti__selected-dial-code{color:#f5f1ea;font-size:.9rem}
+#lead-phone-wrap .iti__country-container{z-index:2}
+.iti__dropdown-content{background:#171717!important;color:#f5f1ea!important;border:1px solid #444!important;box-shadow:0 16px 36px rgba(0,0,0,.6)!important;z-index:9999!important}
+.iti__search-input{background:#202020!important;color:#f5f1ea!important;border:1px solid #555!important}
+.iti__country.iti__highlight,.iti__country:hover{background:#382414!important}
+.iti__dial-code{color:#d8c9b8!important}
+
+/* Ajustes de alineación del formulario de regalos — 2026-11-21 */
+.lead-hub {width:100%;max-width:780px;margin-inline:auto;}
+.lead-form {width:100%;min-width:0;text-align:left;align-items:stretch;gap:16px;}
+.lead-form > * {min-width:0;}
+.lead-form > label:not(.lead-check),
+.lead-form > .lead-profile > label,
+.lead-form .lead-fields label {display:block;margin:0;line-height:1.4;}
+.lead-steps {display:flex;align-items:center;justify-content:flex-start;gap:10px 18px;margin:0 0 8px;}
+.lead-steps span {display:inline-flex;align-items:center;gap:7px;white-space:nowrap;}
+.lead-channels {width:100%;padding:0;margin:0!important;align-items:stretch;}
+.lead-channels legend {display:block;padding:0;margin-bottom:12px;}
+.lead-channel {height:100%;}
+.lead-channel > span {height:100%;min-height:112px;box-sizing:border-box;justify-content:flex-start;}
+.lead-fields {width:100%;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:16px;}
+.lead-fields > div {display:flex;flex-direction:column;align-items:stretch;gap:8px;min-width:0;}
+.lead-fields label {min-height:21px;}
+.lead-form .lead-fields input:not([type=checkbox]):not([type=radio]),
+.lead-form .lead-profile select,
+.lead-form > select {height:52px;box-sizing:border-box;}
+.lead-profile {width:100%;margin:0;gap:8px;}
+.lead-help {display:block;line-height:1.45;min-height:1.45em;margin:0;}
+#lead-phone-wrap {width:100%;}
+#lead-phone-wrap .iti {width:100%;}
+#lead-phone-wrap .iti input {height:52px;}
+.lead-summary {width:100%;margin:0;box-sizing:border-box;}
+.lead-check {width:100%;margin:0;align-items:flex-start;}
+.lead-check input {margin-top:2px;}
+.lead-send {min-height:52px;margin:0;}
+.lead-feedback {margin:0;}
+.lead-privacy {margin:0;text-align:left;}
+@media(max-width:640px) {
+  .lead-form {gap:14px;}
+  .lead-steps {justify-content:flex-start;gap:7px 13px;}
+  .lead-steps span {white-space:normal;}
+  .lead-fields {grid-template-columns:minmax(0,1fr);gap:14px;}
+  .lead-channels {grid-template-columns:minmax(0,1fr);}
+  .lead-channel > span {min-height:0;height:auto;}
+}
+
+/* Selector de países: panel oscuro, legible y sin recortes */
+#lead-phone-wrap .iti {display:block;width:100%;}
+#lead-phone-wrap .iti__selected-country {color:#F5F1EA!important;}
+#lead-phone-wrap .iti__selected-country-primary {background:#191919!important;}
+#lead-phone-wrap .iti__selected-dial-code {color:#F5F1EA!important;}
+/* El panel se inserta en body, fuera de las cajas con overflow:hidden. */
+.iti--container {z-index:100000!important; font-family:Inter,system-ui,sans-serif!important;}
+.iti--container .iti__dropdown-content,
+.iti__dropdown-content {
+  background:#181818!important;
+  color:#F5F1EA!important;
+  border:1px solid #555!important;
+  border-radius:12px!important;
+  box-shadow:0 18px 45px rgba(0,0,0,.78)!important;
+  overflow:hidden!important;
+}
+.iti--container .iti__country-list,
+.iti__country-list {
+  background:#181818!important;
+  color:#F5F1EA!important;
+  max-height:min(320px,45vh)!important;
+  overflow-y:auto!important;
+  scrollbar-color:#6B4A2C #1B1B1B;
+}
+.iti--container .iti__country,
+.iti__country {background:#181818!important;color:#F5F1EA!important;min-height:38px;}
+.iti--container .iti__country-name,
+.iti__country-name {color:#F5F1EA!important;opacity:1!important;}
+.iti--container .iti__dial-code,
+.iti__dial-code {color:#CDBBA6!important;opacity:1!important;}
+.iti--container .iti__country.iti__highlight,
+.iti--container .iti__country:hover,
+.iti__country.iti__highlight,
+.iti__country:hover {background:#49301D!important;color:#FFFFFF!important;}
+.iti--container .iti__country.iti__highlight .iti__country-name,
+.iti--container .iti__country:hover .iti__country-name {color:#FFFFFF!important;}
+.iti--container .iti__search-input,
+.iti__search-input {
+  background:#222!important;color:#F5F1EA!important;
+  border:1px solid #555!important;border-radius:8px!important;
+  box-shadow:none!important;outline:none!important;
+  font-family:Inter,system-ui,sans-serif!important;font-size:14px!important;
+  min-height:44px!important;
+}
+.iti--container .iti__search-input::placeholder,
+.iti__search-input::placeholder {color:#BDB5AA!important;opacity:1!important;}
+.iti__search-input:focus {border-color:#FF7A00!important;}
+.iti__search-icon {color:#D1C3B4!important;}
+.iti__no-results, .iti__no-countries {color:#D8CEC2!important;}
+@media(max-width:640px) {
+ .iti--container .iti__dropdown-content {max-width:calc(100vw - 20px)!important;}
+ .iti__country-list {max-height:min(280px,40vh)!important;}
+}
 </style></head><body><header class="nav" id="nav">
   <div class="wrap">
-    <a href="index.html" class="logo">Leo León<span>.</span></a>
+    <a href="index.html" class="logo logo-imagen" aria-label="Leo León Media, inicio"><img src="logo-leonardo-leon.png" width="2048" height="534" alt="Leonardo León" loading="eager"></a>
     <nav class="menu" id="menu">
       <a href="index.html#casos">Casos</a>
       <a href="index.html#metodo">Método</a>
-      <a href="notas.html" class="activo">Notas</a>
-      <a href="recursos.html" class="activo">Recursos gratis</a>
+      <a href="notas.html">Blog</a>
+      <a href="recursos.html">Recursos gratis</a>
     </nav>
-    <a href="recursos.html" class="btn btn-crema btn-regalo">Regalo gratis <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></a>
+    <a href="#regalo" class="btn btn-crema btn-regalo">Regalo gratis <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></a>
     <button class="burger" id="burger" aria-label="Abrir menú"><i></i><i></i></button>
   </div>
 </header>
@@ -482,7 +648,8 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
       </div>
     </div>
     <div class="foto ph r d2">
-      <!-- Reemplaza por tu foto: <img src="leo-retrato.jpg" alt="Leo León" fetchpriority="high"> -->
+      <!-- Añade tu fotografía a /imagenes/leo-portada.webp y descomenta la línea siguiente. -->
+      <!-- <img src="imagenes/leo-portada.webp" alt="Retrato de Leo León" fetchpriority="high" width="1000" height="1250"> -->
       <span class="ph-tag">Tu retrato · luz lateral naranja</span>
     </div>
   </div>
@@ -507,17 +674,17 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
       <p class="r d2">No es falta de talento ni de suerte. Es falta de criterio. Elige dónde estás y llévate tu primer paso.</p>
     </div>
     <div class="dolores">
-      <a href="recurso.html" class="dolor r">
+      <a href="#regalo" class="dolor r" data-recurso="ideas">
         <span class="quien">Tengo un negocio</span>
         <blockquote>“Mi producto es bueno, pero publico y nadie pregunta.”</blockquote>
         <div class="regalo"><div><small>Tu regalo</small><p>20 ideas de videos con IA en 60 segundos</p></div><span class="flecha"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></span></div>
       </a>
-      <a href="recurso.html" class="dolor r d1">
+      <a href="#regalo" class="dolor r d1" data-recurso="pica">
         <span class="quien">Soy profesional</span>
         <blockquote>“Soy bueno en lo mío, pero mis redes no lo reflejan.”</blockquote>
         <div class="regalo"><div><small>Tu regalo</small><p>PICA en una página: el método para tus guiones</p></div><span class="flecha"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></span></div>
       </a>
-      <a href="recurso.html" class="dolor r d2">
+      <a href="#regalo" class="dolor r d2" data-recurso="ganchos">
         <span class="quien">Quiero vivir de esto</span>
         <blockquote>“Aprendo herramientas, pero no consigo clientes.”</blockquote>
         <div class="regalo"><div><small>Tu regalo</small><p>Ganchos con IA y 5 prompts que te ahorran horas</p></div><span class="flecha"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></span></div>
@@ -538,6 +705,8 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
     </div>
     <div class="caso">
       <div class="caso-main ph r">
+        <!-- Añade una composición 1200x1100 como imagen de fondo de la tarjeta; no cambiaremos su tamaño. -->
+        <!-- <img class="evidencia-img" src="imagenes/caso-tito.webp" alt="Capturas reales de resultados de TikTok de Tito Vattuone" loading="lazy" width="1200" height="1100"> -->
         <span class="ph-tag">Captura real del perfil</span>
         <div class="txt">
           <span class="quien">Tito Vattuone · productor de conciertos</span>
@@ -623,6 +792,7 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
 <section class="sec amb izq" id="yo" style="padding-top:0">
   <div class="wrap yo">
     <div class="foto ph r">
+      <!-- <img src="imagenes/leo-sobre-mi.webp" alt="Leo León trabajando en producción audiovisual" loading="lazy" width="1000" height="1250"> -->
       <span class="ph-tag">Tu foto · plano medio</span>
     </div>
     <div>
@@ -664,12 +834,12 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
     <div class="head">
       <div>
         <span class="label r">Blog</span>
-        <h2 class="r d1">Notas.</h2>
+        <h2 class="r d1">Ideas que sí sirven.</h2>
       </div>
-      <a href="notas.html" class="btn btn-linea r d2">Ver todas las notas <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></a>
+      <a href="notas.html" class="btn btn-linea r d2">Explorar el blog <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></a>
     </div>
     <div class="notas">
-      <a href="nota.html" class="nota r" data-cat="ia"><div class="ph"></div><div class="body"><div class="meta"><b>IA sin humo</b><span>4 min de lectura</span></div><h3>La IA no te da respuestas genéricas. Tú le haces preguntas genéricas</h3></div></a>
+      <a href="nota.html" class="nota r" data-cat="ia"><div class="ph"><!-- <img src="imagenes/blog-ia.webp" alt="Imagen del artículo sobre prompts de IA" loading="lazy" width="1600" height="900"> --></div><div class="body"><div class="meta"><b>IA sin humo</b><span>4 min de lectura</span></div><h3>La IA no te da respuestas genéricas. Tú le haces preguntas genéricas</h3></div></a>
     </div>
   </div>
 </section>
@@ -681,7 +851,34 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
     <span class="label r">Regalo gratis</span>
     <h2 class="r d1">¿Llegaste hasta aquí? <span class="n">Llévate tu regalo.</span></h2>
     <p class="lead r d2">Te lo envío hoy mismo. Sin spam y sin vender humo.</p>
-    <div class="r d3"><form class="form form-regalo"><select name="quien" class="quien" required><option value="" disabled selected>¿Quién eres?</option><option>Tengo un negocio</option><option>Soy profesional</option><option>Quiero vivir de esto</option></select><div class="fila"><input type="text" placeholder="Tu WhatsApp o correo" required><button class="btn btn-crema btn-regalo" type="submit">Quiero mi regalo <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></button></div><small>Al enviar, aceptas recibir el regalo y contenido de Leo León. Puedes salir cuando quieras.</small></form><p class="gracias">Listo. Revisa tu WhatsApp o tu correo. <span class="n">Ahora dime: ¿qué vas a crear primero?</span></p></div>
+    <div class="r d3 lead-hub" id="lead-hub">
+      <form class="lead-form" id="lead-form" novalidate>
+        <div class="lead-steps"><span><b>01</b> Elige tu recurso</span><span><b>02</b> Elige el canal</span><span><b>03</b> Déjame tu contacto</span></div>
+        <label for="lead-recurso">¿Qué regalo te interesa?</label>
+        <select id="lead-recurso" name="recurso" required>
+          <option value="ideas">20 ideas de videos con IA</option>
+          <option value="pica">Método PICA en una página</option>
+          <option value="ganchos">Ganchos con IA + 5 prompts</option>
+        </select>
+        <fieldset class="lead-channels"><legend>¿Por dónde lo quieres recibir?</legend>
+          <label class="lead-channel"><input type="radio" name="canal" value="email" checked><span>✉️ <strong>Correo</strong><small>Te enviamos el recurso al email</small></span></label>
+          <label class="lead-channel"><input type="radio" name="canal" value="whatsapp"><span>💬 <strong>WhatsApp</strong><small>Abres una conversación con Leo</small></span></label>
+          <label class="lead-channel"><input type="radio" name="canal" value="instagram"><span>◎ <strong>Instagram</strong><small>Envíame un DM con tu regalo</small></span></label>
+        </fieldset>
+        <div class="lead-fields">
+          <div><label for="lead-nombre">Tu nombre</label><input id="lead-nombre" name="nombre" autocomplete="given-name" maxlength="90" required placeholder="¿Cómo te llamas?"></div>
+          <div id="lead-contact-wrap"><label for="lead-contacto" id="lead-contact-label">Tu correo electrónico</label><input id="lead-contacto" name="contacto" type="email" autocomplete="email" maxlength="150" required placeholder="tu@email.com"><div id="lead-phone-wrap" hidden><input id="lead-telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel-national" maxlength="24" placeholder="Número de WhatsApp" aria-label="Número de WhatsApp con selección de país" disabled></div><small class="lead-help" id="lead-contact-help">Te escribiremos a esta dirección.</small></div>
+        </div>
+        <div class="lead-profile"><label for="lead-perfil">¿Qué te describe? <span class="lead-optional">(opcional)</span></label>
+        <select id="lead-perfil" name="perfil"><option value="sin_especificar">Prefiero no decirlo</option><option value="negocio">Tengo un negocio</option><option value="profesional">Soy profesional</option><option value="creador">Soy creador de contenido</option></select></div>
+        <p class="lead-summary" id="lead-summary">Solicitarás: <strong>20 ideas de videos con IA</strong> · Por correo</p>
+        <label class="lead-check"><input type="checkbox" id="lead-consent" required> <span>Autorizo usar mi nombre y contacto únicamente para gestionar este recurso. <strong>Es obligatorio para realizar la solicitud.</strong></span></label>
+        <label class="lead-check"><input type="checkbox" id="lead-marketing"> <span>También deseo recibir novedades y consejos (opcional).</span></label>
+        <button type="submit" class="btn btn-crema btn-regalo lead-send" id="lead-send">Solicitar mi regalo ↗</button>
+        <p id="lead-feedback" class="lead-feedback" role="status" aria-live="polite"></p>
+        <p class="lead-privacy">No se registra ninguna solicitud hasta conectar el servicio de recepción de leads. WhatsApp e Instagram requieren que envíes el mensaje para iniciar la conversación.</p>
+      </form>
+    </div>
   </div>
 
   
@@ -692,7 +889,7 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
     <div class="foot-row">
       <span>Piensa bien. Crea mejor.</span>
       <nav>
-        <a href="notas.html">Notas</a>
+        <a href="notas.html">Blog</a>
         <a href="recursos.html">Recursos gratis</a>
         <a class="social-link" href="https://www.tiktok.com/@leoleonmedia" target="_blank" rel="noopener noreferrer" aria-label="TikTok de Leo León (abre en otra pestaña)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 1.9c.3 2.5 1.7 4 4.2 4.2v4.3a10 10 0 0 1-4.2-1.1v6.9a7.1 7.1 0 1 1-7.1-7.1l1.1.1v4.4a3 3 0 1 0 1.7 2.7V1.9h4.3Z"/></svg><span>TikTok</span></a>
         <a class="social-link" href="https://www.instagram.com/leoleonmedia/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Leo León (abre en otra pestaña)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.5-3.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z"/></svg><span>Instagram</span></a>
@@ -702,7 +899,7 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
   </div>
   <div class="marca" aria-hidden="true">Leo León</div>
 </footer>
-<div class="flota" id="flota"><a href="recursos.html" class="btn btn-crema btn-regalo">Quiero mi regalo gratis <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></a></div><script>(()=>{
+<div class="flota" id="flota"><a href="#regalo" class="btn btn-crema btn-regalo">Quiero mi regalo gratis <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></a></div><script src="https://cdn.jsdelivr.net/npm/intl-tel-input@29.5.8/dist/js/intlTelInput.min.js"></script><script>(()=>{
   const $=(q,c=document)=>c.querySelector(q), $$=(q,c=document)=>[...c.querySelectorAll(q)];
   const nav=$('#nav'), flota=$('#flota');
 
@@ -755,12 +952,215 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
     r.insertAdjacentHTML('beforeend',`<iframe src="${src}" allow="autoplay; encrypted-media; fullscreen" loading="lazy" title="Video de Leo León"></iframe>`);
   }));
 
-  // formularios: si aún no hay servicio conectado, solo muestra "Listo"
-  $$('.form-regalo').forEach(f=>f.addEventListener('submit',e=>{
-    if(f.getAttribute('action')) return;
-    e.preventDefault();
-    f.style.display='none';
-    const g=f.nextElementSibling; if(g && g.classList.contains('gracias')) g.style.display='block';
+  /* LEADS - Edita únicamente estos dos campos para activar la captación.
+     formEndpoint: URL pública de tu formulario (p.ej. https://formspree.io/f/xxxxxxxx).
+     El endpoint debe admitir POST desde el navegador y devolver HTTP 2xx.
+     whatsappNumber: tu WhatsApp Business con código de país, sin + ni espacios.
+     No incluyas contraseñas, tokens privados ni números de terceros. */
+  const LEO_LEADS = {
+    formEndpoint: '',
+    whatsappNumber: '',
+    instagramUrl: 'https://www.instagram.com/leoleonmedia/'
+  };
+  // Respaldo inicial para el modo sin conexión. Al abrir la web publicada,
+  // el catálogo se sincroniza con las tarjetas «Disponible» de recursos.html.
+  const resourceLabels = {
+    ideas:'20 ideas de videos en 60 segundos',
+    pica:'PICA en una página',
+    ganchos:'Ganchos con IA + 5 prompts que te ahorran horas'
+  };
+  const normalizeResource = value => (value || '')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  function resourceKey(title){
+    const normalized=normalizeResource(title);
+    if(normalized.includes('20-ideas-de-videos'))return 'ideas';
+    if(normalized.includes('pica-en-una-pagina')||normalized.includes('metodo-pica'))return 'pica';
+    if(normalized.includes('ganchos-con-ia'))return 'ganchos';
+    return normalized || 'recurso';
+  }
+  async function syncResourcesFromPage(){
+    const select=document.getElementById('lead-recurso');
+    if(!select)return;
+    try{
+      // Misma web y origen: no requiere API ni claves.
+      const response=await fetch('recursos.html',{cache:'no-cache'});
+      if(!response.ok)throw new Error('No se puede leer recursos.html');
+      const html=await response.text();
+      const doc=new DOMParser().parseFromString(html,'text/html');
+      const cards=[...doc.querySelectorAll('.recs .rec')];
+      const available=cards.filter(card=>{
+        const badge=card.querySelector('.badge');
+        return badge && (badge.classList.contains('on') ||
+          /^disponible$/i.test(badge.textContent.trim()));
+      });
+      if(!available.length)return; // mantiene las opciones conocidas si no carga el catálogo
+      const previous=select.value;
+      const options=[];
+      const used=new Set();
+      for(const card of available){
+        const title=card.querySelector('h3')?.textContent.trim();
+        if(!title)continue;
+        const key=resourceKey(title);
+        if(used.has(key))continue;
+        used.add(key);
+        resourceLabels[key]=title;
+        options.push({key,title});
+      }
+      if(!options.length)return;
+      select.replaceChildren(...options.map(({key,title})=>{
+        const opt=document.createElement('option');opt.value=key;opt.textContent=title;return opt;
+      }));
+      select.value=used.has(previous)?previous:options[0].key;
+      leadUpdate();
+    }catch(error){
+      // Al abrir el HTML sin GitHub Pages, permanecen los tres recursos de respaldo.
+      console.info('Catálogo no sincronizado; se usa la lista de respaldo.');
+    }
+  }
+  const canalLabels = {email:'correo',whatsapp:'WhatsApp',instagram:'Instagram DM'};
+  const leadForm = $('#lead-form');
+  const contact=$('#lead-contacto');
+  const phoneInput=$('#lead-telefono');
+  const phoneWrap=$('#lead-phone-wrap');
+  let intlPhone=null;
+  function setupIntlPhone(){
+    if(intlPhone || !phoneInput || typeof window.intlTelInput!=='function')return;
+    intlPhone=window.intlTelInput(phoneInput,{
+      initialCountry:'pe',
+      separateDialCode:true,
+      countrySearch:true,
+      nationalMode:true,
+      dropdownContainer:document.body,
+      i18n:{searchPlaceholder:'Buscar país o prefijo'},
+      loadUtils:()=>import('https://cdn.jsdelivr.net/npm/intl-tel-input@29.5.8/dist/js/utils.js')
+    });
+  }
+  function fullWhatsappNumber(){
+    const raw=(phoneInput?.value||'').trim();
+    if(!intlPhone) return {full:raw,country:'',countryName:'',dial:''};
+    const c=intlPhone.getSelectedCountryData();
+    const formatted=typeof intlPhone.getNumber==='function' ? intlPhone.getNumber() : '';
+    const digits=raw.replace(/\D/g,'');
+    const dial=String(c.dialCode||'');
+    const full=(formatted && formatted.startsWith('+'))?formatted:('+'+dial+digits);
+    return {full,country:(c.iso2||'').toUpperCase(),countryName:c.name||'',dial:'+'+dial};
+  }
+  const contactLabel=$('#lead-contact-label');
+  const contactHelp=$('#lead-contact-help');
+  const feedback=$('#lead-feedback');
+  const sendButton=$('#lead-send');
+  function leadChannel(){return $('input[name="canal"]:checked',leadForm)?.value || 'email'}
+  function leadUpdate(){
+    if(!leadForm) return;
+    const canal=leadChannel();
+    const configs={
+      email:{title:'Tu correo electrónico',type:'email',placeholder:'tu@email.com',autocomplete:'email',help:'Lo necesitamos para enviarte el recurso.'},
+      whatsapp:{title:'Tu número de WhatsApp',type:'tel',placeholder:'Número de WhatsApp',autocomplete:'tel-national',help:'Selecciona tu país por su bandera y escribe el número. El prefijo se añade automáticamente.'},
+      instagram:{title:'Tu usuario de Instagram',type:'text',placeholder:'@tuusuario',autocomplete:'off',help:'Escribe tu @usuario para poder reconocer tu DM.'}
+    };
+    const cfg=configs[canal];
+    contactLabel.textContent=cfg.title;
+    const isWhatsapp=canal==='whatsapp';
+    contact.hidden=isWhatsapp;
+    contact.disabled=isWhatsapp;
+    contact.required=!isWhatsapp;
+    phoneWrap.hidden=!isWhatsapp;
+    phoneInput.disabled=!isWhatsapp;
+    phoneInput.required=isWhatsapp;
+    if(isWhatsapp){
+      setupIntlPhone();
+      phoneInput.placeholder='Número de WhatsApp';
+    }else{
+      const type=canal==='email'?'email':'text';
+      if(contact.type!==type){contact.value='';contact.type=type}
+      contact.placeholder=cfg.placeholder;
+      contact.autocomplete=cfg.autocomplete;
+      contact.maxLength=canal==='instagram'?40:150;
+    }
+    contactHelp.textContent=cfg.help;
+    const recurso=$('#lead-recurso').value;
+    const summary=$('#lead-summary');
+    summary.replaceChildren('Solicitarás: ');
+    const titleNode=document.createElement('strong');
+    titleNode.textContent=resourceLabels[recurso] || 'el recurso elegido';
+    summary.append(titleNode,` · Por ${canalLabels[canal]}`);
+    sendButton.textContent=canal==='email'?'Solicitar por correo ↗':canal==='whatsapp'?'Abrir WhatsApp ↗':'Continuar a Instagram ↗';
+    feedback.textContent='';
+  }
+  if(leadForm){
+    $$('input[name="canal"]',leadForm).forEach(x=>x.addEventListener('change',leadUpdate));
+    $('#lead-recurso').addEventListener('change',leadUpdate);
+    leadUpdate();
+    syncResourcesFromPage();
+  }
+  $$('[data-recurso]').forEach(a=>a.addEventListener('click',()=>{
+    if(leadForm && resourceLabels[a.dataset.recurso]){
+      $('#lead-recurso').value=a.dataset.recurso;
+      leadUpdate();
+    }
   }));
+  if(leadForm)leadForm.addEventListener('submit',async e=>{
+    e.preventDefault();
+    feedback.textContent='';
+    if(!leadForm.reportValidity())return;
+    const canal=leadChannel();
+    const recurso=$('#lead-recurso').value;
+    const nombre=$('#lead-nombre').value.trim();
+    const telefono=canal==='whatsapp'?fullWhatsappNumber():null;
+    const contacto=telefono?telefono.full:contact.value.trim();
+    const perfil=$('#lead-perfil').value;
+    const marketing=$('#lead-marketing').checked;
+    if(canal==='whatsapp' && (!intlPhone || !/^\+[1-9]\d{5,14}$/.test(contacto))){feedback.textContent='Selecciona el país e introduce un número de WhatsApp válido.';phoneInput.focus();return}
+    if(canal==='instagram' && !/^@?[a-zA-Z0-9._]{1,30}$/.test(contacto)){feedback.textContent='Escribe tu nombre de usuario de Instagram, por ejemplo @usuario.';contact.focus();return}
+    const identifier='LEO-'+Date.now().toString(36).toUpperCase();
+    const payload={
+      codigo:identifier, nombre, contacto, recurso:resourceLabels[recurso],recurso_id:recurso,
+      canal, ...(telefono?{pais:telefono.countryName,codigo_pais:telefono.country,prefijo_telefonico:telefono.dial}:{}), perfil,consentimiento_recurso:'sí',consentimiento_marketing:marketing?'sí':'no',
+      fecha:new Date().toISOString(),origen:'Web Leo León Media'
+    };
+    const mensaje=`Hola, Leo. Soy ${nombre}. 🎁 Quiero el recurso: ${resourceLabels[recurso]}. Mi contacto es ${contacto}. Código: ${identifier}.`;
+    let guardado=false;
+    if(LEO_LEADS.formEndpoint){
+      try{
+        sendButton.disabled=true;
+        feedback.textContent='Registrando tu solicitud…';
+        const r=await fetch(LEO_LEADS.formEndpoint,{
+          method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},
+          body:JSON.stringify(payload)
+        });
+        if(!r.ok) throw new Error('No se confirmó el registro');
+        guardado=true;
+      }catch(err){
+        feedback.textContent='No pudimos guardar tus datos. Comprueba la conexión e inténtalo otra vez.';
+        sendButton.disabled=false;return;
+      }finally{sendButton.disabled=false}
+    }
+    if(canal==='email'){
+      feedback.textContent=guardado
+        ? 'Tu solicitud quedó registrada. Revisa tu correo: la entrega del regalo debe configurarse en el servicio de email.'
+        : 'Falta activar la recepción de contactos por correo. Por ahora, elige Instagram para escribirnos.';
+      return;
+    }
+    if(canal==='whatsapp'){
+      if(!LEO_LEADS.whatsappNumber){
+        feedback.textContent='El WhatsApp del negocio todavía no está configurado. Elige Instagram DM.';
+        return;
+      }
+      window.open(`https://wa.me/${LEO_LEADS.whatsappNumber}?text=${encodeURIComponent(mensaje)}`,'_blank','noopener,noreferrer');
+      feedback.textContent=(guardado?'Tus datos quedaron registrados. ':'')+'En WhatsApp, pulsa Enviar para que llegue tu solicitud con el nombre y el regalo.';
+      return;
+    }
+    // Instagram no admite un mensaje prellenado universal desde el navegador.
+    // Abrimos el perfil, copiamos un texto con código y dejamos que la persona lo envíe.
+    window.open(LEO_LEADS.instagramUrl,'_blank','noopener,noreferrer');
+    try{
+      await navigator.clipboard.writeText(mensaje);
+      feedback.textContent=(guardado?'Tus datos quedaron registrados. ':'')+'Copiamos el mensaje. En Instagram pulsa Mensaje, pega el texto y envíalo.';
+    }catch{
+      feedback.textContent='En Instagram envía este texto: '+mensaje;
+    }
+  });
 })();
 </script></body></html>
+
