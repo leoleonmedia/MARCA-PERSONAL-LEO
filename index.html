@@ -680,7 +680,14 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
 .foot-row .social-link svg{width:18px;height:18px;flex:none;display:block}
 .foot-row .social-link:hover{color:#fd7106}
 @media(max-width:640px){.footer{padding-bottom:64px!important}.footer .marca{font-size:clamp(2.5rem,16vw,6rem)!important;letter-spacing:-.07em!important}.foot-row{gap:18px}.foot-row nav{gap:14px 18px}}
-</style><link href="https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/favicon.png" rel="icon" type="image/png"/><link href="https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/></head><body><header class="nav" id="nav">
+
+/* LEO - footer con espacio inferior real: evita recortar las letras */
+.footer{padding-bottom:clamp(56px,7vw,112px)!important;overflow:hidden}
+.footer .marca,.footer .marca:last-child{margin-bottom:0!important;padding-bottom:.10em!important;line-height:1.04!important;overflow:visible!important}
+@media(max-width:640px){.footer{padding-bottom:56px!important}.footer .marca{font-size:clamp(3.8rem,18vw,8rem)!important;white-space:nowrap!important;letter-spacing:-.065em!important}}
+</style><link rel="icon" type="image/png" href="https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/apple-touch-icon.png">
+</head><body><header class="nav" id="nav">
 <div class="wrap">
 <a aria-label="Leo León Media, inicio" class="logo logo-imagen" href="index.html"><img alt="Leonardo León" height="534" loading="eager" src="logo-leonardo-leon.png" width="2048"/></a>
 <nav class="menu" id="menu">
