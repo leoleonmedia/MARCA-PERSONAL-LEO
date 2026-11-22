@@ -1,20 +1,15 @@
-VIDEOS EN LA WEB — LEO LEÓN MEDIA
+ACTUALIZACIÓN VISUAL — FEEDS DE INSTAGRAM Y TIKTOK
 
-Qué contiene
-- index.html e inicio.html listos para copiar a la raíz del repositorio.
-- TikTok mantiene la inserción oficial de @leoleonmedia.
-- Instagram carga automáticamente el feed real configurado por ti en Curator.io, usando el código que compartiste.
+Sustituye solo index.html e inicio.html en la raíz de MARCA-PERSONAL-LEO.
+En GitHub Desktop: Commit to main > Push origin. Luego Ctrl+F5 en tu web.
 
-PASOS
-1. Abre GitHub Desktop > Repository > Show in Explorer.
-2. Sustituye SOLO index.html e inicio.html por los de este ZIP. No borres otros archivos ni carpetas.
-3. Commit to main > Push origin.
-4. Abre https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/ y pulsa Ctrl+F5.
-5. Desplázate a «Mis videos publicados»; no necesitas pulsar ningún botón para que se inicien los reproductores/inserciones.
+CAMBIOS
+- TikTok: bloque horizontal de ancho cómodo, con el mismo reproductor oficial y los videos reales.
+- Instagram: galería de ancho completo, un área interna para desplazarse, sin estirar la página hacia abajo.
+- Adaptación responsive para celular; ambas secciones quedan una debajo de la otra.
+- Se conserva EXACTAMENTE tu código de Curator.io, y la medición/otras secciones no se alteran.
 
-IMPORTANTE
-- El feed de Curator mostrará lo que realmente esté configurado y publicado en esa cuenta/feed. Para ver los Reels, debes tener Instagram como fuente activa en Curator y los posts aprobados/publicados. Si hay fotos, Curator puede mostrarlas también. Selecciona solo Reels en los filtros de Curator si deseas exclusivamente video y el plan lo permite.
-- En el plan gratis de Curator, las publicaciones se sincronizan de acuerdo con la frecuencia del proveedor; pueden tardar en aparecer.
-- En Brave, algunas protecciones pueden bloquear TikTok, Instagram o Curator. Si una sección se queda vacía, revisa Shields/los bloqueadores.
-- No se ha verificado que el feed remoto devuelva publicaciones reales desde esta sesión. Las inserciones tienen el código oficial recibido del propietario, pero su visibilidad final depende de los servicios externos.
-- Como se cargan componentes de terceros, actualiza tu política de privacidad para explicar estas inserciones y las posibles cookies del proveedor.
+SI EN INSTAGRAM LOS REELS SIGUEN EN UNA COLUMNA
+El sitio web no decide el diseño interno de Curator. En el panel de Curator, elige Publish / Layout > Grid (cuadrícula), ajusta 3 columnas para escritorio y 1 para móvil si está disponible, y pulsa Publish/Save. No tienes que cambiar el script de la web; se actualiza el estilo del feed desde Curator.
+
+No cambia ni elimina los videos; los publican y actualizan TikTok y el feed de Curator. En Brave, Shields puede bloquear módulos de terceros.
