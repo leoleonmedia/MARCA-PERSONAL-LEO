@@ -535,6 +535,30 @@ a.social-link[href*="ig.me/"] svg circle:last-child { fill: currentColor !import
   #videos .leo-video-scroll-hint{font-size:11px}
 }
 </style>
+<!-- LEO-MOBILE-RESPONSIVE-20261122 -->
+<style id="leo-mobile-responsive-20261122">
+/* Ajustes responsive Leo Leon Media — 2026-11-22. Solo dispositivos tactiles y pantallas estrechas. */
+@media (max-width: 680px) {
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { max-width: 100%; }
+  img, picture, video, canvas { max-width: 100%; height: auto; }
+  iframe { max-width: 100%; }
+  main, article, section, .wrap, .container { min-width: 0; }
+  input:not([type="checkbox"]):not([type="radio"]), select, textarea { max-width: 100%; min-width: 0; font-size: 16px; }
+  input, textarea, select, button { touch-action: manipulation; }
+  button, input[type="submit"], [role="button"] { -webkit-tap-highlight-color: transparent; }
+  :is(h1,h2,h3,p,li,blockquote,figcaption) { overflow-wrap: break-word; }
+  pre, code { overflow-wrap: anywhere; }
+  pre { max-width: 100%; overflow-x: auto; }
+  :is(.grid,.cards,.tools-grid,.form-grid,.fields,.cards-grid) > * { min-width: 0; }
+}
+@media (max-width: 380px) {
+  input, select, textarea { max-width: 100%; }
+  button { max-width: 100%; }
+}
+
+@media (max-width: 600px) { #videos iframe, .tiktok-embed { max-width:100% !important; min-width:0 !important; } }
+</style>
 </head><body><header class="nav" id="nav">
 <div class="wrap">
 <a aria-label="Leo León Media, inicio" class="logo logo-imagen" href="index.html"><img alt="Leonardo León" decoding="async" height="534" src="logo-leonardo-leon-420.webp" width="2048"/></a>

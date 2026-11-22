@@ -94,9 +94,53 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
 #audit-country option{color:#111;background:#fff}
 .audit-country-hint{display:block;color:#dbb58f;font-size:12px;margin:4px 0 9px}
 .audit-form input#audit-contact{padding-left:14px!important}
+/* Menú de países con banderas gráficas reales; el select sigue siendo la fuente de datos. */
+.audit-country-picker{position:relative}
+#audit-country{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;left:0;top:0}
+#audit-country-trigger{appearance:none;background:transparent;color:#fff;border:0;min-height:46px;display:flex;align-items:center;gap:10px;width:100%;font:inherit;cursor:pointer;text-align:left;padding:5px 0}
+#audit-country-trigger:focus-visible{outline:2px solid #ff8200;outline-offset:2px;border-radius:5px}
+.audit-country-trigger-text{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.audit-flag-img{width:26px;height:19px;object-fit:cover;border-radius:2px;flex:none;background:#2b2b2e;border:1px solid #5d5550}
+#audit-country-popup{position:absolute;left:-1px;right:-1px;top:calc(100% + 5px);background:#171719;border:1px solid #544a44;border-radius:10px;box-shadow:0 14px 40px #000b;z-index:10010;overflow:hidden;color:#fff}
+#audit-country-popup[hidden]{display:none!important}
+#audit-country-search{display:block;box-sizing:border-box;width:calc(100% - 20px);margin:10px;padding:11px;background:#0c0c0d;color:#fff;border:1px solid #544a44;border-radius:7px;font:inherit}
+#audit-country-results{max-height:250px;overflow-y:auto;overscroll-behavior:contain}
+.audit-country-choice{display:flex;align-items:center;gap:10px;background:transparent;color:#fff;border:0;width:100%;padding:9px 12px;text-align:left;font:inherit;cursor:pointer;line-height:1.3}
+.audit-country-choice:hover,.audit-country-choice:focus-visible{background:#34271b;outline:none}
+.audit-country-empty{color:#ddd;padding:12px}
+
+</style>
+<!-- LEO-MOBILE-RESPONSIVE-20261122 -->
+<style id="leo-mobile-responsive-20261122">
+/* Ajustes responsive Leo Leon Media — 2026-11-22. Solo dispositivos tactiles y pantallas estrechas. */
+@media (max-width: 680px) {
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { max-width: 100%; }
+  img, picture, video, canvas { max-width: 100%; height: auto; }
+  iframe { max-width: 100%; }
+  main, article, section, .wrap, .container { min-width: 0; }
+  input:not([type="checkbox"]):not([type="radio"]), select, textarea { max-width: 100%; min-width: 0; font-size: 16px; }
+  input, textarea, select, button { touch-action: manipulation; }
+  button, input[type="submit"], [role="button"] { -webkit-tap-highlight-color: transparent; }
+  :is(h1,h2,h3,p,li,blockquote,figcaption) { overflow-wrap: break-word; }
+  pre, code { overflow-wrap: anywhere; }
+  pre { max-width: 100%; overflow-x: auto; }
+  :is(.grid,.cards,.tools-grid,.form-grid,.fields,.cards-grid) > * { min-width: 0; }
+}
+@media (max-width: 380px) {
+  input, select, textarea { max-width: 100%; }
+  button { max-width: 100%; }
+}
+
+@media (max-width: 680px) {
+  .audit-country-wrap, .audit-country-popup, .audit-country-results { max-width: 100%; }
+  .audit-country-popup { width: 100%; }
+  .audit-country-choice, .audit-country-trigger { min-height: 44px; }
+  .audit-country-results { -webkit-overflow-scrolling: touch; }
+}
 </style>
 </head><body>
-<header class="audit-hd"><div class="audit-hd-wrap"><a aria-label="Academia Leones Digitales" class="audit-brand" href="academia.html"><img alt="Academia Leones Digitales" height="77" src="logo-leones-digitales-400.webp" width="200"/></a><button aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menú" class="audit-menu-btn" id="menuButton" type="button">☰</button><nav aria-label="Secciones de Academia" class="audit-nav" id="mainNav"><a href="inicio.html">Inicio</a><a aria-current="page" href="academia.html">Academia</a><a href="diccionario.html">Diccionario</a><a href="generador-hooks.html">Hooks</a><a href="guia-formatos.html">Formatos</a><a href="calculadora-engagement.html">Engagement</a><a href="biblioteca-prompts.html">Prompts</a><a href="calculadora-ads.html">Meta / TikTok Ads</a></nav></div></header><main><section class="hero"><div class="wrap"><div class="eyebrow">Leo León Media / Educación digital</div><h1>ACADEMIA <span class="accent">LEONES DIGITALES.</span></h1><p class="intro">Aprende a pensar, crear y mejorar tu contenido: estrategias prácticas, inteligencia artificial sin humo, edición de video y decisiones basadas en datos. Todo explicado para aplicarlo de verdad.</p><div class="actions"><a class="cta primary" href="#lista-de-espera">Recibir novedades del curso →</a><a class="cta" href="#herramientas">Usar herramientas gratis →</a><a class="cta" href="#sobre-leo">Conocer a Leo</a></div><div class="stats"><div class="stat"><b>7</b><small>Áreas de conocimiento</small></div><div class="stat"><b>600</b><small>Términos del Diccionario Digital</small></div><div class="stat"><b>360</b><small>Prompts profesionales</small></div></div></div></section><section class="content"><div class="wrap"><span class="eyebrow">Aprende con sentido</span><h2>Del término a la <span class="accent">práctica.</span></h2><p class="intro" style="margin-bottom:36px">Definiciones en español, ejemplos concretos y explicaciones que puedes aplicar a tus propios proyectos.</p><div class="grid"><a class="card" href="diccionario.html?categoria=Inteligencia%20artificial"><div aria-hidden="true" class="glyph">✦</div><h3>Inteligencia artificial</h3><p>Aprende a pedirle mejores resultados a la IA y descubre qué tareas merece la pena automatizar.</p><span class="foot">Explorar términos ↗</span></a><a class="card" href="diccionario.html?categoria=Ads%20y%20publicidad%20pagada"><div aria-hidden="true" class="glyph">📣</div><h3>Ads y publicidad pagada</h3><p>Entiende tus campañas, compara costes y toma mejores decisiones antes de aumentar el presupuesto.</p><span class="foot">Explorar términos ↗</span></a><a class="card" href="diccionario.html?categoria=Marketing%20y%20SEO"><div aria-hidden="true" class="glyph">⌕</div><h3>Marketing y SEO</h3><p>Descubre cómo encontrar búsquedas útiles y crear páginas que respondan preguntas reales.</p><span class="foot">Explorar términos ↗</span></a><a class="card" href="diccionario.html?categoria=Redes%20sociales"><div aria-hidden="true" class="glyph">↗</div><h3>Redes sociales</h3><p>Interpreta las métricas que importan y mejora tus videos sin perseguir números vacíos.</p><span class="foot">Explorar términos ↗</span></a><a class="card" href="diccionario.html?categoria=Video%20y%20edici%C3%B3n"><div aria-hidden="true" class="glyph">▣</div><h3>Video y edición</h3><p>Conoce las herramientas, formatos y técnicas que mejoran lo que el público ve y escucha.</p><span class="foot">Explorar términos ↗</span></a><a class="card" href="diccionario.html?categoria=Guiones%20y%20creatividad"><div aria-hidden="true" class="glyph">✎</div><h3>Guiones y creatividad</h3><p>Transforma ideas dispersas en historias claras que valga la pena terminar de ver.</p><span class="foot">Explorar términos ↗</span></a><a class="card" href="diccionario.html?categoria=Marca%2C%20negocio%20y%20anal%C3%ADtica"><div aria-hidden="true" class="glyph">◎</div><h3>Marca, negocio y analítica</h3><p>Conecta tu propuesta de valor con decisiones de negocio y resultados que puedas medir.</p><span class="foot">Explorar términos ↗</span></a></div></div></section>
+<header class="audit-hd"><div class="audit-hd-wrap"><a aria-label="Academia Leones Digitales" class="audit-brand" href="academia.html"><img alt="Academia Leones Digitales" height="77" src="logo-leones-digitales-400.webp" width="200"/></a><button aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menú" class="audit-menu-btn" id="menuButton" type="button">☰</button><nav aria-label="Secciones de Academia" class="audit-nav" id="mainNav"><a href="index.html">Inicio</a><a aria-current="page" href="academia.html">Academia</a><a href="diccionario.html">Diccionario</a><a href="generador-hooks.html">Hooks</a><a href="guia-formatos.html">Formatos</a><a href="calculadora-engagement.html">Engagement</a><a href="biblioteca-prompts.html">Prompts</a><a href="calculadora-ads.html">Meta / TikTok Ads</a></nav></div></header><main><section class="hero"><div class="wrap"><div class="eyebrow">Leo León Media / Educación digital</div><h1>ACADEMIA <span class="accent">LEONES DIGITALES.</span></h1><p class="intro">Aprende a pensar, crear y mejorar tu contenido: estrategias prácticas, inteligencia artificial sin humo, edición de video y decisiones basadas en datos. Todo explicado para aplicarlo de verdad.</p><div class="actions"><a class="cta primary" href="#lista-de-espera">Recibir novedades del curso →</a><a class="cta" href="#herramientas">Usar herramientas gratis →</a><a class="cta" href="#sobre-leo">Conocer a Leo</a></div><div class="stats"><div class="stat"><b>7</b><small>Áreas de conocimiento</small></div><div class="stat"><b>600</b><small>Términos del Diccionario Digital</small></div><div class="stat"><b>360</b><small>Prompts profesionales</small></div></div></div></section><section class="content"><div class="wrap"><span class="eyebrow">Aprende con sentido</span><h2>Del término a la <span class="accent">práctica.</span></h2><p class="intro" style="margin-bottom:36px">Definiciones en español, ejemplos concretos y explicaciones que puedes aplicar a tus propios proyectos.</p><div class="grid"><a class="card" href="diccionario.html?categoria=Inteligencia%20artificial"><div aria-hidden="true" class="glyph">✦</div><h3>Inteligencia artificial</h3><p>Aprende a pedirle mejores resultados a la IA y descubre qué tareas merece la pena automatizar.</p><span class="foot">Explorar términos ↗</span></a><a class="card" href="diccionario.html?categoria=Ads%20y%20publicidad%20pagada"><div aria-hidden="true" class="glyph">📣</div><h3>Ads y publicidad pagada</h3><p>Entiende tus campañas, compara costes y toma mejores decisiones antes de aumentar el presupuesto.</p><span class="foot">Explorar términos ↗</span></a><a class="card" href="diccionario.html?categoria=Marketing%20y%20SEO"><div aria-hidden="true" class="glyph">⌕</div><h3>Marketing y SEO</h3><p>Descubre cómo encontrar búsquedas útiles y crear páginas que respondan preguntas reales.</p><span class="foot">Explorar términos ↗</span></a><a class="card" href="diccionario.html?categoria=Redes%20sociales"><div aria-hidden="true" class="glyph">↗</div><h3>Redes sociales</h3><p>Interpreta las métricas que importan y mejora tus videos sin perseguir números vacíos.</p><span class="foot">Explorar términos ↗</span></a><a class="card" href="diccionario.html?categoria=Video%20y%20edici%C3%B3n"><div aria-hidden="true" class="glyph">▣</div><h3>Video y edición</h3><p>Conoce las herramientas, formatos y técnicas que mejoran lo que el público ve y escucha.</p><span class="foot">Explorar términos ↗</span></a><a class="card" href="diccionario.html?categoria=Guiones%20y%20creatividad"><div aria-hidden="true" class="glyph">✎</div><h3>Guiones y creatividad</h3><p>Transforma ideas dispersas en historias claras que valga la pena terminar de ver.</p><span class="foot">Explorar términos ↗</span></a><a class="card" href="diccionario.html?categoria=Marca%2C%20negocio%20y%20anal%C3%ADtica"><div aria-hidden="true" class="glyph">◎</div><h3>Marca, negocio y analítica</h3><p>Conecta tu propuesta de valor con decisiones de negocio y resultados que puedas medir.</p><span class="foot">Explorar términos ↗</span></a></div></div></section>
 <section class="content" id="herramientas" style="padding-top:12px">
 <div class="wrap">
 <span class="eyebrow">Recursos gratuitos</span>
@@ -113,16 +157,16 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
 </div>
 </section>
 <section class="audit-section" id="sobre-leo"><div class="audit-inner audit-two">
-<div><p class="audit-kicker">Quién está detrás</p><h2>Aprende con alguien que también crea contenido.</h2><p>Soy Leo León. Trabajo en edición de video, producción audiovisual y estrategia de contenido. En esta Academia comparto herramientas y explicaciones para pensar antes de publicar, crear con claridad y utilizar la inteligencia artificial con criterio.</p><p>No necesitas dominar cada herramienta. Necesitas comprender qué problema quieres resolver.</p><a class="audit-cta alt" href="inicio.html#casos">Conocer mis proyectos →</a></div>
+<div><p class="audit-kicker">Quién está detrás</p><h2>Aprende con alguien que también crea contenido.</h2><p>Soy Leo León. Trabajo en edición de video, producción audiovisual y estrategia de contenido. En esta Academia comparto herramientas y explicaciones para pensar antes de publicar, crear con claridad y utilizar la inteligencia artificial con criterio.</p><p>No necesitas dominar cada herramienta. Necesitas comprender qué problema quieres resolver.</p><a class="audit-cta alt" href="index.html#casos">Conocer mis proyectos →</a></div>
 <div><img alt="Fotografía profesional de Leo León" class="audit-photo" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false" src="fotos/usuario/leonardo-leon.webp"/><div aria-label="Coloca tu foto en fotos/usuario/leonardo-leon.webp" class="audit-photo-fallback" hidden="">LL</div><p class="audit-footnote">La fotografía aparecerá aquí al subirla a <code>fotos/usuario/leonardo-leon.webp</code>.</p></div>
 </div></section><section class="audit-section" id="proyectos"><div class="audit-inner"><p class="audit-kicker">Proyectos reales</p><h2>Del problema al contenido que aporta valor.</h2><p>Estas son áreas de trabajo de Leo León Media. Las capturas y cifras de resultados se incorporarán únicamente cuando estén verificadas y exista autorización para publicarlas.</p>
 <div class="audit-three"><article class="audit-panel"><h3>Contenido para eventos</h3><p>Edición, ritmo narrativo y distribución de piezas para promocionar experiencias en redes.</p></article><article class="audit-panel"><h3>Profesionales y marca personal</h3><p>Claridad de mensaje, guiones educativos y formatos que permiten comunicar experiencia.</p></article><article class="audit-panel"><h3>Negocios y contenido orgánico</h3><p>Investigación de audiencia, conceptos de video y revisión de métricas para decidir qué mejorar.</p></article></div>
-<a class="audit-cta alt" href="inicio.html#casos" style="margin-top:22px">Ver casos del portafolio →</a></div></section><section class="audit-section" id="mis-videos"><div class="audit-inner"><p class="audit-kicker">Aprende viendo</p><h2>Ideas, ejemplos y videos en mis redes.</h2><p>Encuentra demostraciones, análisis y contenido que complementa los recursos de la Academia. Los videos individuales se podrán insertar aquí cuando tengamos sus enlaces exactos; por ahora estos accesos abren los perfiles oficiales.</p>
+<a class="audit-cta alt" href="index.html#casos" style="margin-top:22px">Ver casos del portafolio →</a></div></section><section class="audit-section" id="mis-videos"><div class="audit-inner"><p class="audit-kicker">Aprende viendo</p><h2>Ideas, ejemplos y videos en mis redes.</h2><p>Encuentra demostraciones, análisis y contenido que complementa los recursos de la Academia. Los videos individuales se podrán insertar aquí cuando tengamos sus enlaces exactos; por ahora estos accesos abren los perfiles oficiales.</p>
 <div class="audit-video"><article class="audit-panel"><h3>TikTok</h3><p>Ideas y explicaciones cortas para mejorar videos y contenido.</p><a class="audit-cta alt" href="https://www.tiktok.com/@leoleonmedia" rel="noopener noreferrer" style="margin-top:15px" target="_blank">Ver videos →</a></article><article class="audit-panel"><h3>Instagram</h3><p>Reels, ejemplos visuales y herramientas de creación digital.</p><a class="audit-cta alt" href="https://www.instagram.com/leoleonmedia/" rel="noopener noreferrer" style="margin-top:15px" target="_blank">Ver Reels →</a></article></div></div></section><section class="audit-section" id="lista-de-espera"><div class="audit-inner audit-two"><div><p class="audit-kicker">Lista de interés · Próximos contenidos</p><h2>Aprende estrategia, IA y video con criterio.</h2><p>Estamos preparando una propuesta formativa para 2027. Si te interesa enterarte cuando se publiquen el programa, las fechas y las condiciones, deja tu contacto.</p><p class="audit-footnote">Apuntarte no es comprar ni reservar una plaza. No haremos envíos comerciales si no los autorizas.</p><a class="audit-cta alt" href="biblioteca-prompts.html">Explorar los 360 prompts →</a></div>
 <div class="audit-panel"><h3>Recibe novedades de la Academia</h3><p>Tu nombre y un medio de contacto son suficientes.</p><form class="audit-form" id="audit-lead-form" novalidate="">
 <label>Tu nombre<input autocomplete="given-name" id="audit-name" maxlength="90" name="nombre" placeholder="¿Cómo te llamas?" required="" type="text"/></label>
 <label>¿Dónde te avisamos?<select id="audit-contact-method"><option value="email">Correo electrónico</option><option value="whatsapp">WhatsApp</option></select></label>
-<label class="audit-wide" data-audit-contact-row=""><span id="audit-contact-label">Tu correo electrónico</span><span id="audit-country-wrap" hidden><span class="audit-country-picker"><span class="iti__flag iti__un" id="audit-country-flag" aria-hidden="true"></span><select id="audit-country" aria-label="Selecciona tu país y prefijo telefónico"><option value="">Selecciona tu país y prefijo</option></select></span><span class="audit-country-hint" id="audit-country-hint">Selecciona tu país antes de escribir el número.</span></span><input autocomplete="email" id="audit-contact" name="contacto" placeholder="tucorreo@ejemplo.com" required="" type="email"/></label>
+<label class="audit-wide" data-audit-contact-row=""><span id="audit-contact-label">Tu correo electrónico</span><span id="audit-country-wrap" hidden><span class="audit-country-picker"><select id="audit-country" aria-label="País y prefijo seleccionados" tabindex="-1"><option value="">Selecciona tu país y prefijo</option></select><button type="button" id="audit-country-trigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="audit-country-results"><span id="audit-country-flag" aria-hidden="true"></span><span class="audit-country-trigger-text" id="audit-country-trigger-text">Selecciona tu país y prefijo</span><span aria-hidden="true">▾</span></button><div id="audit-country-popup" hidden><input id="audit-country-search" type="search" placeholder="Buscar país o prefijo…" aria-label="Buscar país o prefijo" autocomplete="off"><div id="audit-country-results" role="listbox" aria-label="Países disponibles"></div></div></span><span class="audit-country-hint" id="audit-country-hint">Selecciona tu país antes de escribir el número.</span></span><input autocomplete="email" id="audit-contact" name="contacto" placeholder="tucorreo@ejemplo.com" required="" type="email"/></label>
 <label class="audit-check audit-wide"><input id="audit-marketing-consent" required="" type="checkbox"/><span>Quiero inscribirme a la lista de interés y autorizo recibir información de la Academia por el contacto que indiqué. Leí la <a href="privacidad.html">política de privacidad</a>.</span></label>
 <div class="audit-wide"><button class="audit-cta" id="audit-submit" type="submit">Quiero recibir novedades →</button></div><p aria-live="polite" role="status" class="audit-status" id="audit-lead-status"></p>
 <div id="audit-lead-fallback" hidden aria-live="polite"><h4>Tu inscripción aún no se confirmó</h4><p>El formulario intentó registrar tus datos, pero Google Sheets no devolvió una confirmación. Puedes reintentarlo o avisarme directamente por WhatsApp para no perder tu interés.</p><a class="audit-cta" id="audit-lead-whatsapp" target="_blank" rel="noopener noreferrer" href="https://wa.me/51939143052?text=Hola%20Leo%2C%20quiero%20apuntarme%20a%20las%20novedades%20de%20la%20Academia">Continuar por WhatsApp ↗</a></div></form></div></div></section><section class="audit-section" id="preguntas-frecuentes"><div class="audit-inner audit-qa"><p class="audit-kicker">Preguntas frecuentes</p><h2>Todo lo que debes saber antes de empezar.</h2>
@@ -175,18 +219,55 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
    for(const c of list){
      countriesById.set(c.iso2,c);
      const opt=document.createElement('option'); opt.value=c.iso2;
-     opt.textContent=(String.fromCodePoint(...[...c.iso2.toUpperCase()].map(ch=>127397+ch.charCodeAt(0))))+' '+c.name+' (+'+c.dialCode+')';
+     opt.textContent=c.name+' (+'+c.dialCode+')';
      countrySelect.appendChild(opt);
    }
    return list.length>0;
  }
  const countriesReady=cargarPaises();
  function selectedCountry(){return countriesById.get(countrySelect.value)||null;}
+ // El select original conserva los valores que se envían a Sheets.
+ // El menú visual usa imágenes PNG de banderas en vez de emoji, que en Windows
+ // pueden representarse como letras AF, AL, etc.
+ const countryTrigger=$('audit-country-trigger'),countryTriggerText=$('audit-country-trigger-text');
+ const countryPopup=$('audit-country-popup'),countrySearch=$('audit-country-search'),countryResults=$('audit-country-results');
+ const allCountries=[...countriesById.values()].sort((a,b)=>a.name.localeCompare(b.name,'es'));
+ function flagImage(c){
+   const img=document.createElement('img');
+   img.className='audit-flag-img';img.width=26;img.height=19;img.loading='lazy';
+   img.alt='';img.src='https://flagcdn.com/w40/'+encodeURIComponent(c.iso2)+'.png';
+   return img;
+ }
  function refreshCountry(){
    const c=selectedCountry();
-   countryFlag.className='iti__flag iti__'+(c?c.iso2:'un');
+   countryFlag.replaceChildren();
+   if(c)countryFlag.appendChild(flagImage(c));
+   countryTriggerText.textContent=c?c.name+' (+'+c.dialCode+')':'Selecciona tu país y prefijo';
    countryHint.textContent=c?'País seleccionado: '+c.name+' (+'+c.dialCode+'). Escribe solo tu número, sin prefijo.':'Selecciona tu país antes de escribir el número.';
  }
+ function renderCountries(filter=''){
+   const query=filter.trim().toLocaleLowerCase('es');
+   countryResults.replaceChildren();
+   const matches=allCountries.filter(c=>!query||c.name.toLocaleLowerCase('es').includes(query)||c.iso2.includes(query)||('+'+c.dialCode).includes(query));
+   if(!matches.length){const no=document.createElement('div');no.className='audit-country-empty';no.textContent='No encontramos ese país';countryResults.appendChild(no);return;}
+   const fragment=document.createDocumentFragment();
+   matches.forEach(c=>{
+     const item=document.createElement('button');item.type='button';item.className='audit-country-choice';item.setAttribute('role','option');item.setAttribute('aria-selected',String(countrySelect.value===c.iso2));
+     item.appendChild(flagImage(c));
+     const title=document.createElement('span');title.textContent=c.name+' (+'+c.dialCode+')';item.appendChild(title);
+     item.addEventListener('click',()=>{countrySelect.value=c.iso2;countrySelect.dispatchEvent(new Event('change',{bubbles:true}));closeCountries();countryTrigger.focus();});
+     fragment.appendChild(item);
+   });
+   countryResults.appendChild(fragment);
+ }
+ function closeCountries(){countryPopup.hidden=true;countryTrigger.setAttribute('aria-expanded','false');}
+ countryTrigger.addEventListener('click',()=>{
+   if(!countryPopup.hidden){closeCountries();return;}
+   countrySearch.value='';renderCountries();countryPopup.hidden=false;countryTrigger.setAttribute('aria-expanded','true');countrySearch.focus();
+ });
+ countrySearch.addEventListener('input',()=>renderCountries(countrySearch.value));
+ countryPopup.addEventListener('keydown',ev=>{if(ev.key==='Escape'){closeCountries();countryTrigger.focus();}});
+ document.addEventListener('pointerdown',ev=>{if(!countryPopup.hidden&&!countryWrap.contains(ev.target))closeCountries();});
  countrySelect.addEventListener('change',refreshCountry);
  refreshCountry();
  const frame=document.createElement('iframe');frame.name='ld-form-academia-v2';frame.style.display='none';frame.title='Envío de inscripción';frame.setAttribute('aria-hidden','true');document.body.appendChild(frame);
@@ -248,7 +329,7 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
     const c=selectedCountry();
     if(!countriesReady||!c){
       showStatus('Selecciona primero tu país y prefijo. No se enviará el contacto con un país incorrecto.','error');
-      countrySelect.focus();return;
+      countryTrigger.focus();return;
     }
     pais=c.name;paisIso2=c.iso2;prefijo='+'+c.dialCode;
     const original=contact.value.trim();
