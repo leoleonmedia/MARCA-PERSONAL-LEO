@@ -342,7 +342,7 @@ function overallDiagnosis(metrics,objective,spend,results,revenue,margin,clicks,
  let economicText='Faltan resultados o datos económicos para saber si conseguirlos salió caro.';
  if(objective==='sales'){
   headline='¿La campaña de ventas dejó dinero?';
-  if(revenue!==null&&margin!==null){
+  if(revenue!==null&&margin!==null&&spend>0){
    const contrib=revenue*margin/100-spend;
    const tolerance=spend*.10;
    state=contrib>tolerance?'good':contrib< -tolerance?'bad':'regular';
@@ -363,8 +363,8 @@ function overallDiagnosis(metrics,objective,spend,results,revenue,margin,clicks,
   steps.push('Compara el costo por compra con lo que te deja cada venta, después de pagar el producto o servicio.');
  }else if(objective==='leads'||objective==='messages'){
   const name=objective==='leads'?'lead':'conversación';headline='¿Cuánto costó conseguir cada '+name+'?';
-  if(results===0&&expected!==null&&spend>expected*3){state='bad';reason='Gastaste más de tres veces tu costo objetivo sin registrar '+(objective==='leads'?'leads':'conversaciones')+'. Revisa que el evento se esté midiendo.';decision='REVISAR MEDICIÓN Y CAPTACIÓN';}
-  else if(results===0){state='regular';reason='Ya hubo gasto y todavía no hay resultados atribuidos. Si apenas comenzó, revisa medición y deja reunir más información.';decision='REVISAR EL EVENTO Y CONTINUAR MIDIENDO';}
+  if(results===0&&spend>0&&expected!==null&&spend>expected*3){state='bad';reason='Gastaste más de tres veces tu costo objetivo sin registrar '+(objective==='leads'?'leads':'conversaciones')+'. Revisa que el evento se esté midiendo.';decision='REVISAR MEDICIÓN Y CAPTACIÓN';}
+  else if(results===0){state='neutral';reason=spend>0?'Ya hubo gasto, pero no hay resultados atribuidos. Sin una meta económica suficiente o una muestra mayor, no corresponde calificarla como regular.':'No hay gasto ni resultados registrados; todavía no existe una campaña evaluable.';decision=spend>0?'REVISAR EL EVENTO Y CONTINUAR MIDIENDO':'COMPLETAR LOS DATOS DE LA CAMPAÑA';}
   else if(cpa!==null&&expected!==null){
    state=band(cpa,expected);reason='Cada '+name+' cuesta '+formatMoney(cpa)+'. Según los datos económicos que proporcionaste, puedes pagar aproximadamente hasta '+formatMoney(expected)+' por uno.';
    decision=state==='good'?'MANTENER Y EVALUAR CALIDAD':state==='regular'?'MEJORAR EL COSTO O EL CIERRE':'OPTIMIZAR ANTES DE INVERTIR MÁS';
@@ -419,7 +419,7 @@ function overallDiagnosis(metrics,objective,spend,results,revenue,margin,clicks,
      budgetState='regular';budgetTag='PRUEBA INICIAL';
      budgetText='Has invertido el equivalente a '+evidence+' veces tu costo objetivo por resultado. Puede ser poco para sacar una conclusión firme; registra más datos antes de escalar o detener.';
    }else{
-     budgetState='good';budgetTag='VOLUMEN PARA REVISAR';
+     budgetState='neutral';budgetTag='VOLUMEN PARA REVISAR';
      budgetText='El gasto equivale a '+evidence+' veces tu costo objetivo. No garantiza ese número de resultados; comprueba cuántos lograste realmente.';
    }
  }else if(pDays!==null&&pDays<3){budgetState='regular';budgetTag='MUY RECIENTE';budgetText='Solo analizas '+pDays+' día(s). Evita sacar conclusiones por un periodo tan corto.';}
