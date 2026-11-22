@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!-- LEO-HOME-20261122-PORTADA-REPARADA: index.html contiene la portada de Leo Leon -->
+
 
 <html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Estrategia de contenido, Reels e IA | Leo León</title>
 <meta content="Aprende a crear Reels con estrategia, escribir guiones que retengan y aprovechar la IA con los métodos PICA y META de Leo León." name="description"/>
@@ -486,7 +488,8 @@ a.social-link[href*="ig.me/"] svg circle:last-child { fill: currentColor !import
 #videos .leo-video-index{display:inline-flex;align-items:center;justify-content:center;color:#ff8c1a;border:1px solid #78491a;border-radius:9px;width:31px;height:29px;font-size:11px;letter-spacing:0;flex:none}
 #videos .leo-video-brand{display:flex;align-items:center;gap:15px;margin-top:19px}
 #videos .leo-video-mark,#videos .leo-video-ig-mark{display:inline-flex;align-items:center;justify-content:center;flex:none;color:#ff8200;font-weight:900;font-size:30px;width:48px;height:48px;background:#ff820012;border:1px solid #ff820043;border-radius:13px}
-#videos .leo-video-mark{font-size:39px;color:#fff;text-shadow:3px -2px 0 #ff8200,-2px 2px 0 #868686}
+#videos .leo-video-mark{color:#fff;text-shadow:none}
+#videos .leo-video-mark svg,#videos .leo-video-ig-mark svg{display:block;flex:none}
 #videos .leo-video-brand h3{margin:0;color:#fff;font-weight:900;line-height:1.05;font-size:clamp(26px,3vw,35px);letter-spacing:-.04em}
 #videos .leo-video-brand h3 span{display:block;font-size:12px;letter-spacing:0;color:#bab3af;font-weight:500;margin-top:8px}
 #videos .leo-video-tiktok-copy p{color:#c0bbb9;font-size:14px;line-height:1.7;margin:20px 0 22px;max-width:290px}
@@ -531,6 +534,57 @@ a.social-link[href*="ig.me/"] svg circle:last-child { fill: currentColor !import
   #videos .leo-video-instagram-head{padding:17px}
   #videos .leo-video-instagram-foot{font-size:11px;padding:12px 17px}
   #videos .leo-video-scroll-hint{font-size:11px}
+}
+</style>
+
+<style id="leoleon-social-gallery-refined">
+/* Presentación premium de redes 2026: aislada en #videos, sin alterar el resto de la web */
+#videos .leo-video-section-head{align-items:end;gap:20px}
+#videos .leo-video-subtitle{margin:12px 0 0;max-width:590px;font-size:15px;color:#a9a8ab;line-height:1.6}
+#videos .leo-video-collection{display:grid;grid-template-columns:1fr;gap:24px;margin-top:35px}
+#videos .leo-video-tiktok,#videos .leo-video-instagram{display:block;min-height:0;border:1px solid #2e2c30;border-radius:20px;background:#131315;box-shadow:0 18px 48px #0003;overflow:hidden}
+#videos .leo-video-card-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;padding:21px 27px;background:linear-gradient(110deg,#221811,#17171a 57%,#141417);border-bottom:1px solid #2b292b}
+#videos .leo-video-brand{display:flex;align-items:center;gap:14px;margin:0}
+#videos .leo-video-mark,#videos .leo-video-ig-mark{display:grid;place-items:center;width:47px;height:47px;border-radius:13px;background:#ff820016;border:1px solid #ff82004f;color:#ff8505;box-shadow:none}
+#videos .leo-video-mark svg,#videos .leo-video-ig-mark svg{display:block}
+#videos .leo-brand-text{display:grid;gap:4px}
+#videos .leo-video-brand h3{font-size:23px;line-height:1.1;letter-spacing:-.035em;font-weight:850;margin:0}
+#videos .leo-brand-text p{color:#b1acac;font-size:12px;margin:0;line-height:1.3}
+#videos .leo-video-link{padding:10px 14px;border:1px solid #413830;border-radius:99px;font-size:12px;font-weight:750;color:#eae5e3;text-decoration:none;white-space:nowrap;transition:background .2s,border-color .2s;line-height:1}
+#videos .leo-video-link:hover{color:white;background:#ff820022;border-color:#ff8200;text-decoration:none}
+#videos .leo-video-tiktok-stage{display:flex;align-items:center;justify-content:center;min-height:0;padding:24px;background:#0b0b0d;overflow:hidden}
+#videos .leo-tiktok-inset{width:min(100%,850px);padding:10px;background:#151517;border:1px solid #2c292b;border-radius:17px;overflow:hidden}
+#videos .leo-tiktok-inset blockquote.tiktok-embed{width:100%!important;min-width:0!important;max-width:760px!important;margin:0 auto!important;padding:0!important}
+#videos .leo-tiktok-inset iframe{display:block;max-width:100%!important;margin:0 auto!important;min-width:0!important;border:0!important;border-radius:11px}
+#videos .leo-video-ig-window{height:540px;overflow:auto;overflow-x:hidden;padding:20px;background:#0b0b0d;overscroll-behavior-y:contain;scrollbar-width:thin;scrollbar-color:#7d4a20 #151515}
+#videos #curator-feed-default-feed-layout{width:100%!important;max-width:100%!important;min-width:0!important;padding:0!important;margin:0 auto!important;box-sizing:border-box}
+#videos #curator-feed-default-feed-layout .crt-widget,#videos #curator-feed-default-feed-layout .crt-feed{max-width:100%!important;min-width:0!important;box-sizing:border-box}
+#videos #curator-feed-default-feed-layout .crt-post-c,#videos #curator-feed-default-feed-layout .crt-post{border-radius:12px!important;overflow:hidden!important;box-shadow:none!important}
+#videos #curator-feed-default-feed-layout img,#videos #curator-feed-default-feed-layout iframe{max-width:100%!important}
+/* Quitar grandes tarjetas blancas creadas por metadatos de Curator, sin tocar las fotos o videos */
+#videos #curator-feed-default-feed-layout .crt-post-header,#videos #curator-feed-default-feed-layout .crt-post-footer,#videos #curator-feed-default-feed-layout .crt-post-text{font-size:12px!important;line-height:1.35!important}
+#videos #curator-feed-default-feed-layout .crt-post-content{padding:10px!important}
+#videos #curator-feed-default-feed-layout .crt-grid-post .crt-post-content{min-height:0!important}
+#videos .leo-video-card-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:14px 27px;background:#151517;border-top:1px solid #2b292b;color:#aba5a4;font-size:12px}
+#videos .leo-video-card-foot span:first-child{display:inline-flex;align-items:center;gap:9px}
+#videos .leo-video-live-dot{background:#ff8200;display:inline-block;width:7px;height:7px;border-radius:50%;box-shadow:0 0 0 4px #ff820019}
+@media(max-width:820px){
+ #videos .leo-video-collection{margin-top:24px;gap:18px}
+ #videos .leo-video-card-head{padding:18px}
+ #videos .leo-video-tiktok-stage{padding:13px}
+ #videos .leo-video-ig-window{height:490px;padding:10px}
+ #videos .leo-video-card-foot{padding:12px 18px}
+}
+@media(max-width:490px){
+ #videos .leo-video-tiktok,#videos .leo-video-instagram{border-radius:15px}
+ #videos .leo-video-brand h3{font-size:20px}
+ #videos .leo-video-mark,#videos .leo-video-ig-mark{width:41px;height:41px}
+ #videos .leo-video-link{padding:9px 11px;font-size:11px}
+ #videos .leo-video-card-head{padding:14px;gap:12px}
+ #videos .leo-video-tiktok-stage{padding:8px 3px}
+ #videos .leo-tiktok-inset{padding:3px;border:0}
+ #videos .leo-video-ig-window{height:430px;padding:5px}
+ #videos .leo-video-card-foot{font-size:11px;padding:11px 14px}
 }
 </style>
 </head><body><header class="nav" id="nav">
@@ -713,41 +767,43 @@ a.social-link[href*="ig.me/"] svg circle:last-child { fill: currentColor !import
 </section>
 <!-- ================= VIDEOS ================= -->
 <section aria-labelledby="leo-videos-title" class="sec amb der" id="videos">
-  <div class="wrap">
-    <div class="head leo-video-section-head">
-      <div><span class="label r">VIDEOS · REDES SOCIALES</span><h2 class="r d1" id="leo-videos-title">Mis videos publicados.</h2></div>
-      <div class="video-social-links">
-        <a class="btn btn-linea social-link" href="https://www.tiktok.com/@leoleonmedia" target="_blank" rel="noopener noreferrer">TikTok ↗</a>
-        <a class="btn btn-linea social-link" href="https://www.instagram.com/leoleonmedia/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
-      </div>
-    </div>
-    <div class="leo-video-collection">
-      <article class="leo-video-tiktok" aria-labelledby="leo-tiktok-title">
-        <div class="leo-video-tiktok-copy">
-          <span class="leo-video-eyebrow"><span class="leo-video-index">01</span> MIS VIDEOS RECIENTES</span>
-          <div class="leo-video-brand"><span class="leo-video-mark" aria-hidden="true">♪</span><h3 id="leo-tiktok-title">TikTok<span>@leoleonmedia</span></h3></div>
-          <p>Mis publicaciones más recientes, directamente desde mi perfil oficial.</p>
-          <a class="leo-video-link" href="https://www.tiktok.com/@leoleonmedia" target="_blank" rel="noopener noreferrer">Ver mi perfil completo <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="leo-video-tiktok-stage" aria-label="Videos recientes de TikTok de Leo León">
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@leoleonmedia" data-unique-id="leoleonmedia" data-embed-type="creator" data-embed-from="oembed" style="width:100%;max-width:780px;min-width:288px;margin:0 auto"><section><a href="https://www.tiktok.com/@leoleonmedia" target="_blank" rel="noopener noreferrer">Ver videos de @leoleonmedia</a></section></blockquote>
-        </div>
-      </article>
-      <article class="leo-video-instagram" aria-labelledby="leo-instagram-title">
-        <div class="leo-video-instagram-head">
-          <div>
-            <span class="leo-video-eyebrow"><span class="leo-video-index">02</span> REELS Y PUBLICACIONES</span>
-            <div class="leo-video-brand"><span class="leo-video-ig-mark" aria-hidden="true">◎</span><h3 id="leo-instagram-title">Instagram <span>@leoleonmedia</span></h3></div>
-          </div>
-          <a class="leo-video-link" href="https://www.instagram.com/leoleonmedia/" target="_blank" rel="noopener noreferrer">Ver Instagram completo <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="leo-video-ig-window" role="region" tabindex="0" aria-label="Publicaciones recientes de Instagram; desplazamiento vertical">
-          <div id="curator-feed-default-feed-layout"><a href="https://curator.io" target="_blank" rel="noopener noreferrer" class="crt-logo crt-tag">Powered by Curator.io</a></div>
-        </div>
-        <div class="leo-video-instagram-foot"><span><span class="leo-video-live-dot" aria-hidden="true"></span> Feed vinculado a tus publicaciones</span><span class="leo-video-scroll-hint">Desplázate dentro de la galería para ver más <span aria-hidden="true">↓</span></span></div>
-      </article>
-    </div>
+ <div class="wrap">
+  <div class="head leo-video-section-head">
+   <div><span class="label r">VIDEOS · REDES SOCIALES</span><h2 class="r d1" id="leo-videos-title">Mis videos publicados.</h2><p class="leo-video-subtitle">Contenido real, actualizado desde mis perfiles oficiales.</p></div>
+   <div class="video-social-links">
+    <a class="btn btn-linea social-link" href="https://www.tiktok.com/@leoleonmedia" target="_blank" rel="noopener noreferrer">TikTok ↗</a>
+    <a class="btn btn-linea social-link" href="https://www.instagram.com/leoleonmedia/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+   </div>
   </div>
+  <div class="leo-video-collection">
+   <article class="leo-video-tiktok" aria-labelledby="leo-tiktok-title">
+    <div class="leo-video-card-head">
+     <div class="leo-video-brand">
+      <span class="leo-video-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16.6 1.9c.3 2.5 1.7 4 4.2 4.2v4.3a10 10 0 0 1-4.2-1.1v6.9a7.1 7.1 0 1 1-7.1-7.1l1.1.1v4.4a3 3 0 1 0 1.7 2.7V1.9h4.3Z"/></svg></span>
+      <div class="leo-brand-text"><h3 id="leo-tiktok-title">TikTok</h3><p>@leoleonmedia · Publicaciones recientes</p></div>
+     </div>
+     <a class="leo-video-link" href="https://www.tiktok.com/@leoleonmedia" target="_blank" rel="noopener noreferrer">Ver perfil <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="leo-video-tiktok-stage" aria-label="Publicaciones recientes de TikTok de Leo León">
+     <div class="leo-tiktok-inset"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@leoleonmedia" data-unique-id="leoleonmedia" data-embed-type="creator" data-embed-from="oembed" style="width:100%;max-width:780px;min-width:288px;margin:0 auto"><section><a href="https://www.tiktok.com/@leoleonmedia" target="_blank" rel="noopener noreferrer">Ver videos de @leoleonmedia</a></section></blockquote></div>
+    </div>
+    <div class="leo-video-card-foot"><span><span class="leo-video-live-dot" aria-hidden="true"></span> Perfil oficial conectado</span><span>Desliza para explorar las publicaciones</span></div>
+   </article>
+   <article class="leo-video-instagram" aria-labelledby="leo-instagram-title">
+    <div class="leo-video-card-head">
+     <div class="leo-video-brand">
+      <span class="leo-video-ig-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.7" cy="6.4" r="1" fill="currentColor" stroke="none"/></svg></span>
+      <div class="leo-brand-text"><h3 id="leo-instagram-title">Instagram</h3><p>@leoleonmedia · Reels y publicaciones</p></div>
+     </div>
+     <a class="leo-video-link" href="https://www.instagram.com/leoleonmedia/" target="_blank" rel="noopener noreferrer">Ver perfil <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="leo-video-ig-window" role="region" tabindex="0" aria-label="Publicaciones recientes de Instagram; desplazamiento vertical">
+     <div id="curator-feed-default-feed-layout"><a href="https://curator.io" target="_blank" rel="noopener noreferrer" class="crt-logo crt-tag">Powered by Curator.io</a></div>
+    </div>
+    <div class="leo-video-card-foot"><span><span class="leo-video-live-dot" aria-hidden="true"></span> Publicaciones reales vinculadas</span><span>Desliza dentro de la galería para ver más ↓</span></div>
+   </article>
+  </div>
+ </div>
 </section>
 <!-- ================= NOTAS ================= -->
 <section class="sec amb izq" id="notas" style="padding-top:0">
