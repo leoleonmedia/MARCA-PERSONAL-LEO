@@ -352,6 +352,22 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
    $('rateMeaning').textContent='Calculamos las interacciones por cada 100 visualizaciones de tu '+choiceName()+'.';
    $('extraAnalysis').hidden=true;$('copyReport').hidden=true;
  }
+ function invalidateReport(message='Has modificado los datos. Pulsa «Analizar publicación» para actualizar el diagnóstico.'){
+   if(!lastReport)return;
+   lastReport='';
+   $('engDiagnosis').dataset.status='neutral';
+   $('diagBadge').textContent='SIN ACTUALIZAR';
+   $('diagText').textContent=message;
+   $('diagReference').textContent='Los resultados anteriores se han ocultado para evitar confusiones.';
+   $('diagTips').replaceChildren();
+   $('fullRate').textContent='—';
+   ['kpiInteractions','kpiViews','kpiCompare','kpiDeep'].forEach(id=>$(id).textContent='—');
+   $('reportTitle').textContent='Datos pendientes de analizar';
+   $('reportSubtitle').textContent='Los datos cambiaron desde el cálculo anterior.';
+   $('extraAnalysis').hidden=true;
+   $('copyReport').hidden=true;
+   $('formulaText').textContent='Completa los datos y vuelve a calcular.';
+ }
  const metricCount=(obj,keys)=>keys.reduce((sum,k)=>sum+obj[k],0);
  function compute(){
   $('engError').hidden=true;
@@ -379,7 +395,7 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
    $('kpiDeep').textContent=localeNumber(deep);
    let status='neutral',badge='SIN REFERENCIA',intro='',ref='',actions=[];
    if(m){
-     if(d.views<100||(m.type==='reach'&&compareBase<100)){status='neutral';badge='POCOS DATOS';intro='La publicación tiene pocas visualizaciones o muy poco alcance. Unas cuantas interacciones pueden cambiar mucho el porcentaje; aún no conviene calificarla.';}
+     if(d.views<300||(m.type==='reach'&&compareBase<300)||(m.type==='followers'&&compareBase<300)){status='neutral';badge='POCOS DATOS';intro='La muestra es pequeña (menos de 300 vistas, cuentas alcanzadas o seguidores usados como referencia). Aunque el porcentaje sea alto, unas pocas interacciones pueden cambiarlo mucho. Reúne más datos antes de calificarla.';}
      else if(comp<m.low){status='bad';badge='MALO';intro='La tasa comparable está por debajo del rango de referencia de publicaciones similares. Hay margen para mejorar la respuesta a este contenido.';}
      else if(comp>m.high){status='good';badge='BUENO';intro='La tasa comparable está por encima del rango central de referencia. Es una señal favorable de interacción, aunque no garantiza más ventas o seguidores.';}
      else {status='regular';badge='REGULAR';intro='La tasa comparable está dentro de la franja de referencia. El contenido obtiene una respuesta habitual para esa muestra; compara también con tus otras publicaciones.';}
@@ -418,7 +434,7 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
    lastReport=`Academia Leones Digitales — ${keyName}\nInteracciones: ${localeNumber(total)}. Vistas: ${localeNumber(d.views)}. Tasa total por vistas: ${percent(rate)}.\nTasa comparable: ${comp===null?'Sin referencia comparable':percent(comp)}.\nDiagnóstico: ${badge}. ${intro}\n${ref}\nSugerencias:\n${actions.join('\n')}`;
    $('copyReport').hidden=false;
    $('engReport').scrollIntoView({block:'start',behavior:'smooth'});
-  }catch(err){$('engError').textContent=err.message;$('engError').hidden=false;}
+  }catch(err){invalidateReport('No se pudo calcular con los datos actuales. Corrige los campos señalados y vuelve a analizar.');$('engError').textContent=err.message;$('engError').hidden=false;}
  }
  document.querySelectorAll('[data-mode]').forEach(btn=>btn.addEventListener('click',()=>{
    const [nextPlatform,nextFormat]=btn.dataset.mode.split('_');
@@ -430,6 +446,7 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
    $('engError').hidden=true;
    refresh();
  }));
+ $('engForm').addEventListener('input',()=>{invalidateReport();$('engError').hidden=true;});
  $('engForm').addEventListener('submit',e=>{e.preventDefault();compute()});
  $('copyReport').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(lastReport);$('copyReport').textContent='¡Copiado!'}catch(e){const ta=document.createElement('textarea');ta.value=lastReport;document.body.append(ta);ta.select();document.execCommand('copy');ta.remove();$('copyReport').textContent='¡Copiado!'}setTimeout(()=>$('copyReport').textContent='Copiar diagnóstico',1500)});
  refresh();

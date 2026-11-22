@@ -402,6 +402,18 @@ function overallDiagnosis(metrics,objective,spend,results,revenue,margin,clicks,
   economicText='Reconocimiento mide exposición. No confirma clientes ni ventas por sí solo.';
   steps.push('Observa alcance real, frecuencia y si necesitas llegar a personas nuevas.');
  }
+ // Inversión sin resultados atribuidos: alertar de forma visible sin inventar rentabilidad.
+ if(spend>0&&results===0){
+   steps.unshift('SIN RESULTADOS: registraste gasto publicitario y cero resultados atribuidos al objetivo. Comprueba el evento, el periodo y la atribución antes de seguir invirtiendo.');
+   reason+=' ATENCIÓN: hubo inversión, pero no se registró ningún resultado atribuido al objetivo.';
+   economicText='Hubo inversión sin resultados atribuidos; no equivale a una campaña rentable. Revisa medición, oferta y tiempo de evaluación.';
+   // Ingresos con cero compras atribuidas requieren comprobar la coherencia de los datos.
+   if(objective==='sales'&&revenue!==null&&revenue>0){
+     state='neutral';
+     reason+=' Has indicado ingresos pero cero compras atribuidas. Comprueba si corresponden a la misma campaña y periodo.';
+     decision='VERIFICAR ATRIBUCIÓN Y RESULTADOS';
+   }
+ }
  // Separar claramente una muestra pequeña de un resultado económico negativo.
  if(lowSample){steps.unshift('MUESTRA PEQUEÑA: '+issues.filter(x=>x.includes('Menos')).join(' '));
    if(state==='good'){state='regular';reason+=' Señal favorable por ahora, pero aún hay pocos datos para confirmarla.';decision='CONTINUAR MIDIENDO ANTES DE ESCALAR';}
