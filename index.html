@@ -513,6 +513,17 @@ h3{font-size:clamp(1.15rem,1.6vw,1.35rem);letter-spacing:-.01em;line-height:1.2}
 .lead-form .lead-fields input{margin-top:0}
 @media(max-width:640px){.lead-steps{font-size:.73rem;gap:7px 12px}}
 
+/* Banderas de intl-tel-input: variables globales porque el selector de países
+   se mueve a document.body (dropdownContainer). */
+:root, body, .iti, .iti--container, .iti__dropdown-content {
+  --iti-path-flags-1x: url("https://cdn.jsdelivr.net/npm/intl-tel-input@29.5.8/dist/img/flags.webp");
+  --iti-path-flags-2x: url("https://cdn.jsdelivr.net/npm/intl-tel-input@29.5.8/dist/img/flags@2x.webp");
+  --iti-path-globe-1x: url("https://cdn.jsdelivr.net/npm/intl-tel-input@29.5.8/dist/img/globe.webp");
+  --iti-path-globe-2x: url("https://cdn.jsdelivr.net/npm/intl-tel-input@29.5.8/dist/img/globe@2x.webp");
+}
+/* No ocultar el sprite que contiene las banderas en el desplegable. */
+#lead-phone-wrap .iti__flag, .iti--container .iti__flag {display:block;flex-shrink:0}
+
 /* WhatsApp: selector mundial de banderas y prefijos telefónicos */
 #lead-phone-wrap[hidden],#lead-contacto[hidden]{display:none!important}
 #lead-phone-wrap{min-width:0}
