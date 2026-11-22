@@ -160,11 +160,11 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
    script.onerror=clean;
    document.head.appendChild(script);
    setTimeout(()=>{if(script.isConnected)clean();},2600);
-   if(verifyCount>=10){
+   if(verifyCount>=12){
      clearVerification();
      if(pending&&pending.codigo===codigo){
        pending=null;setBusy(false);
-       showStatus('No pudimos comprobar automáticamente el registro. Revisa si aparece en Google Sheets antes de volver a enviarlo.','error');
+       showStatus('El envío se realizó, pero no recibimos confirmación. Revisa si aparece en Google Sheets antes de enviarlo otra vez.','error');
        fallback.hidden=false;
      }
    }
@@ -213,7 +213,7 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
       else if(local.startsWith(codigo) && local.length>10) local=local.slice(codigo.length);
       valor=prefijo+local;
     }else{
-      valor='+'+numeroSinFormato.replace(/\D/g,'');
+      valor=numeroSinFormato.startsWith('+') ? '+'+numeroSinFormato.slice(1).replace(/\D/g,'') : '';
     }
   }
   fallback.hidden=true;
