@@ -1,0 +1,58 @@
+/* Mejoras de navegación, leads, consentimiento y trackers opcionales de Leo León Media. */
+(function(){'use strict';
+const q=(sel,root=document)=>root.querySelector(sel);
+const config=window.LEO_INTEGRATIONS||{};
+const ENDPOINT='https://script.google.com/macros/s/AKfycbxzSFBamHr8X7wXhZ57ZX3oQLyeZ-CgExZ2CPah4cyRP7SI9xzUuB1QRCvqimxd4WRT/exec';
+const SOURCE='leo-leads-sheets';
+const phone='51939143052';
+const navButton=q('#menuButton'), nav=q('#mainNav');
+if(navButton&&nav){
+ navButton.addEventListener('click',()=>{const open=nav.classList.toggle('open');navButton.setAttribute('aria-expanded',String(open));navButton.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú');});
+ nav.addEventListener('click',e=>{if(e.target.closest('a')&&nav.classList.contains('open')){nav.classList.remove('open');navButton.setAttribute('aria-expanded','false');}});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){nav.classList.remove('open');navButton.setAttribute('aria-expanded','false');}});
+}
+// WhatsApp visible sin requerir analítica ni cookies.
+if(!q('.audit-wa')){let a=document.createElement('a');a.className='audit-wa';a.href='https://wa.me/'+phone+'?text='+encodeURIComponent('Hola Leo, vengo de Academia Leones Digitales y quiero hacer una consulta.');a.target='_blank';a.rel='noopener noreferrer';a.setAttribute('aria-label','Escribir a Leo León por WhatsApp');a.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.5 8.4 8.4 0 0 1-4-.9L3 21l1.9-5.3A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 9.5c.7 3 2.2 4.5 5 5l1.5-1.5"/></svg> WhatsApp';document.body.appendChild(a);}
+// Mostrar la política en todos los pies.
+document.querySelectorAll('footer').forEach(f=>{if(!f.querySelector('a[href="privacidad.html"]')){let a=document.createElement('a');a.href='privacidad.html';a.textContent='Privacidad';a.style.cssText='color:#d5cdc5;text-decoration:underline;margin-left:12px';f.appendChild(a);}});
+
+// Carga de analytics por consentimiento explícito; todos los IDs vienen vacíos.
+const loadScript=(src,attrs={})=>{let s=document.createElement('script');s.async=true;s.src=src;Object.keys(attrs).forEach(k=>s.setAttribute(k,attrs[k]));document.head.appendChild(s);};
+let analyticsLoaded=false,marketingLoaded=false;
+function enableAnalytics(){if(analyticsLoaded)return;analyticsLoaded=true;
+ if(/^GTM-[A-Z0-9]+$/.test(config.gtm||'')) {window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':Date.now(),event:'gtm.js'});loadScript('https://www.googletagmanager.com/gtm.js?id='+encodeURIComponent(config.gtm));}
+ else if(/^G-[A-Z0-9]+$/.test(config.ga4||'')){window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments)};window.gtag('js',new Date());window.gtag('config',config.ga4,{anonymize_ip:true});loadScript('https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(config.ga4));}
+ if(/^[a-z0-9]{6,}$/i.test(config.clarity||'')){(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,'clarity','script',config.clarity);}
+}
+function enableMarketing(){if(marketingLoaded)return;marketingLoaded=true;
+ if(/^\d{8,30}$/.test(config.metaPixel||'')){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=true;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=true;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');window.fbq('init',config.metaPixel);window.fbq('track','PageView');}
+ if(/^[A-Z0-9]{10,30}$/i.test(config.tiktokPixel||'')){!function(w,d,t){w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=['page','track','identify','instances','debug','on','off','once','ready','alias','group','enableCookie','disableCookie','holdConsent','grantConsent','revokeConsent'];ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.load=function(e){var n='https://analytics.tiktok.com/i18n/pixel/events.js';var a=d.createElement('script');a.type='text/javascript';a.async=true;a.src=n+'?sdkid='+encodeURIComponent(e)+'&lib='+t;var s=d.getElementsByTagName('script')[0];s.parentNode.insertBefore(a,s)};ttq.load(config.tiktokPixel);ttq.page()}(window,document,'ttq');}
+}
+function consentUI(){let box=document.createElement('aside');box.className='audit-cookie';box.id='audit-cookie';box.setAttribute('aria-label','Preferencias de privacidad');box.innerHTML='<h2>Tu privacidad importa</h2><p>Usamos almacenamiento necesario para recordar tu elección. Si lo autorizas, podremos activar estadísticas y anuncios. No activamos esas herramientas sin tu permiso. <a href="privacidad.html" style="color:#ffad79">Leer política</a>.</p><div class="buttons"><button type="button" data-consent="none">Solo necesarias</button><button type="button" data-consent="analytics">Permitir estadísticas</button><button class="all" type="button" data-consent="all">Aceptar todo</button></div>';document.body.appendChild(box);box.addEventListener('click',e=>{const b=e.target.closest('[data-consent]');if(!b)return;const value=b.dataset.consent;try{localStorage.setItem('leoConsentV1',value)}catch(_){}if(value==='analytics'||value==='all')enableAnalytics();if(value==='all')enableMarketing();box.remove();});}
+let consent='';try{consent=localStorage.getItem('leoConsentV1')||''}catch(_){}
+if(!consent)consentUI();else {if(consent==='analytics'||consent==='all')enableAnalytics();if(consent==='all')enableMarketing();}
+
+// Utiliza el mismo protocolo de leads de la portada: confirmación SOLO con postMessage válido.
+const receiver=document.createElement('iframe');receiver.hidden=true;receiver.name='audit-lead-target';receiver.title='Registro de solicitudes de la Academia';receiver.setAttribute('aria-hidden','true');document.body.appendChild(receiver);
+let pending=null;
+window.addEventListener('message',event=>{if(!pending||!/^https:\/\/(script\.google\.com|script\.googleusercontent\.com)$/.test(event.origin))return;const data=event.data;if(!data||data.source!==SOURCE||data.codigo!==pending.codigo)return;const st=pending.status;const btn=pending.button;btn.disabled=false;if(data.ok){st.textContent='Registro confirmado. Gracias. Te avisaremos cuando tengamos novedades.';st.style.color='#a1e6ba';}else{st.textContent='El servidor respondió, pero no confirmó el registro. Puedes escribirnos por WhatsApp.';st.style.color='#ffb0a7';}pending=null;});
+const form=q('#audit-lead-form');if(form){
+ const method=q('#audit-contact-method'),label=q('#audit-contact-label'),contact=q('#audit-contact');
+ const adapt=()=>{let wh=method.value==='whatsapp';label.textContent=wh?'Número de WhatsApp (con prefijo del país)':'Tu correo electrónico';contact.type=wh?'tel':'email';contact.placeholder=wh?'+51 999 999 999':'tucorreo@ejemplo.com';contact.autocomplete=wh?'tel':'email';contact.value='';};method.addEventListener('change',adapt);adapt();
+ form.addEventListener('submit',e=>{e.preventDefault();const name=q('#audit-name').value.trim(),value=contact.value.trim(),channel=method.value,consent=q('#audit-marketing-consent').checked,st=q('#audit-lead-status'),button=q('#audit-submit');
+ if(!name||!consent){st.textContent='Completa tu nombre y acepta el aviso de inscripción.';return;}
+ if(channel==='whatsapp'&&!/^\+?\d[\d\s().-]{7,20}$/.test(value)){st.textContent='Escribe tu WhatsApp incluyendo el prefijo, por ejemplo +51 999 999 999.';return;}
+ if(channel==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)){st.textContent='Revisa tu dirección de correo electrónico.';return;}
+ if(pending){st.textContent='Hay una solicitud pendiente. Espera su confirmación.';return;}
+ const codigo='LD-'+Date.now().toString(36).toUpperCase();const payload={codigo,nombre:name,contacto:value,recurso:'Lista de espera Academia Leones Digitales',recurso_id:'curso-estrategia-ia-video-2027',palabra_clave:'ACADEMIA',canal,perfil:'academia',consentimiento_recurso:'sí',consentimiento_marketing:'sí',fecha_cliente:new Date().toISOString(),origen:'Academia Leones Digitales',website:''};
+ const f=document.createElement('form');f.action=ENDPOINT;f.method='POST';f.target=receiver.name;f.acceptCharset='UTF-8';f.hidden=true;Object.entries(payload).forEach(([k,v])=>{let inp=document.createElement('input');inp.type='hidden';inp.name=k;inp.value=String(v);f.appendChild(inp)});document.body.appendChild(f);button.disabled=true;pending={codigo,status:st,button};st.textContent='Enviando solicitud. La inscripción se confirmará cuando responda la hoja de registro.';f.submit();f.remove();setTimeout(()=>{if(pending&&pending.codigo===codigo){st.textContent='No recibimos confirmación del registro. Verifica la hoja de contactos o escríbenos por WhatsApp.';st.style.color='#ffb0a7';button.disabled=false;pending=null;}},15000);});
+}
+// Invitación no bloqueante para recursos de mayor valor.
+const dlg=q('#audit-access-dialog');let pendingHref='';if(dlg){
+ document.querySelectorAll('a[data-audit-invite]').forEach(link=>link.addEventListener('click',e=>{if(!dlg.showModal)return;e.preventDefault();pendingHref=link.getAttribute('href');dlg.showModal();}));
+ dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close();});
+ const close=q('#audit-access-close');if(close)close.addEventListener('click',()=>dlg.close());
+ const go=q('#audit-access-go');if(go)go.addEventListener('click',()=>{window.location.href=pendingHref||'academia.html';});
+ const wait=q('#audit-access-wait');if(wait)wait.addEventListener('click',()=>{dlg.close();q('#lista-de-espera')?.scrollIntoView({behavior:'smooth'});});
+}
+})();

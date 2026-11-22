@@ -1,0 +1,58 @@
+ACADEMIA LEONES DIGITALES · AUDITORÍA IMPLEMENTADA (NOV 2026)
+========================================================
+INSTALACIÓN
+1. Abre GitHub Desktop → Repository → Show in Explorer.
+2. Descomprime este paquete y copia los archivos a la RAÍZ del repositorio.
+3. Sustituye los HTML con el mismo nombre. Incluye los nuevos .js, .css, .webp, el og-academia.jpg, privacidad.html, 404.html y sitemap.xml.
+4. Commit to main → Push origin; recarga con Ctrl+F5.
+
+IMPORTANTE: Se usaron los HTML más recientes disponibles de nuestra conversación.
+Si editaste tu repositorio en GitHub fuera de esta conversación, revisa diferencias antes de reemplazar archivos.
+
+MEJORAS TÉCNICAS
+✓ Menú móvil hamburguesa en las 7 páginas de Academia.
+✓ Navegación compacta con Inicio siempre visible.
+✓ Imagen social 1200×630 y etiquetas OG/Twitter en las páginas.
+✓ Logos livianos optimizados WebP (se conservan PNG originales como respaldo).
+✓ Página de error 404; icono iPhone y color del navegador.
+✓ Botón flotante de WhatsApp a tu número.
+✓ Enlaces a privacidad y banner de consentimiento.
+✓ FAQ en la Academia, nueva promesa, tarjetas únicas, IA primero.
+✓ Lista de interés para próximos cursos, formulario de nombre + email/WhatsApp.
+✓ Invitación voluntaria de registro antes de prompts y Ads; sin bloqueo de herramientas.
+✓ Sección Quién soy (muestra foto solo cuando exista en fotos/usuario/leonardo-leon.webp).
+✓ Tarjetas sobre áreas de trabajo y accesos a TikTok/Instagram.
+✓ Integración de Meta Pixel, TikTok Pixel, Analytics, Clarity y GTM PREPARADA, no activada.
+✓ Sitemap con las páginas que ya existen y nuevas páginas.
+
+PENDIENTES QUE REQUIEREN TU INFORMACIÓN O ACCESO
+1) En integraciones-config.js pega ID GA4 (G-...), Meta Pixel, TikTok Pixel y/o Clarity/GTM.
+   No pongas contraseñas ni claves privadas. Se cargarán solo tras consentimiento.
+   Prueba eventos en cada plataforma (no hay ninguna conexión afirmada como activa).
+2) PRUEBA FORMULARIO: registra un lead de prueba en Academia y comprueba tu Google Sheet.
+   La página usa la URL histórica de Apps Script y requiere respuesta postMessage del backend.
+   Si el servidor no confirma, el mensaje de la página indicará pendiente.
+3) Agrega tu foto a fotos/usuario/leonardo-leon.webp.
+4) Antes de publicar nombres/cifras de clientes y sus capturas, valida datos y permisos.
+   Por eso añadimos tarjetas de áreas de trabajo sin inventar testimonios.
+5) Para incrustar videos concretos necesitamos enlaces/IDs de los posts. Los botones
+   actuales llevan a tus perfiles reales; no prometemos feed automático.
+6) Privacidad: revisa la plantilla con asesoría legal y completa identificación del
+   responsable, conservación y canales de derechos antes de campañas de captación.
+7) Lista de espera: el PDF propone enero; usamos «próximos contenidos / 2027» sin
+   afirmar programa ni fecha comercial todavía no confirmados.
+8) Dominio propio y Cloudflare: requiere comprar dominio, configurar DNS y tu autorización;
+   NO puede realizarse solo subiendo HTML. robots.txt en un subdirectorio de github.io
+   no reemplaza el robots.txt de la raíz. Esto no impide la indexación normal.
+9) Search Console ya estaba configurado anteriormente. Revisa estado de sitemap tras Push.
+10) Prueba Lighthouse/PageSpeed desde el sitio publicado para medir mejoras reales.
+11) Giscus y correos automatizados (Brevo/MailerLite) no se activan sin cuenta, consentimientos e IDs.
+
+ENLACE A LINKEDIN
+Se conserva porque el usuario dio expresamente https://www.linkedin.com/in/leoleonmedia/.
+No se eliminan redes sociales por suposición de la auditoría.
+
+TRATAMIENTO DE DATOS
+La plantilla privacidad.html no sustituye la evaluación legal del tratamiento de datos.
+La Ley N.º 29733 y el D.S. N.º 016-2024-JUS requieren revisar finalidades, consentimiento,
+inscripción de bancos de datos cuando corresponda y plazos.

@@ -1,6 +1,9 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Cómo pedirle mejores ideas a la IA | Leo León</title>
-<meta name="description" content="Descubre por qué ChatGPT, Claude y Gemini dan respuestas genéricas y cómo escribir mejores instrucciones para crear ideas de contenido para tu negocio.">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet"><style>:root{
+<!doctype html>
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Cómo pedirle mejores ideas a la IA | Leo León</title>
+<meta content="Descubre por qué ChatGPT, Claude y Gemini dan respuestas genéricas y cómo escribir mejores instrucciones para crear ideas de contenido para tu negocio." name="description"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Poppins:wght@600;700;800&amp;display=swap" rel="stylesheet"/><style>:root{
   --negro:#0B0B0B; --gris:#1F1F1F; --gris2:#161616; --linea:#2A2A2A;
   --crema:#F5F1EA; --naranja:#FF7A00; --ambar:#FFB347; --naranja-osc:#A84800;
   --txt:#F5F1EA; --txt2:#CFC8BD;
@@ -403,9 +406,31 @@ a.social-link[href*="instagram.com"] svg,
 a.social-link[href*="ig.me/"] svg { fill: none !important; stroke: currentColor; }
 a.social-link[href*="instagram.com"] svg circle:last-child,
 a.social-link[href*="ig.me/"] svg circle:last-child { fill: currentColor !important; }
-</style><link rel="icon" href="https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/favicon.png" type="image/png" sizes="192x192">
-<link rel="apple-touch-icon" href="https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/apple-touch-icon.png" sizes="180x180">
-<link rel="canonical" href="https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/nota.html">
+
+@media (min-width: 1025px) { .nav .menu {gap:clamp(8px,1.05vw,15px);font-size:.80rem} }
+
+/* Álbum automático de cada entrada del Blog */
+.leo-post-cover{width:min(1080px,calc(100% - 48px));margin:28px auto 40px;overflow:hidden;border-radius:22px;border:1px solid #4a3327;background:#1a1715}
+.leo-post-cover[hidden],.leo-post-photos[hidden]{display:none!important}
+.leo-post-cover img{display:block;width:100%;max-height:620px;object-fit:cover}
+.leo-post-cover figcaption{padding:10px 17px;font-size:12px;color:#c7bfb7}
+.leo-post-photos{margin:54px 0 12px;padding:25px;border-radius:24px;border:1px solid #43372e;background:linear-gradient(140deg,#201711,#141416)}
+.leo-post-photos-top{display:flex;justify-content:space-between;gap:18px;align-items:end;flex-wrap:wrap;margin-bottom:17px}
+.leo-post-photos h2{margin:6px 0 8px!important}
+.leo-post-photos p{color:#d7cdc4;font-size:14px;margin:0}
+.leo-photo-label{color:#ff9c4c;font-size:11px;font-weight:800;letter-spacing:.11em}
+.leo-post-all{display:inline-block;font-size:13px;text-decoration:none!important;font-weight:700;border-bottom:1px solid #ff7a00;padding-bottom:5px}
+.leo-post-photos-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.leo-post-photos-grid button{cursor:zoom-in;padding:0;border:1px solid #4a3d35;border-radius:13px;background:#111;overflow:hidden;color:#f9eee2;text-align:left}
+.leo-post-photos-grid img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.leo-post-photos-grid span{display:block;padding:8px 12px;font-size:12px}
+.leo-photo-dialog{width:min(1000px,calc(100% - 20px));max-height:95vh;overflow:auto;background:#101012;color:#fff;border:1px solid #5b493e;border-radius:18px;padding:16px}
+.leo-photo-dialog::backdrop{background:rgba(0,0,0,.9)}.leo-photo-dialog img{display:block;max-width:100%;max-height:75vh;margin:auto;object-fit:contain}
+.leo-photo-dialog p{font-size:13px;color:#ccc;text-align:center;margin:6px 0 0}.leo-photo-close{display:block;margin:0 0 10px auto;background:#33231a;border:1px solid #92562c;color:#fff;border-radius:20px;padding:8px 14px;cursor:pointer}
+@media(max-width:600px){.leo-post-cover{width:calc(100% - 28px);border-radius:14px}.leo-post-photos{padding:16px}.leo-post-photos-grid{grid-template-columns:1fr}}
+</style><link href="https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/favicon.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/nota.html" rel="canonical"/>
 <style id="leo-fixes-shared">
 /* LEO MEDIA: componentes compartidos - corrección unificada */
 :root{--naranja:#fd7106}
@@ -420,20 +445,25 @@ a.social-link[href*="ig.me/"] svg circle:last-child { fill: currentColor !import
 @media(max-width:860px){.logo.logo-imagen{width:clamp(130px,35vw,172px)}.footer{padding-bottom:84px!important}.footer .marca{font-size:clamp(2.4rem,15.5vw,8rem)!important;padding-bottom:.28em!important}}
 @media(max-width:560px){.footer{padding-bottom:72px!important}.footer .marca{font-size:clamp(2rem,15.5vw,5.2rem)!important;letter-spacing:-.065em!important}.foot-row nav{row-gap:14px}}
 </style>
-</head><body><header class="nav" id="nav">
-  <div class="wrap">
-    <a href="index.html" class="logo logo-imagen" aria-label="Leo León Media, inicio"><img src="logo-leonardo-leon.png" alt="Leonardo León" width="2048" height="534" decoding="async"></a>
-    <nav class="menu" id="menu">
-      <a href="index.html#casos">Casos</a>
-      <a href="index.html#metodo">Método</a>
-      <a href="blog.html" class="activo">Blog</a>
-      <a href="recursos.html" class="activo">Recursos gratis</a>
-    <a href="academia.html">Academia</a><a href="diccionario.html">Diccionario</a></nav>
-    <a href="recursos.html" class="btn btn-crema">Regalo gratis <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></a>
-    <button class="burger" id="burger" aria-label="Abrir menú"><i></i><i></i></button>
-  </div>
+<link href="auditoria.css" rel="stylesheet"/><meta content="https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/og-academia.jpg" property="og:image"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/og-academia.jpg" name="twitter:image"/><meta content="#0b0b0c" name="theme-color"/></head><body><header class="nav" id="nav">
+<div class="wrap">
+<a aria-label="Leo León Media, inicio" class="logo logo-imagen" href="index.html"><img alt="Leonardo León" decoding="async" height="534" src="logo-leonardo-leon-420.webp" width="2048"/></a>
+<nav class="menu" id="menu">
+<a href="index.html#casos">Casos</a>
+<a href="index.html#metodo">Método</a>
+<a class="activo" href="blog.html">Blog</a>
+<a class="activo" href="recursos.html">Recursos gratis</a>
+<a href="academia.html">Academia</a><a href="diccionario.html">Diccionario</a>
+<a href="galeria.html">Fotos</a></nav>
+<a class="btn btn-crema" href="recursos.html">Regalo gratis <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 16 16"><path d="M4 12L12 4M5 4h7v7"></path></svg></a>
+<button aria-label="Abrir menú" class="burger" id="burger"><i></i><i></i></button>
+</div>
 </header>
-<main><article><header class="page-hero art-hero amb der"><div class="wrap art-wrap"><a href="blog.html" class="volver r">← Todas las notas</a><span class="label r">IA sin humo</span><h1 class="art-tit r d1">La IA no te da respuestas genéricas. Tú le haces preguntas genéricas</h1><p class="lead r d2">Por qué ChatGPT, Claude o Gemini te responden lo mismo que a todos, y cómo pedirle las cosas para que te dé ideas que sí sirven para tu negocio.</p><div class="art-meta r d3"><span class="autor"><b>LL</b>Leo León</span><span>17 de noviembre de 2026</span><span>4 min de lectura</span></div></div></header>
+<main><article data-blog-id="ia-sin-humo"><header class="page-hero art-hero amb der"><div class="wrap art-wrap"><a class="volver r" href="blog.html">← Todas las notas</a><span class="label r">IA sin humo</span><h1 class="art-tit r d1">La IA no te da respuestas genéricas. Tú le haces preguntas genéricas</h1><p class="lead r d2">Por qué ChatGPT, Claude o Gemini te responden lo mismo que a todos, y cómo pedirle las cosas para que te dé ideas que sí sirven para tu negocio.</p><div class="art-meta r d3"><span class="autor"><b>LL</b>Leo León</span><span>17 de noviembre de 2026</span><span>4 min de lectura</span></div></div></header>
+<figure class="leo-post-cover" hidden="" id="leo-post-cover">
+<img alt="Portada visual del artículo" decoding="async" loading="eager"/>
+<figcaption>Imagen de portada del artículo</figcaption>
+</figure>
 <div class="wrap art-wrap"><div class="prose"><p>Le pides a la IA <em>"ideas de videos para mi negocio"</em> y te devuelve lo mismo que a otras mil personas: "muestra detrás de cámaras", "comparte testimonios", "haz un tutorial".</p>
 <p>Y concluyes que la IA no sirve.</p>
 <p><strong>Sí sirve. El problema es la pregunta.</strong></p>
@@ -471,18 +501,27 @@ a.social-link[href*="ig.me/"] svg circle:last-child { fill: currentColor !import
 <h2>Lo que tienes que llevarte</h2>
 <p>La IA es una herramienta, no el talento. Piensa contigo, no por ti.</p>
 <p>Si le pides como todos, te responde como a todos. Si le das contexto, te responde como un socio que conoce tu negocio.</p>
-<p>Ahora dime: ¿qué fue lo último que le preguntaste a la IA y qué te respondió?</p></div><aside class="art-regalo"><span class="label">Regalo gratis</span><h2>Ganchos con IA + 5 prompts que te ahorran horas</h2><p>Los prompts que uso para escribir ganchos que detienen el scroll y para sacarme de encima las tareas que me roban el día.</p><a href="recurso.html" class="btn btn-crema">Quiero este regalo <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></a></aside></div></article><div style="height:120px"></div></main><footer class="footer">
-  <div class="footer-glow" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="foot-row">
-      <span>Piensa bien. Crea mejor.</span>
-      <nav aria-label="Enlaces y redes sociales del pie de página"><a href="blog.html">Blog</a><a href="recursos.html">Recursos gratis</a><a class="social-link" href="https://www.tiktok.com/@leoleonmedia" target="_blank" rel="noopener noreferrer" aria-label="TikTok de Leo León"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 1.9c.3 2.5 1.7 4 4.2 4.2v4.3a10 10 0 0 1-4.2-1.1v6.9a7.1 7.1 0 1 1-7.1-7.1l1.1.1v4.4a3 3 0 1 0 1.7 2.7V1.9h4.3Z"/></svg><span>TikTok</span></a><a class="social-link" href="https://www.instagram.com/leoleonmedia/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Leo León"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.7" cy="6.4" r="1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a><a aria-label="LinkedIn de Leo León" class="social-link" href="https://www.linkedin.com/in/leoleonmedia/" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" fill="currentColor" viewbox="0 0 24 24"><path d="M20.45 2H3.55A1.55 1.55 0 0 0 2 3.55v16.9A1.55 1.55 0 0 0 3.55 22h16.9A1.55 1.55 0 0 0 22 20.45V3.55A1.55 1.55 0 0 0 20.45 2ZM7.93 18.75H4.96V9.2h2.97v9.55ZM6.45 7.9a1.72 1.72 0 1 1 0-3.44 1.72 1.72 0 0 1 0 3.44Zm12.3 10.85h-2.97V14.1c0-1.11-.02-2.54-1.55-2.54-1.55 0-1.79 1.21-1.79 2.46v4.73H9.47V9.2h2.85v1.3h.04c.4-.75 1.37-1.55 2.81-1.55 3 0 3.58 1.97 3.58 4.53v5.27Z"></path></svg><span>LinkedIn</span></a></nav>
-      <span>@leoleonmedia</span>
-    </div>
-  </div>
-  <div class="marca" aria-hidden="true">Leo León</div>
+<p>Ahora dime: ¿qué fue lo último que le preguntaste a la IA y qué te respondió?</p>
+<section aria-labelledby="leo-post-photos-title" class="leo-post-photos" hidden="" id="leo-post-photos">
+<div class="leo-post-photos-top">
+<div><span class="leo-photo-label">ARCHIVO DEL ARTÍCULO</span><h2 id="leo-post-photos-title">Imágenes de este artículo</h2>
+<p>Fotografías y referencias visuales organizadas exclusivamente para este artículo.</p></div>
+<a class="leo-post-all" href="galeria.html#blog/ia-sin-humo">Ver álbum completo ↗</a>
+</div>
+<div class="leo-post-photos-grid" id="leo-post-photos-grid"></div>
+</section>
+</div><aside class="art-regalo"><span class="label">Regalo gratis</span><h2>Ganchos con IA + 5 prompts que te ahorran horas</h2><p>Los prompts que uso para escribir ganchos que detienen el scroll y para sacarme de encima las tareas que me roban el día.</p><a class="btn btn-crema" href="recurso.html">Quiero este regalo <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 16 16"><path d="M4 12L12 4M5 4h7v7"></path></svg></a></aside></div></article><dialog aria-label="Ver fotografía ampliada" class="leo-photo-dialog" id="leo-photo-dialog"><button aria-label="Cerrar fotografía" class="leo-photo-close" id="leo-photo-close" type="button">Cerrar ×</button><img alt="" id="leo-photo-view"/><p id="leo-photo-caption"></p></dialog><div style="height:120px"></div></main><footer class="footer">
+<div aria-hidden="true" class="footer-glow"></div>
+<div class="wrap">
+<div class="foot-row">
+<span>Piensa bien. Crea mejor.</span>
+<nav aria-label="Enlaces y redes sociales del pie de página"><a href="galeria.html">Fotos</a><a href="blog.html">Blog</a><a href="recursos.html">Recursos gratis</a><a aria-label="TikTok de Leo León" class="social-link" href="https://www.tiktok.com/@leoleonmedia" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" fill="currentColor" viewbox="0 0 24 24"><path d="M16.6 1.9c.3 2.5 1.7 4 4.2 4.2v4.3a10 10 0 0 1-4.2-1.1v6.9a7.1 7.1 0 1 1-7.1-7.1l1.1.1v4.4a3 3 0 1 0 1.7 2.7V1.9h4.3Z"></path></svg><span>TikTok</span></a><a aria-label="Instagram de Leo León" class="social-link" href="https://www.instagram.com/leoleonmedia/" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><rect height="19" rx="5" width="19" x="2.5" y="2.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.7" cy="6.4" fill="currentColor" r="1" stroke="none"></circle></svg><span>Instagram</span></a><a aria-label="LinkedIn de Leo León" class="social-link" href="https://www.linkedin.com/in/leoleonmedia/" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" fill="currentColor" viewbox="0 0 24 24"><path d="M20.45 2H3.55A1.55 1.55 0 0 0 2 3.55v16.9A1.55 1.55 0 0 0 3.55 22h16.9A1.55 1.55 0 0 0 22 20.45V3.55A1.55 1.55 0 0 0 20.45 2ZM7.93 18.75H4.96V9.2h2.97v9.55ZM6.45 7.9a1.72 1.72 0 1 1 0-3.44 1.72 1.72 0 0 1 0 3.44Zm12.3 10.85h-2.97V14.1c0-1.11-.02-2.54-1.55-2.54-1.55 0-1.79 1.21-1.79 2.46v4.73H9.47V9.2h2.85v1.3h.04c.4-.75 1.37-1.55 2.81-1.55 3 0 3.58 1.97 3.58 4.53v5.27Z"></path></svg><span>LinkedIn</span></a></nav>
+<span>@leoleonmedia</span>
+</div>
+</div>
+<div aria-hidden="true" class="marca">Leo León</div>
 </footer>
-<div class="flota" id="flota"><a href="recursos.html" class="btn btn-crema">Quiero mi regalo gratis <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></a></div><script>(()=>{
+<div class="flota" id="flota"><a class="btn btn-crema" href="recursos.html">Quiero mi regalo gratis <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 16 16"><path d="M4 12L12 4M5 4h7v7"></path></svg></a></div><script>(()=>{
   const $=(q,c=document)=>c.querySelector(q), $$=(q,c=document)=>[...c.querySelectorAll(q)];
   const nav=$('#nav'), flota=$('#flota');
 
@@ -543,4 +582,72 @@ a.social-link[href*="ig.me/"] svg circle:last-child { fill: currentColor !import
     const g=f.nextElementSibling; if(g && g.classList.contains('gracias')) g.style.display='block';
   }));
 })();
-</script></body></html>
+</script><script>
+/* Imágenes de artículos: cada blog usa fotos/blog/{id-del-articulo}/.
+   No usa credenciales ni requiere modificar el HTML al subir fotos nuevas. */
+const LEO_BLOG_IMAGES = (()=>{
+  const API = 'https://api.github.com/repos/leoleonmedia/MARCA-PERSONAL-LEO/git/trees/main?recursive=1';
+  const CACHE_KEY='leo-blog-files-v2';
+  const PREFIX='fotos/blog/';
+  const IMAGE_RE=/\.(?:webp|avif|png|jpg|jpeg|gif)$/i;
+  const normalize=x=>String(x||'').trim().toLowerCase();
+  const urlFor = path => './'+path.split('/').map(encodeURIComponent).join('/');
+  const labelFor = path => (path.split('/').pop()||'').replace(/\.[^.]+$/,'').replace(/^\d+[._\- ]*/,'').replace(/[._\-]+/g,' ').trim();
+  const isCover=path=>/^portada(?:[-_ ]\d+)?\.(?:webp|avif|png|jpg|jpeg|gif)$/i.test(path.split('/').pop()||'');
+  function extract(raw){
+    return (Array.isArray(raw)?raw:[]).filter(x=>x&&x.type==='blob'&&typeof x.path==='string'&&x.path.startsWith(PREFIX)&&IMAGE_RE.test(x.path))
+      .map(x=>{const parts=x.path.split('/');return parts.length>=4 ? {slug:normalize(parts[2]),path:x.path,url:urlFor(x.path),cover:isCover(x.path),label:labelFor(x.path)}:null;})
+      .filter(Boolean).sort((a,b)=>a.path.localeCompare(b.path,'es',{numeric:true,sensitivity:'base'}));
+  }
+  async function load(){
+    try {const cache=JSON.parse(sessionStorage.getItem(CACHE_KEY)||'null');if(cache && Date.now()-cache.time<6*60*1000 && Array.isArray(cache.items))return cache.items;}catch{}
+    const response=await fetch(API,{headers:{Accept:'application/vnd.github+json'},cache:'no-store'});
+    if(!response.ok)throw new Error('No se pudo consultar GitHub: '+response.status);
+    const data=await response.json();
+    if(!Array.isArray(data.tree)||data.truncated)throw new Error('GitHub devolvió un listado incompleto');
+    const items=extract(data.tree);
+    try {sessionStorage.setItem(CACHE_KEY,JSON.stringify({time:Date.now(),items}));}catch{}
+    return items;
+  }
+  function folder(items,slug){return items.filter(x=>x.slug===normalize(slug));}
+  function cover(items){return items.find(x=>x.cover)||items[0]||null;}
+  return {load,folder,cover,labelFor,urlFor};
+})();
+
+(async()=>{
+  const article=document.querySelector('article[data-blog-id]');if(!article)return;
+  const slug=article.dataset.blogId;
+  const coverBox=document.getElementById('leo-post-cover');
+  const photosBox=document.getElementById('leo-post-photos');
+  const grid=document.getElementById('leo-post-photos-grid');
+  const dialog=document.getElementById('leo-photo-dialog');
+  const view=document.getElementById('leo-photo-view');
+  const caption=document.getElementById('leo-photo-caption');
+  photosBox.querySelector('.leo-post-all').href='galeria.html#blog/'+encodeURIComponent(slug);
+  document.getElementById('leo-photo-close').onclick=()=>dialog.close();
+  dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
+  try{
+    const images=LEO_BLOG_IMAGES.folder(await LEO_BLOG_IMAGES.load(),slug);
+    if(!images.length)return; // No broken images if a folder has not been created yet.
+    const cover=LEO_BLOG_IMAGES.cover(images);
+    if(cover){
+      const img=coverBox.querySelector('img');img.src=cover.url;
+      img.alt='Portada del artículo: '+document.querySelector('article h1').textContent.trim();
+      img.onerror=()=>{coverBox.hidden=true;};
+      coverBox.hidden=false;
+    }
+    const gallery=images.filter(x=>!x.cover);
+    if(!gallery.length)return;
+    photosBox.hidden=false;
+    for(const photo of gallery){
+      const tile=document.createElement('button');tile.type='button';tile.setAttribute('aria-label','Ampliar imagen '+photo.label);
+      const img=document.createElement('img');img.src=photo.url;img.alt=photo.label;img.loading='lazy';img.decoding='async';
+      const text=document.createElement('span');text.textContent=photo.label;
+      img.onerror=()=>tile.remove();
+      tile.append(img,text);
+      tile.addEventListener('click',()=>{view.src=photo.url;view.alt=photo.label;caption.textContent=photo.label;dialog.showModal();});
+      grid.append(tile);
+    }
+  }catch(err){console.warn('No se pudieron cargar las imágenes de este artículo:',err);}
+})();
+</script><script defer="" src="integraciones-config.js"></script><script defer="" src="auditoria.js"></script></body></html>
