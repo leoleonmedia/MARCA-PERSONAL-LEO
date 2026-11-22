@@ -1,0 +1,25 @@
+LEO LEÓN MEDIA — GOOGLE ANALYTICS 4 CONFIGURADO
+================================================
+ID de medición: G-4WFHQ0V9RJ
+
+INSTALACIÓN RECOMENDADA (MÍNIMA)
+1. Abre GitHub Desktop -> Repository -> Show in Explorer.
+2. Copia SOLO integraciones-config.js a la raíz del repositorio y reemplaza el existente.
+3. Commit to main -> Push origin.
+4. Abre tu web, refresca con Ctrl+F5. Si no habías aceptado las estadísticas, pulsa "Permitir estadísticas" en el aviso de privacidad. Si habías rechazado en el pasado, puedes probar desde una ventana de incógnito para ver el aviso de nuevo.
+5. En Google Analytics -> Informes -> Tiempo real, verifica que aparezca la visita. Puede demorarse algunos minutos; revisa también bloqueadores de anuncios.
+
+REQUISITO
+Este archivo funciona si tienes publicados los HTML de la última auditoría web que ya incluyen las referencias a integraciones-config.js y auditoria.js. Si no, publica el paquete completo de la otra descarga.
+
+PAQUETE COMPLETO (ALTERNATIVA)
+Incluye los archivos de la auditoría web y la corrección más reciente del formulario de Academia (academia.html, auditoria.js y gracias-academia.html).
+Haz copia de seguridad y NO sobrescribas otros cambios que hayas hecho luego de esa versión.
+No necesitas insertar manualmente el código GTM-... de Google que te apareció en pantalla; esta implementación usa directamente GA4 G-4WFHQ0V9RJ y evita doble conteo.
+
+PRIVACIDAD Y COMPROBACIÓN
+- El código solo carga GA4 cuando el visitante permite estadísticas o acepta todo en el banner de consentimiento. Con "Solo necesarias" no lo carga.
+- Si la web tiene bloqueador de anuncios o tracking, podría no registrar la visita.
+- Google Search Console no se configura con este archivo; es una herramienta distinta.
+- Se han hecho comprobaciones locales del archivo, NO una prueba real de eventos en tu propiedad de Google Analytics.
+- No compartas contraseñas ni tokens.
