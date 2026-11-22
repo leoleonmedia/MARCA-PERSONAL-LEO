@@ -1,23 +1,15 @@
-ACADEMIA LEONES DIGITALES — FORMULARIO CON CONFIRMACIÓN
+LEO LEON MEDIA — VIDEOS REALES DE TIKTOK E INSTAGRAM
 
-ARCHIVOS A REEMPLAZAR O AGREGAR EN LA RAÍZ DE GITHUB:
-1. academia.html (reemplazar). El formulario tiene su propio código de envío.
-2. auditoria.js (reemplazar). Evita el doble envío en la nueva Academia.
-3. gracias-academia.html (AGREGAR). Página que se abre solo tras confirmación del servidor.
+1. Copia index.html e inicio.html en la raiz de tu repositorio y reemplaza ambos archivos.
+2. GitHub Desktop → Commit to main → Push origin.
+3. Actualiza el navegador con Ctrl+F5 y baja hasta la seccion Videos.
+4. Pulsa Mostrar mis TikToks / Mostrar mi Instagram para autorizar que se descarguen los reproductores oficiales.
 
-GitHub Desktop > Repository > Show in Explorer > copiar los 3 archivos > Commit to main > Push origin. Ctrl+F5.
+TikTok: su insercion oficial de perfil presenta hasta 10 videos recientes.
+Instagram: su insercion oficial de perfil muestra las publicaciones recientes que esten disponibles para insercion (incluye Reels cuando son recientes).
 
-CÓMO FUNCIONA:
-- En cuanto se hace clic en el botón, muestra "Enviando..." y deshabilita el botón.
-- Envía por POST a la URL de Apps Script previamente configurada.
-- Solo redirige a gracias-academia.html si Apps Script responde por postMessage con ok=true y el código de solicitud coincide.
-- Si la confirmación no llega en 15 segundos, indica el problema y ofrece el enlace de WhatsApp. NO afirma que se guardó.
-- Verifica en Google Sheets que llegó un contacto de prueba.
+Requisitos: perfiles publicos, opcion de insertar habilitada; el navegador y los bloqueadores deben permitir cargar los reproductores. No se han verificado las publicaciones en vivo desde este entorno.
 
-SI FALLA EL REGISTRO:
-1. Revisa que auditoria.js esté en el repositorio (la nueva academia.html funciona aunque falte).
-2. Verifica que Apps Script esté desplegado como Aplicación web, ejecutando como tú y accesible para cualquier persona.
-3. Confirma que el Apps Script tenga doPost y responda con source="leo-leads-sheets" y el mismo codigo mediante postMessage desde su iframe.
-4. Verifica en la pestaña Leads de Google Sheets si realmente hay fila nueva.
+IMPORTANTE: estas inserciones no garantizan que se muestren los videos mas vistos; el criterio es recientes. Para una galeria personalizada y ordenada por vistas se necesita una conexion mediante API autorizada.
 
-IMPORTANTE: no enviamos datos ni afirmamos haber registrado un contacto durante las pruebas locales. La conexión real depende de tu Google Sheets desplegado.
+El resto de la web, formularios y configuracion de Analytics quedan intactos.
