@@ -147,30 +147,45 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
  const countriesById=new Map();
  // La lista de países proviene de la tabla oficial de intl-tel-input, sin
  // utilizar sus rutinas de selección automática que causaban el problema.
+ // LEO-COUNTRY-SELECT-20261122: seleccionar país explícitamente y no usar Perú como respaldo.
  function cargarPaises(){
-   if(!window.intlTelInput||typeof window.intlTelInput.getAllCountries!=='function'){
-     countryHint.textContent='No se cargó la lista de países. Actualiza la página antes de registrarte.';
-     return false;
+   const fallback=[
+    ['ar','54','Argentina'],['bo','591','Bolivia'],['br','55','Brasil'],['ca','1','Canadá'],
+    ['cl','56','Chile'],['co','57','Colombia'],['cr','506','Costa Rica'],['cu','53','Cuba'],
+    ['do','1','República Dominicana'],['ec','593','Ecuador'],['sv','503','El Salvador'],
+    ['es','34','España'],['us','1','Estados Unidos'],['gt','502','Guatemala'],
+    ['hn','504','Honduras'],['mx','52','México'],['ni','505','Nicaragua'],
+    ['pa','507','Panamá'],['py','595','Paraguay'],['pe','51','Perú'],
+    ['pr','1','Puerto Rico'],['uy','598','Uruguay'],['ve','58','Venezuela'],
+    ['gb','44','Reino Unido'],['fr','33','Francia'],['de','49','Alemania']
+   ];
+   const countries=new Map(fallback.map(([iso2,dialCode,name])=>[iso2,{iso2,dialCode,name}]));
+   if(window.intlTelInput&&typeof window.intlTelInput.getAllCountries==='function'){
+     try{
+       const names=new Intl.DisplayNames(['es'],{type:'region'});
+       for(const c of window.intlTelInput.getAllCountries()){
+         const iso2=String(c.iso2||'').toLowerCase(), dialCode=String(c.dialCode||'');
+         if(!/^[a-z]{2}$/.test(iso2)||!/^[0-9]{1,4}$/.test(dialCode))continue;
+         const name=names.of(iso2.toUpperCase())||c.name||iso2;
+         countries.set(iso2,{iso2,dialCode,name});
+       }
+     }catch(err){console.warn('Lista internacional no disponible; se usa la lista local.',err);}
    }
-   const names=new Intl.DisplayNames(['es'],{type:'region'});
-   const countryList=window.intlTelInput.getAllCountries().map(c=>({
-     iso2:String(c.iso2||'').toLowerCase(),dialCode:String(c.dialCode||''),
-     name:names.of(String(c.iso2||'').toUpperCase())||c.name||c.iso2
-   })).filter(c=>/^[a-z]{2}$/.test(c.iso2)&&/^\d{1,4}$/.test(c.dialCode));
-   countryList.sort((a,b)=>a.name.localeCompare(b.name,'es'));
-   for(const c of countryList){
+   const list=[...countries.values()].sort((a,b)=>a.name.localeCompare(b.name,'es'));
+   for(const c of list){
      countriesById.set(c.iso2,c);
-     const opt=document.createElement('option');opt.value=c.iso2;
-     opt.textContent=c.name+' (+'+c.dialCode+')';countrySelect.appendChild(opt);
+     const opt=document.createElement('option'); opt.value=c.iso2;
+     opt.textContent=(String.fromCodePoint(...[...c.iso2.toUpperCase()].map(ch=>127397+ch.charCodeAt(0))))+' '+c.name+' (+'+c.dialCode+')';
+     countrySelect.appendChild(opt);
    }
-   return countryList.length>0;
+   return list.length>0;
  }
  const countriesReady=cargarPaises();
  function selectedCountry(){return countriesById.get(countrySelect.value)||null;}
  function refreshCountry(){
    const c=selectedCountry();
    countryFlag.className='iti__flag iti__'+(c?c.iso2:'un');
-   countryHint.textContent=c?'Se registrará como '+c.name+' (+'+c.dialCode+'). Escribe solo tu número, sin prefijo.':'Selecciona tu país antes de escribir el número.';
+   countryHint.textContent=c?'País seleccionado: '+c.name+' (+'+c.dialCode+'). Escribe solo tu número, sin prefijo.':'Selecciona tu país antes de escribir el número.';
  }
  countrySelect.addEventListener('change',refreshCountry);
  refreshCountry();
