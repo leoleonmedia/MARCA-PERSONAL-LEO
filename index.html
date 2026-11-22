@@ -620,6 +620,38 @@ a.social-link[href*="ig.me/"] svg circle:last-child { fill: currentColor !import
   #videos .leo-video-card-foot { gap: 9px; line-height: 1.5; }
 }
 </style>
+
+<!-- LEO-MOBILE-VIDEO-FLOAT-FIX-20261122 -->
+<style id="leo-mobile-video-float-fix">
+/* Respaldo explícito del perfil TikTok, sin depender de que el embed de terceros cargue. */
+#videos .leo-video-tiktok-stage{flex-direction:column;gap:12px}
+#videos .leo-tiktok-mobile-fallback{display:none;max-width:100%;width:100%;text-align:center;padding:13px 12px;background:#1b1918;border:1px solid #433020;border-radius:12px}
+#videos .leo-tiktok-mobile-fallback p{margin:0 0 9px;color:#d8d4d0;font-size:13px;line-height:1.5}
+#videos .leo-tiktok-mobile-fallback a{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 17px;background:#ff8200;color:#0b0b0b;border-radius:999px;font-weight:750;text-decoration:none;font-size:13px}
+@media(max-width:860px){
+  .flota{left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));max-width:370px;margin-inline:auto;pointer-events:none;z-index:35}
+  .flota.show{pointer-events:auto}
+  .flota .btn{min-height:48px;padding:11px 15px;font-size:13px}
+  #videos .leo-video-tiktok-stage{padding:10px 8px;min-height:0}
+  #videos .leo-tiktok-inset{max-width:100%;min-width:0;overflow:hidden}
+  #videos .leo-tiktok-inset blockquote{min-width:0!important;max-width:100%!important;width:100%!important}
+  #videos .leo-tiktok-mobile-fallback{display:block}
+  #videos .leo-tiktok-unavailable .leo-tiktok-inset{display:none}
+  #videos .leo-video-ig-window{height:min(380px,55svh);min-height:290px;padding:8px}
+  #videos .leo-video-card-foot{padding:12px 14px}
+  #videos .leo-video-collection{gap:16px}
+  #videos .leo-video-section-head{gap:14px}
+  #videos .leo-video-subtitle{font-size:13px;line-height:1.5}
+  #videos #curator-feed-default-feed-layout .crt-post-content{padding:6px!important}
+}
+@media(max-width:390px){
+  #videos .leo-video-card-head{padding:12px}
+  #videos .leo-video-brand{gap:8px}
+  #videos .leo-video-brand h3{font-size:19px}
+  #videos .leo-video-link{font-size:11px;padding:9px}
+  #videos .leo-video-ig-window{height:335px;min-height:280px}
+}
+</style>
 </head><body><header class="nav" id="nav">
 <div class="wrap">
 <a aria-label="Leo León Media, inicio" class="logo logo-imagen" href="index.html"><img alt="Leonardo León" decoding="async" height="534" src="logo-leonardo-leon-420.webp" width="2048"/></a>
@@ -819,6 +851,7 @@ a.social-link[href*="ig.me/"] svg circle:last-child { fill: currentColor !import
     </div>
     <div class="leo-video-tiktok-stage" aria-label="Publicaciones recientes de TikTok de Leo León">
      <div class="leo-tiktok-inset"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@leoleonmedia" data-unique-id="leoleonmedia" data-embed-type="creator" data-embed-from="oembed" style="width:100%;max-width:780px;min-width:288px;margin:0 auto"><section><a href="https://www.tiktok.com/@leoleonmedia" target="_blank" rel="noopener noreferrer">Ver videos de @leoleonmedia</a></section></blockquote></div>
+     <div class="leo-tiktok-mobile-fallback" aria-live="polite"><p>Mira mis videos recientes en mi perfil oficial.</p><a href="https://www.tiktok.com/@leoleonmedia" target="_blank" rel="noopener noreferrer">Abrir TikTok ↗</a></div>
     </div>
     <div class="leo-video-card-foot"><span><span class="leo-video-live-dot" aria-hidden="true"></span> Perfil oficial conectado</span><span>Desliza para explorar las publicaciones</span></div>
    </article>
@@ -878,16 +911,40 @@ a.social-link[href*="ig.me/"] svg circle:last-child { fill: currentColor !import
   const $=(q,c=document)=>c.querySelector(q), $$=(q,c=document)=>[...c.querySelectorAll(q)];
   const nav=$('#nav'), flota=$('#flota');
 
-  // barra superior y botón flotante (móvil)
-  let formVisible=false;
+  // Barra flotante móvil: nunca se superpone a videos, formularios o pie de página.
+  let formVisible=false, busyAreaVisible=false;
   const onScroll=()=>{
     const y=scrollY;
     nav && nav.classList.toggle('solid',y>40);
-    flota && flota.classList.toggle('show',y>innerHeight*.8 && !formVisible);
+    flota && flota.classList.toggle('show',y>innerHeight*.8 && !formVisible && !busyAreaVisible);
   };
   addEventListener('scroll',onScroll,{passive:true}); onScroll();
-  const formIO=new IntersectionObserver(es=>{formVisible=es.some(e=>e.isIntersecting);onScroll();},{threshold:.1});
-  $$('.form-regalo').forEach(f=>formIO.observe(f));
+  if ('IntersectionObserver' in window) {
+    const formIO=new IntersectionObserver(es=>{
+      es.forEach(e=>{if(e.isIntersecting) formVisible=true; else formVisible=$$('.form-regalo').some(f=>{const r=f.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0;});});
+      onScroll();
+    },{threshold:0});
+    $$('.form-regalo').forEach(f=>formIO.observe(f));
+    const busyIO=new IntersectionObserver(()=>{
+      busyAreaVisible=['#videos','.footer'].some(sel=>{
+        const el=$(sel);if(!el)return false;const r=el.getBoundingClientRect();return r.top<innerHeight && r.bottom>0;
+      });
+      onScroll();
+    },{threshold:0});
+    ['#videos','.footer'].forEach(sel=>{const el=$(sel);if(el)busyIO.observe(el)});
+  }
+
+  // Mostrar un enlace útil si TikTok no construye el iframe en este navegador.
+  const tiktokStage=$('.leo-video-tiktok-stage');
+  if(tiktokStage){
+    const updateTikTok=()=>{if(tiktokStage.querySelector('iframe')) tiktokStage.classList.add('leo-tiktok-ready')};
+    updateTikTok();
+    if('MutationObserver' in window){
+      const tkObserver=new MutationObserver(updateTikTok);
+      tkObserver.observe(tiktokStage,{childList:true,subtree:true});
+    }
+    setTimeout(()=>{if(!tiktokStage.classList.contains('leo-tiktok-ready'))tiktokStage.classList.add('leo-tiktok-unavailable')},6500);
+  }
 
   // menú móvil
   const burger=$('#burger');
