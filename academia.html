@@ -132,12 +132,43 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
  const $=id=>document.getElementById(id);
  const name=$('audit-name'),method=$('audit-contact-method'),contact=$('audit-contact'),label=$('audit-contact-label'),consent=$('audit-marketing-consent');
  const status=$('audit-lead-status'),btn=$('audit-submit'),fallback=$('audit-lead-fallback'),wa=$('audit-lead-whatsapp');
- let pending=null,timer=0,phonePicker=null;
+ let pending=null,timer=0,phonePicker=null,verificationTimer=0,verifyCount=0;
  const frame=document.createElement('iframe');frame.name='ld-form-academia-v2';frame.style.display='none';frame.title='Envío de inscripción';frame.setAttribute('aria-hidden','true');document.body.appendChild(frame);
  function showStatus(message,kind){status.textContent=message;status.dataset.kind=kind||'';status.scrollIntoView({behavior:'smooth',block:'nearest'});}
  function fechaPeru12(){const d=new Date();const pieces=new Intl.DateTimeFormat('en-GB',{timeZone:'America/Lima',day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h12'}).formatToParts(d);const get=t=>pieces.find(p=>p.type===t)?.value||'';return `${get('day')}/${get('month')}/${get('year')} ${get('hour')}:${get('minute')}:${get('second')} ${get('dayPeriod').toLowerCase()}`;}
  function setBusy(yes){btn.disabled=!!yes;btn.textContent=yes?'Registrando tu solicitud…':'Quiero recibir novedades →';form.setAttribute('aria-busy',String(!!yes));}
- function finishError(message){pending=null;clearTimeout(timer);setBusy(false);showStatus(message,'error');fallback.hidden=false;wa.href='https://wa.me/51939143052?text='+encodeURIComponent('Hola Leo, quiero inscribirme a las novedades de Academia Leones Digitales. Mi registro desde la web no se pudo confirmar.');}
+ function finishError(message){pending=null;clearVerification();clearTimeout(timer);setBusy(false);showStatus(message,'error');fallback.hidden=false;wa.href='https://wa.me/51939143052?text='+encodeURIComponent('Hola Leo, quiero inscribirme a las novedades de Academia Leones Digitales. Mi registro desde la web no se pudo confirmar.');}
+ function clearVerification(){clearInterval(verificationTimer);verificationTimer=0;}
+ function verifyRegistration(codigo){
+   if(!pending||pending.codigo!==codigo)return;
+   verifyCount++;
+   const callback='leoEstado_'+codigo.replace(/[^A-Za-z0-9_]/g,'_');
+   const script=document.createElement('script');
+   script.async=true;
+   const clean=()=>{try{delete window[callback]}catch(_){window[callback]=undefined}script.remove();};
+   window[callback]=function(data){
+     clean();
+     if(!pending||pending.codigo!==codigo)return;
+     if(data&&data.codigo===codigo&&data.guardado===true){
+       clearTimeout(timer);clearVerification();pending=null;setBusy(false);
+       showStatus('¡Registro confirmado en Google Sheets!','ok');
+       try{sessionStorage.setItem('ld-registro-confirmado','1')}catch(_){}
+       window.location.assign('gracias-academia.html');
+     }
+   };
+   script.src=endpoint+'?accion=estado&codigo='+encodeURIComponent(codigo)+'&callback='+encodeURIComponent(callback)+'&_='+Date.now();
+   script.onerror=clean;
+   document.head.appendChild(script);
+   setTimeout(()=>{if(script.isConnected)clean();},2600);
+   if(verifyCount>=10){
+     clearVerification();
+     if(pending&&pending.codigo===codigo){
+       pending=null;setBusy(false);
+       showStatus('No pudimos comprobar automáticamente el registro. Revisa si aparece en Google Sheets antes de volver a enviarlo.','error');
+       fallback.hidden=false;
+     }
+   }
+ }
  function chooseContact(){
   const isWa=method.value==='whatsapp';
   if(phonePicker){phonePicker.destroy();phonePicker=null;}
@@ -196,12 +227,12 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
   Object.entries(payload).forEach(([k,v])=>{const input=document.createElement('input');input.type='hidden';input.name=k;input.value=String(v);sub.appendChild(input);});
   document.body.appendChild(sub);pending={codigo};setBusy(true);showStatus('Enviando tu inscripción… No cierres esta página hasta que termine el envío.','');
   try{sub.submit();}catch(e){sub.remove();finishError('No pudimos enviar la solicitud. Puedes inscribirte por WhatsApp.');return;}
-  sub.remove();timer=setTimeout(()=>{if(pending&&pending.codigo===codigo){pending=null;setBusy(false);showStatus('Solicitud enviada. Comprueba el registro en Google Sheets; el servidor no confirmó automáticamente el guardado.','');}},12000);
+  sub.remove();verifyCount=0;timer=setTimeout(()=>{if(pending&&pending.codigo===codigo)showStatus('Estamos comprobando el registro en Google Sheets…','');},12000);verificationTimer=setInterval(()=>verifyRegistration(codigo),3000);setTimeout(()=>verifyRegistration(codigo),1500);
  },true);
  window.addEventListener('message',function(ev){
   if(!pending||!originOk.includes(ev.origin))return;
   const data=ev.data;if(!data||data.source!=='leo-leads-sheets'||data.codigo!==pending.codigo)return;
-  clearTimeout(timer);pending=null;setBusy(false);
+  clearTimeout(timer);clearVerification();pending=null;setBusy(false);
   if(data.ok){showStatus('¡Registro confirmado en Google Sheets! Abriendo la página de agradecimiento…','ok');
    try{sessionStorage.setItem('ld-registro-confirmado','1');}catch(_){}
    window.location.assign('gracias-academia.html');
