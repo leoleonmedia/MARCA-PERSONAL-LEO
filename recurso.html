@@ -659,6 +659,38 @@ function resourceDetails(){
  return {id,title,keyword:keys[id]||'RECURSO'};
 }
 let waiting=null;let timeoutId;
+// Comprobación de estado por código, sin exponer datos personales en la respuesta.
+function verificarRegistro(codigo){
+ return new Promise(resolve=>{
+  const cb='leoEstado_'+Math.random().toString(36).slice(2,12);
+  const s=document.createElement('script');
+  let completed=false;
+  const settle=(result)=>{if(completed)return;completed=true;clearTimeout(timer);delete window[cb];s.remove();resolve(result);};
+  window[cb]=(data)=>settle(data?.codigo===codigo?Boolean(data.guardado):null);
+  s.onerror=()=>settle(null);
+  const timer=setTimeout(()=>settle(null),5000);
+  s.src=ENDPOINT+'?accion=estado&codigo='+encodeURIComponent(codigo)+'&callback='+encodeURIComponent(cb);
+  document.head.append(s);
+ });
+}
+async function confirmarPorConsulta(payload){
+ for(let intento=0;intento<4;intento++){
+  if(!waiting||waiting.payload.codigo!==payload.codigo)return;
+  const result=await verificarRegistro(payload.codigo);
+  if(!waiting||waiting.payload.codigo!==payload.codigo)return;
+  if(result===true){
+   clearTimeout(timeoutId);waiting=null;send.disabled=false;
+   setStatus('Solicitud confirmada: el contacto ya está registrado.');
+   showContact(payload,true,'');return;
+  }
+  if(intento<3)await new Promise(r=>setTimeout(r,1800));
+ }
+ if(!waiting||waiting.payload.codigo!==payload.codigo)return;
+ waiting=null;send.disabled=false;
+ setStatus('No pudimos comprobar el registro. Antes de reintentar, revisa si tu contacto aparece en Google Sheets.',true);
+ if(payload.canal!=='email')showContact(payload,false,'');
+}
+
 const frame=document.createElement('iframe');
 frame.name='recurso-leads-iframe';frame.hidden=true;frame.setAttribute('aria-hidden','true');frame.title='Registro de recurso';document.body.append(frame);
 function fallback(message){
@@ -681,7 +713,7 @@ function showContact(payload,confirmed,delivery){
  if(type==='whatsapp'){
    target.href='https://wa.me/'+DEST_WHATSAPP+'?text='+encodeURIComponent(message);
    target.textContent='Abrir WhatsApp y enviar ↗';
-   el('rl-ayuda').textContent='Se registró la solicitud. Para recibir el regalo, abre WhatsApp y pulsa Enviar en el chat.';
+   el('rl-ayuda').textContent=confirmed?'Solicitud registrada. Para recibir el regalo, abre WhatsApp y pulsa Enviar en el chat.':'Puedes escribirnos por WhatsApp, pero no se ha confirmado el registro automático.';
  }else{
    target.href=DEST_INSTAGRAM;target.textContent='Abrir Instagram ↗';
    el('rl-ayuda').textContent='Copia el mensaje, abre el DM de Instagram y pégalo. No se envía automáticamente desde la página.';
@@ -740,13 +772,12 @@ form.addEventListener('submit',event=>{
  }
  document.body.appendChild(request);waiting={payload};send.disabled=true;
  setStatus('Registrando tu solicitud. No cierres esta página hasta ver la confirmación.');next.hidden=true;
- request.submit();request.remove();
+ request.submit();setTimeout(()=>request.remove(),30000);
  timeoutId=setTimeout(()=>{
   if(!waiting||waiting.payload.codigo!==payload.codigo)return;
-  waiting=null;send.disabled=false;
-  setStatus('Google Sheets no confirmó el registro. Comprueba el despliegue de Apps Script y vuelve a intentar.',true);
-  if(payload.canal!=='email')showContact(payload,false,'');
- },15000);
+  setStatus('Comprobando tu registro en Google Sheets…');
+  confirmarPorConsulta(payload);
+ },10000);
 });
 })();</script><script>(function(){
 'use strict';
