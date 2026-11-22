@@ -1,0 +1,23 @@
+ACADEMIA LEONES DIGITALES — FORMULARIO CON CONFIRMACIÓN
+
+ARCHIVOS A REEMPLAZAR O AGREGAR EN LA RAÍZ DE GITHUB:
+1. academia.html (reemplazar). El formulario tiene su propio código de envío.
+2. auditoria.js (reemplazar). Evita el doble envío en la nueva Academia.
+3. gracias-academia.html (AGREGAR). Página que se abre solo tras confirmación del servidor.
+
+GitHub Desktop > Repository > Show in Explorer > copiar los 3 archivos > Commit to main > Push origin. Ctrl+F5.
+
+CÓMO FUNCIONA:
+- En cuanto se hace clic en el botón, muestra "Enviando..." y deshabilita el botón.
+- Envía por POST a la URL de Apps Script previamente configurada.
+- Solo redirige a gracias-academia.html si Apps Script responde por postMessage con ok=true y el código de solicitud coincide.
+- Si la confirmación no llega en 15 segundos, indica el problema y ofrece el enlace de WhatsApp. NO afirma que se guardó.
+- Verifica en Google Sheets que llegó un contacto de prueba.
+
+SI FALLA EL REGISTRO:
+1. Revisa que auditoria.js esté en el repositorio (la nueva academia.html funciona aunque falte).
+2. Verifica que Apps Script esté desplegado como Aplicación web, ejecutando como tú y accesible para cualquier persona.
+3. Confirma que el Apps Script tenga doPost y responda con source="leo-leads-sheets" y el mismo codigo mediante postMessage desde su iframe.
+4. Verifica en la pestaña Leads de Google Sheets si realmente hay fila nueva.
+
+IMPORTANTE: no enviamos datos ni afirmamos haber registrado un contacto durante las pruebas locales. La conexión real depende de tu Google Sheets desplegado.

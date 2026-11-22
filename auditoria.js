@@ -36,7 +36,7 @@ if(!consent)consentUI();else {if(consent==='analytics'||consent==='all')enableAn
 const receiver=document.createElement('iframe');receiver.hidden=true;receiver.name='audit-lead-target';receiver.title='Registro de solicitudes de la Academia';receiver.setAttribute('aria-hidden','true');document.body.appendChild(receiver);
 let pending=null;
 window.addEventListener('message',event=>{if(!pending||!/^https:\/\/(script\.google\.com|script\.googleusercontent\.com)$/.test(event.origin))return;const data=event.data;if(!data||data.source!==SOURCE||data.codigo!==pending.codigo)return;const st=pending.status;const btn=pending.button;btn.disabled=false;if(data.ok){st.textContent='Registro confirmado. Gracias. Te avisaremos cuando tengamos novedades.';st.style.color='#a1e6ba';}else{st.textContent='El servidor respondió, pero no confirmó el registro. Puedes escribirnos por WhatsApp.';st.style.color='#ffb0a7';}pending=null;});
-const form=q('#audit-lead-form');if(form){
+const form=q('#audit-lead-form');if(form&&!window.LEO_ACADEMIA_FORM_V2){
  const method=q('#audit-contact-method'),label=q('#audit-contact-label'),contact=q('#audit-contact');
  const adapt=()=>{let wh=method.value==='whatsapp';label.textContent=wh?'Número de WhatsApp (con prefijo del país)':'Tu correo electrónico';contact.type=wh?'tel':'email';contact.placeholder=wh?'+51 999 999 999':'tucorreo@ejemplo.com';contact.autocomplete=wh?'tel':'email';contact.value='';};method.addEventListener('change',adapt);adapt();
  form.addEventListener('submit',e=>{e.preventDefault();const name=q('#audit-name').value.trim(),value=contact.value.trim(),channel=method.value,consent=q('#audit-marketing-consent').checked,st=q('#audit-lead-status'),button=q('#audit-submit');
