@@ -134,7 +134,7 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
  const status=$('audit-lead-status'),btn=$('audit-submit'),fallback=$('audit-lead-fallback'),wa=$('audit-lead-whatsapp');
  let pending=null,timer=0,phonePicker=null,verificationTimer=0,verifyCount=0;
  const frame=document.createElement('iframe');frame.name='ld-form-academia-v2';frame.style.display='none';frame.title='Envío de inscripción';frame.setAttribute('aria-hidden','true');document.body.appendChild(frame);
- function showStatus(message,kind){status.textContent=message;status.dataset.kind=kind||'';status.scrollIntoView({behavior:'smooth',block:'nearest'});}
+ function showStatus(message,kind){status.textContent=message;status.dataset.kind=kind||'';if(status.scrollIntoView){try{status.scrollIntoView({behavior:'smooth',block:'nearest'});}catch(_){}}}
  function fechaPeru12(){const d=new Date();const pieces=new Intl.DateTimeFormat('en-GB',{timeZone:'America/Lima',day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h12'}).formatToParts(d);const get=t=>pieces.find(p=>p.type===t)?.value||'';return `${get('day')}/${get('month')}/${get('year')} ${get('hour')}:${get('minute')}:${get('second')} ${get('dayPeriod').toLowerCase()}`;}
  function setBusy(yes){btn.disabled=!!yes;btn.textContent=yes?'Registrando tu solicitud…':'Quiero recibir novedades →';form.setAttribute('aria-busy',String(!!yes));}
  function finishError(message){pending=null;clearVerification();clearTimeout(timer);setBusy(false);showStatus(message,'error');fallback.hidden=false;wa.href='https://wa.me/51939143052?text='+encodeURIComponent('Hola Leo, quiero inscribirme a las novedades de Academia Leones Digitales. Mi registro desde la web no se pudo confirmar.');}
@@ -171,34 +171,33 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
  }
  function chooseContact(){
   const isWa=method.value==='whatsapp';
-  if(phonePicker){phonePicker.destroy();phonePicker=null;}
+  if(phonePicker){try{phonePicker.destroy();}catch(ex){console.warn('Selector telefónico:',ex);}phonePicker=null;}
   label.textContent=isWa?'Número de WhatsApp (elige tu país)':'Tu correo electrónico';
   contact.type=isWa?'tel':'email';contact.placeholder=isWa?'999 999 999':'tucorreo@ejemplo.com';contact.autocomplete=isWa?'tel':'email';
   contact.value='';status.textContent='';status.dataset.kind='';fallback.hidden=true;
   if(isWa&&window.intlTelInput){
-    phonePicker=window.intlTelInput(contact,{
+    try {phonePicker=window.intlTelInput(contact,{
       initialCountry:'pe',preferredCountries:['pe','mx','co','ar','cl','ec','bo','es','us'],
       separateDialCode:true,nationalMode:true,autoPlaceholder:'polite',
       countrySearch:true,dropdownContainer:document.body,
       loadUtils:()=>import('https://cdn.jsdelivr.net/npm/intl-tel-input@29.5.8/build/js/utils.js')
-    });
+    });}catch(err){console.error('Error iniciando selector:',err);phonePicker=null;label.textContent='WhatsApp (incluye +51 u otro prefijo)';contact.placeholder='+51 999 999 999';}
   }else if(isWa){
     label.textContent='Número de WhatsApp (incluye el prefijo internacional)';
     contact.placeholder='+51 999 999 999';
   }
  }
- method.addEventListener('change',function(ev){ev.stopImmediatePropagation();chooseContact();},true);
+ method.addEventListener('change',function(){try{chooseContact();}catch(err){console.error('Academia: cambio de canal',err);showStatus('No se pudo cargar el selector. Escribe el número con su prefijo, por ejemplo +51 999999999.','error');contact.type='tel';}},true);
  chooseContact();
  // Captura evita que un auditoria.js anterior envíe la solicitud dos veces.
- form.addEventListener('submit',function(ev){
-  ev.preventDefault();ev.stopImmediatePropagation();
+ function enviarLead(){
   if(pending){showStatus('Estamos esperando la confirmación del envío anterior.','');return;}
   const nombre=name.value.trim(),canal=method.value;
   // Construir E.164 de forma estable, incluso si utils.js todavía no ha cargado.
   // intl-tel-input puede devolver espacios/formato local; Sheets siempre recibe +<prefijo><número>.
   let valor=contact.value.trim(),pais='',prefijo='';
   if(canal==='whatsapp'){
-    const datos=phonePicker ? phonePicker.getSelectedCountryData() : null;
+    let datos=null;try{datos=phonePicker ? phonePicker.getSelectedCountryData() : null;}catch(err){console.warn('Error leyendo país:',err);}
     prefijo=datos&&datos.dialCode ? '+'+String(datos.dialCode).replace(/\D/g,'') : '';
     pais=datos&&datos.name ? datos.name : '';
     const original=contact.value.trim();
@@ -213,7 +212,8 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
       else if(local.startsWith(codigo) && local.length>10) local=local.slice(codigo.length);
       valor=prefijo+local;
     }else{
-      valor=numeroSinFormato.startsWith('+') ? '+'+numeroSinFormato.slice(1).replace(/\D/g,'') : '';
+      valor=numeroSinFormato.startsWith('+') ? '+'+numeroSinFormato.slice(1).replace(/\D/g,'') : '+51'+numeroSinFormato.replace(/\D/g,'');
+     if(!prefijo){prefijo=valor.startsWith('+51')?'+51':'';pais=prefijo?'Perú':'';}
     }
   }
   fallback.hidden=true;
@@ -228,7 +228,10 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
   document.body.appendChild(sub);pending={codigo};setBusy(true);showStatus('Enviando tu inscripción… No cierres esta página hasta que termine el envío.','');
   try{sub.submit();}catch(e){sub.remove();finishError('No pudimos enviar la solicitud. Puedes inscribirte por WhatsApp.');return;}
   setTimeout(()=>{if(sub.isConnected)sub.remove();},45000);verifyCount=0;timer=setTimeout(()=>{if(pending&&pending.codigo===codigo)showStatus('Estamos comprobando el registro en Google Sheets…','');},12000);verificationTimer=setInterval(()=>verifyRegistration(codigo),3000);setTimeout(()=>verifyRegistration(codigo),1500);
- },true);
+ }
+ // Manejar tanto el click como Enter, sin depender exclusivamente del evento submit.
+ btn.addEventListener('click',function(ev){ev.preventDefault();ev.stopImmediatePropagation();try{enviarLead();}catch(err){console.error('Academia: fallo de envío',err);finishError('Error del formulario: '+(err&&err.message?err.message:'intenta de nuevo'));}},true);
+ form.addEventListener('submit',function(ev){ev.preventDefault();ev.stopImmediatePropagation();try{enviarLead();}catch(err){console.error('Academia: fallo de envío',err);finishError('Error del formulario: '+(err&&err.message?err.message:'intenta de nuevo'));}},true);
  window.addEventListener('message',function(ev){
   if(!pending||!originOk.includes(ev.origin))return;
   const data=ev.data;if(!data||data.source!=='leo-leads-sheets'||data.codigo!==pending.codigo)return;
