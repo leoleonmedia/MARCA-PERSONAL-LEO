@@ -668,27 +668,27 @@ function verificarRegistro(codigo){
   const settle=(result)=>{if(completed)return;completed=true;clearTimeout(timer);delete window[cb];s.remove();resolve(result);};
   window[cb]=(data)=>settle(data?.codigo===codigo?Boolean(data.guardado):null);
   s.onerror=()=>settle(null);
-  const timer=setTimeout(()=>settle(null),5000);
+  const timer=setTimeout(()=>settle(null),2000);
   s.src=ENDPOINT+'?accion=estado&codigo='+encodeURIComponent(codigo)+'&callback='+encodeURIComponent(cb);
   document.head.append(s);
  });
 }
 async function confirmarPorConsulta(payload){
- for(let intento=0;intento<4;intento++){
+ for(let intento=0;intento<2;intento++){
   if(!waiting||waiting.payload.codigo!==payload.codigo)return;
   const result=await verificarRegistro(payload.codigo);
   if(!waiting||waiting.payload.codigo!==payload.codigo)return;
   if(result===true){
    clearTimeout(timeoutId);waiting=null;send.disabled=false;
-   setStatus('Solicitud confirmada: el contacto ya está registrado.');
+   setStatus('¡Registrado!');
    showContact(payload,true,'');return;
   }
-  if(intento<3)await new Promise(r=>setTimeout(r,1800));
+  if(intento<1)await new Promise(r=>setTimeout(r,1000));
  }
  if(!waiting||waiting.payload.codigo!==payload.codigo)return;
- waiting=null;send.disabled=false;
- setStatus('Solicitud enviada. La confirmación automática no está disponible en este momento; para evitar duplicados, no vuelvas a enviar el formulario. Puedes continuar con el canal de contacto elegido.');
- if(payload.canal!=='email')showContact(payload,false,'');
+ waiting=null;send.disabled=true;
+ // Sin respuesta verificable: conservar el estado provisional y evitar reenvíos duplicados.
+ setStatus('Solicitud enviada.');
 }
 
 const frame=document.createElement('iframe');
@@ -702,21 +702,21 @@ function showContact(payload,confirmed,delivery){
  const target=el('rl-abrir'),copy=el('rl-copiar'),msg=el('rl-mensaje');
  next.hidden=false;
  const message='Hola, Leo. Soy '+payload.nombre+'. Solicité '+payload.recurso+'. Palabra clave: '+payload.palabra_clave+'. Código: '+payload.codigo+'.';
- el('rl-confirmacion').textContent=confirmed?'Solicitud registrada correctamente':'Solicitud enviada';
+ el('rl-confirmacion').textContent=confirmed?'¡Registrado!':'Solicitud enviada';
  const type=payload.canal;
  if(type==='email'){
    target.hidden=true;copy.hidden=true;msg.hidden=true;
-   el('rl-ayuda').textContent=delivery==='Correo enviado'?'El servidor confirmó el envío del correo con tu recurso. Revisa también spam.':'La solicitud se envió. La entrega automática del archivo por correo requiere que el enlace del recurso esté configurado en Apps Script; no se ha confirmado el envío del regalo.';
+   el('rl-ayuda').textContent=delivery==='Correo enviado'?'Revisa tu correo, incluida la carpeta de spam.':'Te avisaremos por correo.';
    return;
  }
  target.hidden=false;copy.hidden=false;msg.hidden=false;msg.textContent=message;
  if(type==='whatsapp'){
    target.href='https://wa.me/'+DEST_WHATSAPP+'?text='+encodeURIComponent(message);
    target.textContent='Abrir WhatsApp y enviar ↗';
-   el('rl-ayuda').textContent=confirmed?'Solicitud registrada. Para recibir el regalo, abre WhatsApp y pulsa Enviar en el chat.':'Para recibir tu regalo, abre WhatsApp y pulsa Enviar en el chat. No repitas el formulario: el aviso de verificación no significa que el registro haya fallado.';
+   el('rl-ayuda').textContent='Para recibir tu regalo, abre WhatsApp y pulsa Enviar.';
  }else{
    target.href=DEST_INSTAGRAM;target.textContent='Abrir Instagram ↗';
-   el('rl-ayuda').textContent='Copia el mensaje, abre el DM de Instagram y pégalo. No se envía automáticamente desde la página.';
+   el('rl-ayuda').textContent='Copia el mensaje y envíalo por Instagram.';
  }
  copy.onclick=async()=>{
    try{await navigator.clipboard.writeText(message);copy.textContent='¡Copiado!';}
@@ -730,10 +730,10 @@ window.addEventListener('message',event=>{
  clearTimeout(timeoutId);
  const payload=waiting.payload;waiting=null;send.disabled=false;
  if(data.ok){
-   setStatus('Solicitud confirmada por el registro.');
+   setStatus('¡Registrado!');
    showContact(payload,true,data.entrega||'');
  }else{
-   setStatus('El servidor no confirmó el registro. Si ya aparece en Google Sheets, no lo reenvíes; continúa por tu canal de contacto.',true);
+   setStatus('Solicitud enviada.');
    if(payload.canal!=='email')showContact(payload,false,'');
  }
 });
@@ -763,7 +763,7 @@ form.addEventListener('submit',event=>{
   origen:'recurso.html',website:''
  };
  if(!/^https:\/\/script\.google\.com\/macros\/s\/.+\/exec$/.test(ENDPOINT)){
-  setStatus('La conexión de Google Sheets no está configurada. Contacta por WhatsApp o Instagram.',true);
+  setStatus('No se pudo enviar. Inténtalo más tarde.',true);
   if(canal!=='email')showContact(payload,false,'');return;
  }
  const request=document.createElement('form');request.hidden=true;request.method='POST';request.action=ENDPOINT;request.target=frame.name;request.acceptCharset='UTF-8';
@@ -771,13 +771,15 @@ form.addEventListener('submit',event=>{
   const input=document.createElement('input');input.type='hidden';input.name=key;input.value=String(value||'');request.appendChild(input);
  }
  document.body.appendChild(request);waiting={payload};send.disabled=true;
- setStatus('Registrando tu solicitud. No cierres esta página hasta ver la confirmación.');next.hidden=true;
+ setStatus('Enviando…');next.hidden=true;
  request.submit();setTimeout(()=>request.remove(),30000);
+ // Acceso inmediato al siguiente paso. Esto NO equivale a una confirmación del servidor.
+ setStatus('Solicitud enviada.');
+ if(payload.canal!=='email')showContact(payload,false,'');
  timeoutId=setTimeout(()=>{
   if(!waiting||waiting.payload.codigo!==payload.codigo)return;
-  setStatus('Comprobando tu registro en Google Sheets…');
   confirmarPorConsulta(payload);
- },10000);
+ },1100);
 });
 })();</script><script>(function(){
 'use strict';
