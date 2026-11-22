@@ -687,7 +687,7 @@ async function confirmarPorConsulta(payload){
  }
  if(!waiting||waiting.payload.codigo!==payload.codigo)return;
  waiting=null;send.disabled=false;
- setStatus('No pudimos comprobar el registro. Antes de reintentar, revisa si tu contacto aparece en Google Sheets.',true);
+ setStatus('Solicitud enviada. La confirmación automática no está disponible en este momento; para evitar duplicados, no vuelvas a enviar el formulario. Puedes continuar con el canal de contacto elegido.');
  if(payload.canal!=='email')showContact(payload,false,'');
 }
 
@@ -702,18 +702,18 @@ function showContact(payload,confirmed,delivery){
  const target=el('rl-abrir'),copy=el('rl-copiar'),msg=el('rl-mensaje');
  next.hidden=false;
  const message='Hola, Leo. Soy '+payload.nombre+'. Solicité '+payload.recurso+'. Palabra clave: '+payload.palabra_clave+'. Código: '+payload.codigo+'.';
- el('rl-confirmacion').textContent=confirmed?'Solicitud registrada correctamente':'Contacto disponible';
+ el('rl-confirmacion').textContent=confirmed?'Solicitud registrada correctamente':'Solicitud enviada';
  const type=payload.canal;
  if(type==='email'){
    target.hidden=true;copy.hidden=true;msg.hidden=true;
-   el('rl-ayuda').textContent=delivery==='Correo enviado'?'El servidor confirmó el envío del correo con tu recurso. Revisa también spam.':'Tu contacto quedó registrado, pero la entrega automática del archivo por correo aún necesita que el enlace del recurso esté configurado en Apps Script. No se ha confirmado el envío del regalo.';
+   el('rl-ayuda').textContent=delivery==='Correo enviado'?'El servidor confirmó el envío del correo con tu recurso. Revisa también spam.':'La solicitud se envió. La entrega automática del archivo por correo requiere que el enlace del recurso esté configurado en Apps Script; no se ha confirmado el envío del regalo.';
    return;
  }
  target.hidden=false;copy.hidden=false;msg.hidden=false;msg.textContent=message;
  if(type==='whatsapp'){
    target.href='https://wa.me/'+DEST_WHATSAPP+'?text='+encodeURIComponent(message);
    target.textContent='Abrir WhatsApp y enviar ↗';
-   el('rl-ayuda').textContent=confirmed?'Solicitud registrada. Para recibir el regalo, abre WhatsApp y pulsa Enviar en el chat.':'Puedes escribirnos por WhatsApp, pero no se ha confirmado el registro automático.';
+   el('rl-ayuda').textContent=confirmed?'Solicitud registrada. Para recibir el regalo, abre WhatsApp y pulsa Enviar en el chat.':'Para recibir tu regalo, abre WhatsApp y pulsa Enviar en el chat. No repitas el formulario: el aviso de verificación no significa que el registro haya fallado.';
  }else{
    target.href=DEST_INSTAGRAM;target.textContent='Abrir Instagram ↗';
    el('rl-ayuda').textContent='Copia el mensaje, abre el DM de Instagram y pégalo. No se envía automáticamente desde la página.';
@@ -733,7 +733,7 @@ window.addEventListener('message',event=>{
    setStatus('Solicitud confirmada por el registro.');
    showContact(payload,true,data.entrega||'');
  }else{
-   setStatus('El registro no se confirmó en Google Sheets. Puedes intentar nuevamente o escribir directamente.',true);
+   setStatus('El servidor no confirmó el registro. Si ya aparece en Google Sheets, no lo reenvíes; continúa por tu canal de contacto.',true);
    if(payload.canal!=='email')showContact(payload,false,'');
  }
 });
