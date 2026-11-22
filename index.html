@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- LEO-MOBILE-MARGINS-20261122 -->
 <!-- LEO-HOME-20261122-PORTADA-REPARADA: index.html contiene la portada de Leo Leon -->
 
 
@@ -652,6 +653,41 @@ a.social-link[href*="ig.me/"] svg circle:last-child { fill: currentColor !import
   #videos .leo-video-ig-window{height:335px;min-height:280px}
 }
 </style>
+
+<!-- LEO-MOBILE-WIDTH-SPACING-20261122 -->
+<style id="leo-mobile-width-spacing-20261122">
+/* Ajustes exclusivos de móvil; el escritorio conserva sus dimensiones. */
+@media (max-width: 680px) {
+  :root { --pad: 13px; --sec: clamp(54px, 12vw, 76px); --r: 18px; --r-sm: 14px; }
+  html, body { width: 100%; max-width: 100%; overflow-x: clip; }
+  .wrap { width: 100%; max-width: 100%; padding-inline: var(--pad); }
+  .sec { padding-block: var(--sec); }
+  .head { margin-bottom: 25px; gap: 14px; }
+  .hero { min-height: auto; padding-top: 95px; padding-bottom: 48px; }
+  .hero-grid { gap: 21px; }
+  .hero-proof { margin-top: 25px; }
+  .hero .ctas { margin-top: 26px; }
+  .rec-caja, .card-m, .dolor, .rec, .nota { max-width: 100%; min-width: 0; }
+  .rec-caja { padding: 19px 15px; }
+  .nav .wrap { padding-inline: 13px; }
+  #videos .leo-video-collection { gap: 15px; margin-top: 17px; }
+  #videos .leo-video-section-head { margin-bottom: 0; }
+  #videos .leo-video-tiktok, #videos .leo-video-instagram { width: 100%; max-width: 100%; }
+  #videos .leo-video-card-head { padding: 14px 12px; }
+  #videos .leo-video-tiktok-stage { padding: 7px 4px; }
+  #videos .leo-tiktok-inset { width: 100%; max-width: 100%; padding: 2px; }
+  #videos .leo-video-tiktok-stage iframe { width: 100%; max-width: 100% !important; }
+  #videos .leo-video-ig-window { width: 100%; max-width: 100%; padding: 5px; }
+  #videos .leo-video-card-foot { padding: 9px 12px; }
+  #videos .leo-tiktok-ready .leo-tiktok-mobile-fallback { display: none !important; }
+  .flota { max-width: min(370px, calc(100vw - 26px)); }
+  .flota:not(.show) { visibility: hidden; pointer-events: none; }
+}
+@media (max-width: 380px) {
+  :root { --pad: 12px; }
+  #videos .leo-video-card-head { padding: 11px; }
+}
+</style>
 </head><body><header class="nav" id="nav">
 <div class="wrap">
 <a aria-label="Leo León Media, inicio" class="logo logo-imagen" href="index.html"><img alt="Leonardo León" decoding="async" height="534" src="logo-leonardo-leon-420.webp" width="2048"/></a>
@@ -911,28 +947,23 @@ a.social-link[href*="ig.me/"] svg circle:last-child { fill: currentColor !import
   const $=(q,c=document)=>c.querySelector(q), $$=(q,c=document)=>[...c.querySelectorAll(q)];
   const nav=$('#nav'), flota=$('#flota');
 
-  // Barra flotante móvil: nunca se superpone a videos, formularios o pie de página.
-  let formVisible=false, busyAreaVisible=false;
+  // Mostrar la CTA flotante solo en zonas sin botones de captación ni galerías.
+  const floatingBlockers=['#regalos','#videos','#regalo','.footer'];
+  const isVisibleInViewport=(selector)=>{
+    const el=$(selector);
+    if(!el) return false;
+    const r=el.getBoundingClientRect();
+    return r.top<innerHeight && r.bottom>0;
+  };
   const onScroll=()=>{
     const y=scrollY;
     nav && nav.classList.toggle('solid',y>40);
-    flota && flota.classList.toggle('show',y>innerHeight*.8 && !formVisible && !busyAreaVisible);
+    const blocked=floatingBlockers.some(isVisibleInViewport);
+    flota && flota.classList.toggle('show',y>innerHeight*.8 && !blocked);
   };
-  addEventListener('scroll',onScroll,{passive:true}); onScroll();
-  if ('IntersectionObserver' in window) {
-    const formIO=new IntersectionObserver(es=>{
-      es.forEach(e=>{if(e.isIntersecting) formVisible=true; else formVisible=$$('.form-regalo').some(f=>{const r=f.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0;});});
-      onScroll();
-    },{threshold:0});
-    $$('.form-regalo').forEach(f=>formIO.observe(f));
-    const busyIO=new IntersectionObserver(()=>{
-      busyAreaVisible=['#videos','.footer'].some(sel=>{
-        const el=$(sel);if(!el)return false;const r=el.getBoundingClientRect();return r.top<innerHeight && r.bottom>0;
-      });
-      onScroll();
-    },{threshold:0});
-    ['#videos','.footer'].forEach(sel=>{const el=$(sel);if(el)busyIO.observe(el)});
-  }
+  addEventListener('scroll',onScroll,{passive:true});
+  addEventListener('resize',onScroll,{passive:true});
+  onScroll();
 
   // Mostrar un enlace útil si TikTok no construye el iframe en este navegador.
   const tiktokStage=$('.leo-video-tiktok-stage');
