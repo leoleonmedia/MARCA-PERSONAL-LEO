@@ -379,7 +379,7 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
    $('kpiDeep').textContent=localeNumber(deep);
    let status='neutral',badge='SIN REFERENCIA',intro='',ref='',actions=[];
    if(m){
-     if(d.views<100){status='neutral';badge='POCOS DATOS';intro='La publicación tiene pocas visualizaciones. Unas cuantas interacciones pueden cambiar mucho el porcentaje; aún no conviene calificarla.';}
+     if(d.views<100||(m.type==='reach'&&compareBase<100)){status='neutral';badge='POCOS DATOS';intro='La publicación tiene pocas visualizaciones o muy poco alcance. Unas cuantas interacciones pueden cambiar mucho el porcentaje; aún no conviene calificarla.';}
      else if(comp<m.low){status='bad';badge='MALO';intro='La tasa comparable está por debajo del rango de referencia de publicaciones similares. Hay margen para mejorar la respuesta a este contenido.';}
      else if(comp>m.high){status='good';badge='BUENO';intro='La tasa comparable está por encima del rango central de referencia. Es una señal favorable de interacción, aunque no garantiza más ventas o seguidores.';}
      else {status='regular';badge='REGULAR';intro='La tasa comparable está dentro de la franja de referencia. El contenido obtiene una respuesta habitual para esa muestra; compara también con tus otras publicaciones.';}
@@ -403,7 +403,7 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
     else if(d.comments>=5)actions.push(`Hubo ${localeNumber(d.comments)} comentarios. Lee cuáles muestran dudas, problemas o ideas para próximos contenidos.`);
     if(d.likes/total>.9&&total>=20)actions.push('Casi todas las acciones fueron me gusta. Si quieres contenido guardable, añade ejemplos, pasos o datos prácticos.');
    }
-   if(comp!==null&&comp>100)actions.unshift('La tasa comparable supera el 100 %. Es posible sumar varias acciones por persona, pero revisa vistas y reacciones para evitar errores de entrada.');
+   if(comp!==null&&comp>100){status='neutral';badge='REVISAR DATOS';intro='La tasa comparable supera el 100 %. Puede ocurrir cuando se suman varias acciones por persona, pero primero verifica que los datos pertenezcan a la misma publicación y periodo.';actions.unshift('Revisa la base de comparación (vistas, alcance o seguidores) y las interacciones antes de interpretar el resultado.');}
    $('engDiagnosis').dataset.status=status;$('diagBadge').textContent=badge;
    $('diagTitle').textContent=`Diagnóstico · ${keyName}`;
    $('diagText').textContent=intro;
