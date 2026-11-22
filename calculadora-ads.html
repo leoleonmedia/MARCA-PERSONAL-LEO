@@ -93,6 +93,27 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
 /* Ayuda visible en todos los campos de la calculadora */
 .ads-explainer{display:block;color:#c4bfb8!important;font-size:11.5px!important;line-height:1.5!important;margin-top:4px;}
 .field small:not(.ads-explainer){display:block;}
+
+/* Evaluación nueva por objetivo, datos y referencias */
+.ads-verdict-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.ads-mini{background:#19191b;border:1px solid #343338;border-radius:13px;padding:13px 12px;min-width:0}
+.ads-mini strong{display:block;font-size:12px;color:#eee9e3;margin-bottom:6px}
+.ads-mini span{font-size:11px;line-height:1.5;color:#c8c3be;display:block}
+.ads-mini .mini-status{font-size:12px;font-weight:850;margin:0 0 5px}
+.ads-mini.good{border-color:#338c60;background:#132820}.ads-mini.good .mini-status{color:#a5f0c4}
+.ads-mini.regular{border-color:#987526;background:#2b2416}.ads-mini.regular .mini-status{color:#ffe19b}
+.ads-mini.bad{border-color:#ae4e54;background:#321e23}.ads-mini.bad .mini-status{color:#ffc1c1}
+.ads-mini.neutral{border-color:#4b4950;background:#202024}.ads-mini.neutral .mini-status{color:#d6d1d1}
+.ads-benchmark{background:#151719;border:1px solid #3c3e41;border-radius:14px;margin-top:15px;padding:16px 18px;color:#c8cacb;font-size:12px;line-height:1.7}
+.ads-benchmark b{color:#faf8f4}.ads-benchmark em{font-style:normal;color:#ffbd88}
+.ads-benchmark .ref-metrics{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
+.ads-benchmark .ref-pill{padding:6px 10px;border:1px solid #444447;border-radius:9px;background:#1c1c1f;color:#eee9e4}
+.ads-benchmark a{color:#fdb37a}
+.ads-kpi-title{font-size:17px;letter-spacing:-.025em;margin:24px 0 -8px}
+@media(max-width:650px){.ads-verdict-grid{grid-template-columns:1fr}.ads-benchmark{padding:14px}}
+@media print{.ads-mini,.ads-benchmark{break-inside:avoid;background:#fff!important;color:#111!important}.ads-mini span,.ads-benchmark b{color:#111!important}}
+
+.field small.ads-explainer{font-size:12px;line-height:1.5;color:#aaa49c}.kpi .rating-reason{font-size:12px}.kpi .meaning,.kpi .recommendation{font-size:12px;line-height:1.55}
 </style></head>
 <body>
 <header class="ld-header"><div class="ld-shell ld-top"><a aria-label="Academia Leones Digitales" class="ld-brand" href="academia.html"><img alt="Academia Leones Digitales" height="62" src="logo-leones-digitales.png" style="filter:none;mix-blend-mode:normal;opacity:1" width="160"/></a><nav aria-label="Navegación de Academia Leones Digitales" class="ld-menu"><a href="index.html">Inicio</a><a href="academia.html">Academia</a><a href="diccionario.html">Diccionario digital</a><a href="generador-hooks.html">Generador de hooks</a><a href="guia-formatos.html">Medidas y formatos</a><a href="calculadora-engagement.html">Calculadora de engagement</a><a href="biblioteca-prompts.html">Biblioteca de prompts</a><a aria-current="page" href="calculadora-ads.html">Meta y TikTok Ads</a></nav></div><div class="ld-sub"><div class="ld-shell ld-breadcrumb"><a href="index.html">Inicio</a> / <a href="academia.html">Academia</a> / <span>Calculadora de Ads</span></div></div></header>
@@ -104,50 +125,51 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
 <div class="layout">
 <section class="panel" id="formPanel"><h2>Datos de tu campaña</h2><p class="hint">Introduce los números de Ads Manager para el <strong>mismo periodo</strong> y nivel (campaña, conjunto o anuncio). Campos opcionales pueden quedar vacíos.</p>
 <div class="form-grid">
-<div class="field span"><label for="objective">¿Qué quieres conseguir?</label><select id="objective"><option value="sales">Ventas</option><option value="leads">Clientes potenciales / leads</option><option value="traffic">Tráfico a la web</option><option value="video">Visualizaciones de video</option><option value="awareness">Alcance y reconocimiento</option><option id="messageOption" value="messages">Mensajes / conversaciones</option></select><small id="objectiveHelp">Ventas: conviene conocer compras e ingresos atribuidos, no solo clics.</small><small class="ads-explainer">Selecciona el resultado principal que buscabas con la campaña. La herramienta priorizará los indicadores relacionados con ese objetivo.</small></div>
-<div class="field"><label for="currency">Moneda</label><select id="currency"><option value="PEN">S/ · Soles</option><option value="USD">US$ · Dólares</option><option value="EUR">€ · Euros</option><option value="MXN">MX$ · Pesos mexicanos</option><option value="COP">COL$ · Pesos colombianos</option></select><small class="ads-explainer">Es la moneda en la que Ads Manager muestra el gasto de la campaña. Los costes y valores se interpretarán en esta misma moneda.</small></div>
-<div class="field"><label for="period">Periodo (días)</label><input id="period" inputmode="numeric" min="1" placeholder="Ej. 7" step="1" type="number"/><small class="ads-explainer">Número de días comprendidos por las métricas que vas a introducir. Sirve para calcular el gasto diario promedio; revisa que todas las cifras correspondan al mismo periodo.</small></div>
-<div class="field"><label for="spend">Importe gastado</label><input id="spend" inputmode="decimal" min="0" placeholder="Ej. 240" step="any" type="number"/><small class="ads-explainer">Dinero efectivamente invertido en anuncios durante el periodo seleccionado. Copia el campo «Importe gastado» o «Coste» de Ads Manager, no tu presupuesto máximo.</small></div>
-<div class="field"><label for="impressions">Impresiones</label><input id="impressions" inputmode="numeric" min="0" placeholder="Ej. 18000" step="1" type="number"/><small class="ads-explainer">Cantidad total de veces que se mostraron tus anuncios. Una persona puede generar varias impresiones. Se usa para calcular CPM y CTR.</small></div>
-<div class="field"><label for="reach">Alcance único</label><input id="reach" inputmode="numeric" min="0" placeholder="Opcional" step="1" type="number"/><small class="ads-explainer">Número aproximado de personas o cuentas únicas alcanzadas. No equivale a impresiones; permite calcular cuántas veces, en promedio, vio el anuncio cada persona.</small></div>
-<div class="field"><label for="clicks" id="clickLabel">Clics en el enlace</label><input id="clicks" inputmode="numeric" min="0" placeholder="Ej. 420" step="1" type="number"/><small id="clickHelp">Usa «Clics en el enlace» de Meta, no «Clics (todos)».</small><small class="ads-explainer">Número de clics que llevan a un destino (por ejemplo, web, formulario o perfil), según la definición de cada plataforma. No es el total de interacciones del anuncio.</small></div>
-<div class="field"><label for="results">Resultados / conversiones</label><input id="results" inputmode="numeric" min="0" placeholder="Ej. 14" step="1" type="number"/><small id="resultHelp">Para ventas, introduce compras atribuidas; para leads, registros.</small><small class="ads-explainer">Cantidad de acciones atribuidas a la publicidad, según tu objetivo: compras, contactos, conversaciones u otras conversiones. No introduzcas aquí los clics si estás midiendo ventas.</small></div>
-<div class="field"><label for="revenue">Valor de conversiones atribuido</label><input id="revenue" inputmode="decimal" min="0" placeholder="Ej. 1250" step="any" type="number"/><small class="ads-explainer">Valor monetario de las compras o conversiones atribuidas a tus anuncios. Se utiliza para calcular ROAS; no lo confundas con todos los ingresos del negocio.</small></div>
-<div class="field"><label for="margin">Margen de contribución (%)</label><input id="margin" inputmode="decimal" max="100" min="0" placeholder="Ej. 40" step="any" type="number"/><small class="ads-explainer">Porcentaje de ingresos que queda tras pagar el producto o servicio y otros costes variables, pero ANTES de descontar publicidad. Ayuda a estimar el ROAS necesario para no perder dinero.</small></div>
-<div class="field"><label for="maxCost">¿Cuánto puedes pagar por cada resultado?</label><input id="maxCost" inputmode="decimal" min="0" placeholder="Ej. 25" step="any" type="number"/><small class="ads-explainer">Importe máximo que tu negocio puede pagar por obtener una compra, lead o conversación sin comprometer la rentabilidad. Si no lo conoces, deja el campo vacío.</small></div>
-<div class="field leads-only" hidden=""><label for="closeRate">¿Qué porcentaje de leads compra? (%)</label><input id="closeRate" inputmode="decimal" max="100" min="0" placeholder="Ej. 10" step="any" type="number"/><small class="ads-explainer">Porcentaje estimado de contactos captados que finalmente compran. Ejemplo: 10 ventas entre 100 leads = 10 %. Se usa para valorar cuánto puede valer un lead.</small></div>
-<div class="field leads-only" hidden=""><label for="avgSale">Ingreso promedio por cliente</label><input id="avgSale" inputmode="decimal" min="0" placeholder="Ej. 300" step="any" type="number"/><small class="ads-explainer">Ingreso medio real que genera un nuevo cliente cuando compra. Es diferente del beneficio: el margen se aplica por separado para estimar cuánto queda disponible.</small></div>
+<div class="field span"><label for="objective">¿Cuál era el objetivo de tus anuncios?</label><select id="objective"><option value="sales">Ventas</option><option value="leads">Clientes potenciales / leads</option><option value="traffic">Tráfico a la web</option><option value="video">Visualizaciones de video</option><option value="awareness">Alcance y reconocimiento</option><option id="messageOption" value="messages">Mensajes / conversaciones</option></select><small id="objectiveHelp">Ventas: conviene conocer compras e ingresos atribuidos, no solo clics.</small><small class="ads-explainer">Elige lo que buscabas: vender, conseguir contactos, recibir visitas o mostrar tu marca.</small></div>
+<div class="field span"><label for="businessType">¿Qué tipo de negocio anuncias?</label><select id="businessType"><option value="other">Otro / no estoy seguro</option><option value="ecommerce">Tienda online / comercio electrónico</option><option value="service">Servicios / profesionales</option><option value="local">Negocio local / restaurante</option><option value="education">Educación / cursos</option></select><small class="ads-explainer">Sirve para evitar comparar negocios que funcionan de forma distinta.</small></div>
+<div class="field"><label for="currency">Moneda</label><select id="currency"><option value="PEN">S/ · Soles</option><option value="USD">US$ · Dólares</option><option value="EUR">€ · Euros</option><option value="MXN">MX$ · Pesos mexicanos</option><option value="COP">COL$ · Pesos colombianos</option></select><small class="ads-explainer">Escoge la moneda en la que pagaste tus anuncios.</small></div>
+<div class="field"><label for="period">Periodo (días)</label><input id="period" inputmode="numeric" min="1" placeholder="Ej. 7" step="1" type="number"/><small class="ads-explainer">Cuántos días estuvo activa la campaña que vas a analizar.</small></div>
+<div class="field"><label for="spend">Dinero invertido</label><input id="spend" inputmode="decimal" min="0" placeholder="Ej. 240" step="any" type="number"/><small class="ads-explainer">Lo que realmente pagaste por estos anuncios en el periodo indicado.</small></div>
+<div class="field"><label for="impressions">Impresiones</label><input id="impressions" inputmode="numeric" min="0" placeholder="Ej. 18000" step="1" type="number"/><small class="ads-explainer">Cuántas veces apareció tu anuncio. La misma persona puede verlo varias veces.</small></div>
+<div class="field"><label for="reach">Personas alcanzadas (sin repetir)</label><input id="reach" inputmode="numeric" min="0" placeholder="Opcional" step="1" type="number"/><small class="ads-explainer">Cuántas personas diferentes vieron el anuncio.</small></div>
+<div class="field"><label for="clicks" id="clickLabel">Clics en el enlace</label><input id="clicks" inputmode="numeric" min="0" placeholder="Ej. 420" step="1" type="number"/><small id="clickHelp">Usa «Clics en el enlace» de Meta, no «Clics (todos)».</small><small class="ads-explainer">Cuántas personas hicieron clic para ir al enlace o destino. Usa la columna correcta de tu plataforma.</small></div>
+<div class="field"><label for="results">Resultados conseguidos</label><input id="results" inputmode="numeric" min="0" placeholder="Ej. 14" step="1" type="number"/><small id="resultHelp">Para ventas, introduce compras atribuidas; para leads, registros.</small><small class="ads-explainer">Cuántas compras, contactos o acciones lograste según tu objetivo.</small></div>
+<div class="field"><label for="revenue">Ventas atribuidas (importe total)</label><input id="revenue" inputmode="decimal" min="0" placeholder="Ej. 1250" step="any" type="number"/><small class="ads-explainer">Cuánto dinero facturaron las ventas que la plataforma atribuye a estos anuncios.</small></div>
+<div class="field"><label for="margin">Margen del negocio (%)</label><input id="margin" inputmode="decimal" max="100" min="0" placeholder="Ej. 40" step="any" type="number"/><small class="ads-explainer">De cada S/100 vendidos, cuánto queda tras pagar producto, entrega y otros costos variables, ANTES de anuncios. Ejemplo: 40 significa S/40.</small></div>
+<div class="field"><label for="maxCost">¿Cuánto podrías pagar por una compra o lead? (opcional)</label><input id="maxCost" inputmode="decimal" min="0" placeholder="Ej. 25, si lo sabes" step="any" type="number"/><small class="ads-explainer">Si lo sabes, escribe cuánto estarías dispuesto a pagar como máximo por cada compra o contacto.</small></div>
+<div class="field leads-only" hidden=""><label for="closeRate">¿Qué porcentaje de leads compra? (%)</label><input id="closeRate" inputmode="decimal" max="100" min="0" placeholder="Ej. 10" step="any" type="number"/><small class="ads-explainer">De cada 100 contactos, cuántos suelen comprar. Ejemplo: 10 equivale a 10%.</small></div>
+<div class="field leads-only" hidden=""><label for="avgSale">Ingreso promedio por cliente</label><input id="avgSale" inputmode="decimal" min="0" placeholder="Ej. 300" step="any" type="number"/><small class="ads-explainer">Cuánto paga, en promedio, cada cliente que finalmente compra.</small></div>
 </div>
 <div class="form-section" id="metaSection"><h3>Métricas específicas de Meta</h3><p>Rellena solo las métricas disponibles en tu informe.</p><div class="form-grid">
-<div class="field"><label for="lpv">Visitas a página de destino</label><input id="lpv" min="0" placeholder="Ej. 310" step="1" type="number"/><small class="ads-explainer">Veces que la página de destino terminó de cargar después de hacer clic en el anuncio. Puede ser menor que los clics porque algunos visitantes abandonan antes de que cargue.</small></div>
-<div class="field"><label for="messages">Conversaciones iniciadas</label><input id="messages" min="0" placeholder="Ej. 27" step="1" type="number"/><small class="ads-explainer">Conversaciones nuevas iniciadas a partir del anuncio, según el reporte de Meta. No equivalen automáticamente a ventas ni a clientes interesados de calidad.</small></div>
-<div class="field"><label for="meta3s">Reproducciones de 3 segundos</label><input id="meta3s" min="0" placeholder="Opcional" step="1" type="number"/><small class="ads-explainer">Número de reproducciones de video que alcanzaron aproximadamente 3 segundos, según la definición de Meta. Sirve como señal inicial de atención; no indica finalización.</small></div>
-<div class="field"><label for="thruplay">ThruPlays</label><input id="thruplay" min="0" placeholder="Opcional" step="1" type="number"/><small class="ads-explainer">Reproducciones que llegaron a 15 segundos o al final del video cuando dura menos de 15 segundos, según la medición de Meta. Ayudan a evaluar visualizaciones más prolongadas.</small></div>
+<div class="field"><label for="lpv">Visitas a página de destino</label><input id="lpv" min="0" placeholder="Ej. 310" step="1" type="number"/><small class="ads-explainer">Cuántas veces cargó realmente tu página después de un clic.</small></div>
+<div class="field"><label for="messages">Conversaciones iniciadas</label><input id="messages" min="0" placeholder="Ej. 27" step="1" type="number"/><small class="ads-explainer">Cuántas conversaciones nuevas empezaron gracias a estos anuncios.</small></div>
+<div class="field"><label for="meta3s">Reproducciones de 3 segundos</label><input id="meta3s" min="0" placeholder="Opcional" step="1" type="number"/><small class="ads-explainer">Cuántas reproducciones duraron al menos 3 segundos.</small></div>
+<div class="field"><label for="thruplay">ThruPlays</label><input id="thruplay" min="0" placeholder="Opcional" step="1" type="number"/><small class="ads-explainer">Cuántas reproducciones llegaron a 15 segundos o al final si el video era más corto.</small></div>
 </div></div>
 <div class="form-section" hidden="" id="tiktokSection"><h3>Métricas específicas de TikTok</h3><p>Las visualizaciones de 2 s, 6 s y las enfocadas no representan lo mismo.</p><div class="form-grid">
-<div class="field"><label for="views2">Vistas de video ≥ 2 segundos</label><input id="views2" min="0" placeholder="Ej. 8500" step="1" type="number"/><small class="ads-explainer">Reproducciones que alcanzaron al menos 2 segundos según TikTok Ads Manager. Sirven para medir atención inicial; no equivalen a usuarios únicos.</small></div>
-<div class="field"><label for="views6">Vistas de video ≥ 6 segundos</label><input id="views6" min="0" placeholder="Ej. 3900" step="1" type="number"/><small class="ads-explainer">Reproducciones que alcanzaron al menos 6 segundos según TikTok Ads Manager. Permiten observar si la audiencia permanece más allá del inicio.</small></div>
-<div class="field"><label for="focused6">Vistas enfocadas 6 segundos</label><input id="focused6" min="0" placeholder="Opcional" step="1" type="number"/><small class="ads-explainer">Visualizaciones enfocadas de 6 segundos según la definición del producto de TikTok, que puede incluir determinadas interacciones tempranas. Usa el valor exacto reportado en Ads Manager.</small></div>
-<div class="field"><label for="complete">Vistas al 100 %</label><input id="complete" min="0" placeholder="Opcional" step="1" type="number"/><small class="ads-explainer">Cantidad de reproducciones que llegaron al 100 % de la duración del video, según la plataforma. Útil para analizar finalización, teniendo en cuenta la longitud del anuncio.</small></div>
+<div class="field"><label for="views2">Vistas de video ≥ 2 segundos</label><input id="views2" min="0" placeholder="Ej. 8500" step="1" type="number"/><small class="ads-explainer">Cuántas reproducciones llegaron a 2 segundos.</small></div>
+<div class="field"><label for="views6">Vistas de video ≥ 6 segundos</label><input id="views6" min="0" placeholder="Ej. 3900" step="1" type="number"/><small class="ads-explainer">Cuántas reproducciones llegaron a 6 segundos.</small></div>
+<div class="field"><label for="focused6">Vistas enfocadas 6 segundos</label><input id="focused6" min="0" placeholder="Opcional" step="1" type="number"/><small class="ads-explainer">Vistas que TikTok clasificó como enfocadas, según su medición.</small></div>
+<div class="field"><label for="complete">Vistas al 100 %</label><input id="complete" min="0" placeholder="Opcional" step="1" type="number"/><small class="ads-explainer">Cuántas personas o reproducciones llegaron hasta el final del video (100%).</small></div>
 </div></div>
 <details class="benchmarks" id="benchmarkSettings">
 <summary>Personalizar evaluación: ¿qué significa bueno para tu negocio?</summary>
-<p>Las metas dependen del objetivo, país, moneda, sector y rentabilidad. Los valores sugeridos de CTR y ROAS son <b>ejemplos editables</b>, no promedios universales de Meta o TikTok. Si dejas una meta vacía, esa métrica se mostrará <b>Sin referencia</b> y no se calificará artificialmente.</p>
+<p>Las metas dependen del objetivo, país, moneda, sector y rentabilidad. Puedes dejar estas metas vacías: el diagnóstico económico utilizará ingresos, margen y costo por resultado cuando los proporciones. Los promedios internacionales se mostrarán aparte como contexto, nunca como garantía de rentabilidad.</p>
 <div class="form-grid">
-<div class="field"><label for="goalCtr">CTR objetivo (%)</label><input id="goalCtr" inputmode="decimal" min="0.01" step="any" type="number" value="1.5"/><small class="ads-explainer">Tasa mínima de clics que consideras aceptable para tu campaña, expresada en %. Se compara con clics de enlace/destino divididos entre impresiones; no es un estándar universal.</small></div>
-<div class="field"><label for="goalRoas">ROAS objetivo (×)</label><input id="goalRoas" inputmode="decimal" min="0.01" step="any" type="number" value="2"/><small class="ads-explainer">Ingresos atribuidos que deseas obtener por cada unidad gastada. Un ROAS de 2× significa ingresar 2 por cada 1 invertido, antes de descontar otros costes.</small></div>
-<div class="field"><label for="goalCpm">CPM máximo deseado</label><input id="goalCpm" inputmode="decimal" min="0.01" placeholder="Sin referencia" step="any" type="number"/><small class="ads-explainer">Cuánto estarías dispuesto a pagar como máximo por 1 000 impresiones. Es una referencia de coste de exposición, no una medida directa de rentabilidad.</small></div>
-<div class="field"><label for="goalCpc">CPC máximo deseado</label><input id="goalCpc" inputmode="decimal" min="0.01" placeholder="Sin referencia" step="any" type="number"/><small class="ads-explainer">Coste máximo aceptable por clic de enlace o destino. Debe relacionarse con la calidad del tráfico y su capacidad de generar resultados, no solo con lo barato que parezca.</small></div>
-<div class="field"><label for="goalCpa">CPA / CPL máximo rentable</label><input id="goalCpa" inputmode="decimal" min="0.01" placeholder="Sin referencia" step="any" type="number"/><small class="ads-explainer">Coste máximo sostenible por conversión o adquisición (CPA) o por lead (CPL). Introduce un valor coherente con el margen y el objetivo real de tu campaña.</small></div>
-<div class="field"><label for="goalFrequency">Frecuencia máxima aceptable</label><input id="goalFrequency" inputmode="decimal" min="0.01" placeholder="Sin referencia" step="any" type="number"/><small class="ads-explainer">Número medio máximo de exposiciones por persona que consideras tolerable para este periodo. Una frecuencia alta puede ser normal en remarketing, pero conviene vigilar fatiga creativa.</small></div>
+<div class="field"><label for="goalCtr">CTR objetivo (%)</label><input id="goalCtr" inputmode="decimal" min="0.01" placeholder="Opcional" step="any" type="number"/><small class="ads-explainer">Opcional: porcentaje mínimo de clics que consideras aceptable.</small></div>
+<div class="field"><label for="goalRoas">ROAS objetivo (×)</label><input id="goalRoas" inputmode="decimal" min="0.01" placeholder="Opcional" step="any" type="number"/><small class="ads-explainer">Opcional: cuántos soles facturados deseas por cada sol gastado.</small></div>
+<div class="field"><label for="goalCpm">CPM máximo deseado</label><input id="goalCpm" inputmode="decimal" min="0.01" placeholder="Sin referencia" step="any" type="number"/><small class="ads-explainer">Opcional: precio máximo por cada mil veces que aparece tu anuncio.</small></div>
+<div class="field"><label for="goalCpc">CPC máximo deseado</label><input id="goalCpc" inputmode="decimal" min="0.01" placeholder="Sin referencia" step="any" type="number"/><small class="ads-explainer">Opcional: precio máximo por un clic hacia tu destino.</small></div>
+<div class="field"><label for="goalCpa">CPA / CPL máximo rentable</label><input id="goalCpa" inputmode="decimal" min="0.01" placeholder="Sin referencia" step="any" type="number"/><small class="ads-explainer">Opcional: costo máximo para conseguir una compra o contacto.</small></div>
+<div class="field"><label for="goalFrequency">Frecuencia máxima aceptable</label><input id="goalFrequency" inputmode="decimal" min="0.01" placeholder="Sin referencia" step="any" type="number"/><small class="ads-explainer">Opcional: cuántas veces, en promedio, quieres mostrar el anuncio por persona.</small></div>
 </div></details><div class="actions"><button class="btn" id="calculate" type="button">Diagnosticar mi campaña →</button><button class="btn secondary" id="example" type="button">Cargar ejemplo</button><button class="btn secondary" id="reset" type="button">Limpiar</button></div><div aria-live="polite" class="msg" id="formMsg" role="status"></div>
 </section>
 <section aria-live="polite" class="panel results" id="resultPanel"><div class="results-head"><div><h2>Diagnóstico de tu campaña</h2><p class="hint" style="margin-bottom:0">Descubre si tu inversión fue eficiente, qué pagaste por resultado y qué necesitas corregir. Los datos se calculan en tu navegador.</p></div><span class="tag" id="resultBadge">Meta Ads</span></div>
-<div class="empty" id="emptyState"><strong>Tu diagnóstico empieza aquí.</strong>Elige la plataforma, introduce los datos y pulsa «Calcular métricas». Verás fórmulas y resultados según el objetivo de la campaña.</div>
-<div hidden="" id="output"><div class="global-diagnosis neutral" id="globalDiagnosis" role="status"></div><div class="kpis" id="kpis"></div><div class="rating-guidance"><strong>¿Bueno, regular o malo?</strong> Cada tarjeta muestra qué significa la métrica, cómo se califica, un diagnóstico y una acción recomendada. La evaluación general prioriza el objetivo de campaña, no la cantidad de tarjetas verdes. Un valor bajo no siempre es bueno: depende del indicador. Cuando faltan datos o metas, la tarjeta muestra «Sin referencia» y no inventa una calificación.<div class="rating-legend"><span class="good">● BUENO</span><span class="regular">● REGULAR</span><span class="bad">● MALO</span><span class="neutral">● SIN REFERENCIA</span></div></div><div class="note" id="dataNote"></div><div class="summary" id="insights"></div><div class="actions"><button class="btn secondary" id="copyReport" type="button">Copiar informe</button><button class="btn secondary" id="csvReport" type="button">Descargar CSV</button><button class="btn secondary" id="printReport" type="button">Imprimir / PDF</button></div><div class="msg" id="exportMsg" role="status"></div></div>
+<div class="empty" id="emptyState"><strong>Tu evaluación empieza aquí.</strong>Elige la plataforma, indica tu gasto y agrega los datos que tengas. Verás si hay señales favorables, problemas o información insuficiente según tu objetivo.</div>
+<div hidden="" id="output"><div class="global-diagnosis neutral" id="globalDiagnosis" role="status"></div><div aria-label="Evaluación por dimensiones" class="ads-verdict-grid" id="verdictGrid"></div><div aria-label="Comparación con referencias externas" class="ads-benchmark" id="benchmarkContext"></div><h3 class="ads-kpi-title">Tus indicadores, explicados uno por uno</h3><div class="kpis" id="kpis"></div><div class="rating-guidance"><strong>¿Bueno, regular o malo?</strong> Cada tarjeta muestra qué significa la métrica, cómo se califica, un diagnóstico y una acción recomendada. El diagnóstico principal prioriza el objetivo de campaña, el costo real y el margen de tu negocio. Las referencias externas sirven para orientarte, pero no demuestran beneficio. Si faltan datos esenciales, la herramienta lo dirá con claridad.<div class="rating-legend"><span class="good">● BUENO</span><span class="regular">● REGULAR</span><span class="bad">● MALO</span><span class="neutral">● SIN REFERENCIA</span></div></div><div class="note" id="dataNote"></div><div class="summary" id="insights"></div><div class="actions"><button class="btn secondary" id="copyReport" type="button">Copiar informe</button><button class="btn secondary" id="csvReport" type="button">Descargar CSV</button><button class="btn secondary" id="printReport" type="button">Imprimir / PDF</button></div><div class="msg" id="exportMsg" role="status"></div></div>
 </section></div>
 <section class="section" id="diferencias"><h2>¿En qué se diferencian?</h2><p class="section-intro">Comparar las plataformas no significa mezclar las cifras: el objetivo, el evento de optimización, los tipos de clic y las ventanas de atribución deben coincidir para que una comparación tenga sentido.</p><div class="compare"><article><h3>◎ Meta Ads</h3><p>Gestiona publicidad en Facebook e Instagram. Sus reportes separan «Clics (todos)» de «Clics en el enlace» y pueden registrar visitas de destino, conversaciones, reproducciones y compras atribuidas.</p><ul><li><strong>Tráfico:</strong> conviene revisar clics de enlace y LPV.</li><li><strong>Mensajes:</strong> coste por conversación iniciada.</li><li><strong>Video:</strong> reproducciones de 3 s y ThruPlay.</li><li><strong>Ventas:</strong> CPA y ROAS según los eventos y la atribución.</li></ul></article><article><h3>♪ TikTok Ads</h3><p>Su publicidad se integra en una experiencia centrada en videos. Además de clics de destino y resultados de conversión, sus reportes incluyen vistas de 2 s y 6 s, reproducciones completas y, según la campaña, vistas enfocadas.</p><ul><li><strong>Tráfico:</strong> clics hacia un destino.</li><li><strong>Video:</strong> vistas ≥ 2 s, ≥ 6 s o enfocadas; no son equivalentes.</li><li><strong>Ventas:</strong> métricas de conversión y ROAS atribuidos.</li><li><strong>Medición:</strong> algunas tasas nativas usan impresiones; mostramos también CVR por clic claramente identificado.</li></ul></article></div>
-<div class="disclaimer"><strong>Importante:</strong> esta es una calculadora educativa, no una integración oficial con Meta o TikTok. Las cifras las introduces tú. Sus resultados son cálculos aritméticos; no predicen rendimiento ni comparan automáticamente con benchmarks. Las compras e ingresos atribuidos dependen del píxel o API de eventos, el método de medición, la ventana de atribución y la calidad de los datos. El beneficio estimado solo descuenta el gasto publicitario del margen introducido y no otros costes.</div></section>
+<div class="disclaimer"><strong>Importante:</strong> esta es una calculadora educativa, no una integración oficial con Meta o TikTok. Las cifras las introduces tú. Sus resultados son cálculos aritméticos; no predicen resultados futuros. Las referencias externas aparecen solo como comparaciones orientativas, no como veredictos. Las compras e ingresos atribuidos dependen del píxel o API de eventos, el método de medición, la ventana de atribución y la calidad de los datos. El beneficio estimado solo descuenta el gasto publicitario del margen introducido y no otros costes.</div></section>
 <section class="section" id="formulas"><h2>Fórmulas y términos que necesitas conocer</h2><p class="section-intro">Mismas fórmulas básicas de medios pagados, con diferencias en lo que cada plataforma considera clic, vista o conversión.</p><div class="formula-grid">
 <div class="formula-card"><h3>CPM · Coste por mil impresiones</h3><code>(Gasto ÷ Impresiones) × 1 000</code><p>Indica cuánto pagaste, en promedio, por mil exposiciones.</p></div>
 <div class="formula-card"><h3>CTR · Tasa de clics</h3><code>(Clics pertinentes ÷ Impresiones) × 100</code><p>Meta: clics de enlace. TikTok: clics de destino. No confundas esos clics con interacciones generales.</p></div>
@@ -156,7 +178,10 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
 <div class="formula-card"><h3>ROAS · Retorno publicitario</h3><code>Valor atribuido ÷ Gasto</code><p>Un ROAS de 3× significa ingresos atribuidos equivalentes a tres veces la inversión publicitaria, no necesariamente ganancias.</p></div>
 <div class="formula-card"><h3>Frecuencia media</h3><code>Impresiones ÷ Alcance</code><p>Cuántas veces, en promedio, se mostró el anuncio por persona alcanzada.</p></div>
 </div></section>
-<section class="section sources" id="fuentes"><h2 style="color:#f9f6f1">Documentación consultada</h2><p>Para interpretar las métricas y revisar posibles cambios de plataforma:</p><ul><li><a href="https://ads.tiktok.com/resources/help/article/basic-data?lang=en" rel="noopener noreferrer" target="_blank">TikTok Ads Manager · métricas básicas</a></li><li><a href="https://ads.tiktok.com/resources/help/article/video-play" rel="noopener noreferrer" target="_blank">TikTok Ads Manager · métricas de reproducción</a></li><li><a href="https://ads.tiktok.com/resources/help/article/all-metrics?lang=en" rel="noopener noreferrer" target="_blank">TikTok Ads Manager · métricas e informes</a></li><li><a href="https://developers.facebook.com/docs/graph-api/changelog/non-versioned-changes/jan-19-2021" rel="noopener noreferrer" target="_blank">Meta Developers · ajustes de atribución en reportes</a></li><li><a href="https://www.sprinklr.com/help/articles/reporting-analytics/facebook-instagram-ads-reporting-metrics/63f362169b334f7283b4ccb4" rel="noopener noreferrer" target="_blank">Referencia de métricas de Facebook e Instagram</a></li></ul></section>
+<section class="section" id="criterios"><h2>Cómo interpretamos tus resultados</h2>
+<p class="section-intro">La pregunta principal es cuánto te costó conseguir el objetivo y si ese coste es sostenible. El presupuesto en sí mismo no es «bueno» ni «malo»: gastar S/100 o S/10 000 tiene sentido si permite alcanzar un resultado medible a un costo aceptable. Las campañas nuevas o con pocas conversiones reciben advertencias de muestra pequeña.</p>
+<div class="formula-grid"><article class="formula-card"><h3>1 · Negocio</h3><p>Para ventas: ingresos × margen − gasto publicitario. Para leads: costo por lead versus valor estimado del contacto (cierre × ticket × margen).</p></article><article class="formula-card"><h3>2 · Anuncio</h3><p>CTR, CPC y CPM ayudan a localizar problemas de atención o de entrega. Una tasa alta de clics no demuestra ventas ni beneficios.</p></article><article class="formula-card"><h3>3 · Confianza</h3><p>Revisamos que las cifras correspondan al mismo periodo, que haya suficiente actividad y que las conversiones estén bien atribuidas.</p></article></div></section>
+<section class="section sources" id="fuentes"><h2 style="color:#f9f6f1">Documentación consultada</h2><p>Para interpretar las métricas y revisar posibles cambios de plataforma:</p><ul><li><a href="https://ads.tiktok.com/resources/help/article/basic-data?lang=en" rel="noopener noreferrer" target="_blank">TikTok Ads Manager · métricas básicas</a></li><li><a href="https://ads.tiktok.com/resources/help/article/video-play" rel="noopener noreferrer" target="_blank">TikTok Ads Manager · métricas de reproducción</a></li><li><a href="https://ads.tiktok.com/resources/help/article/all-metrics?lang=en" rel="noopener noreferrer" target="_blank">TikTok Ads Manager · métricas e informes</a></li><li><a href="https://developers.facebook.com/docs/graph-api/changelog/non-versioned-changes/jan-19-2021" rel="noopener noreferrer" target="_blank">Meta Developers · ajustes de atribución en reportes</a></li><li><a href="https://www.sprinklr.com/help/articles/reporting-analytics/facebook-instagram-ads-reporting-metrics/63f362169b334f7283b4ccb4" rel="noopener noreferrer" target="_blank">Referencia de métricas de Facebook e Instagram</a></li></ul><p><strong>Estudios de contexto (no objetivos universales):</strong> <a href="https://www.wordstream.com/blog/facebook-ads-benchmarks-2025" rel="noopener noreferrer" target="_blank">WordStream / LocaliQ, Meta Ads por objetivo (2025, EE. UU.)</a> · <a href="https://www.triplewhale.com/blog/facebook-ads-benchmarks" rel="noopener noreferrer" target="_blank">Triple Whale, Meta ecommerce (nov. 2025–oct. 2026)</a> · <a href="https://triple-whale-2022.webflow.io/blog/tiktok-benchmarks" rel="noopener noreferrer" target="_blank">Triple Whale, TikTok ecommerce (ago. 2025–jul. 2026)</a>.</p></section>
 </main>
 <footer><div class="wrap footer-inner"><span>© Leo León · Academia Leones Digitales · Piensa bien. Crea mejor.</span><nav aria-label="Enlaces de la Academia" class="footer-links"><a href="academia.html">Academia</a><a href="diccionario.html">Diccionario</a><a href="https://www.instagram.com/leoleonmedia/" rel="noopener noreferrer" target="_blank">Instagram</a><a href="https://www.linkedin.com/in/leoleonmedia/" rel="noopener noreferrer" target="_blank">LinkedIn</a></nav></div></footer>
 <script>
@@ -178,44 +203,72 @@ const htmlSafe=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'
 function updatePlatform(next){platform=next;const meta=next==='meta';$('metaBtn').setAttribute('aria-pressed',String(meta));$('tiktokBtn').setAttribute('aria-pressed',String(!meta));$('platformInfo').innerHTML=meta?'<strong>Meta Ads</strong> · Facebook e Instagram. Distingue clics en enlace, visitas a la página de destino, conversaciones y reproducciones.':'<strong>TikTok Ads</strong> · Usa clics al destino y métricas propias de reproducción: vistas de 2 s, 6 s, completas y enfocadas.';$('metaSection').hidden=!meta;$('tiktokSection').hidden=meta;$('clickLabel').textContent=meta?'Clics en el enlace':'Clics de destino';$('clickHelp').textContent=meta?'Usa «Clics en el enlace», no «Clics (todos)».':'Usa «Clics de destino» de TikTok Ads Manager.';$('resultBadge').textContent=meta?'Meta Ads':'TikTok Ads';$('messageOption').hidden=!meta;if(!meta&&$('objective').value==='messages')$('objective').value='leads';updateObjective();clearOutput();}
 function updateObjective(){$('objectiveHelp').textContent=placeholders[$('objective').value];const o=$('objective').value;document.querySelectorAll('.leads-only').forEach(e=>e.hidden=!(o==='leads'||o==='messages'));$('resultHelp').textContent=o==='sales'?'Introduce compras atribuidas a los anuncios.':o==='leads'?'Introduce leads / formularios completados atribuidos.':o==='messages'?'Puedes usar conversaciones iniciadas como resultado.':o==='video'?'Introduce la acción principal de video, si la campaña reporta un resultado.':o==='awareness'?'Opcional: resultados de reconocimiento, si dispones del dato.':'Introduce conversiones posteriores al clic, si las hay.';}
 function clearOutput(){$('output').hidden=true;$('emptyState').hidden=false;last=null;$('formMsg').textContent='';$('formMsg').className='msg';}
-function validate(){let issues=[];for(const id of allIds){$(id).removeAttribute('aria-invalid');const v=value(id);if(v!==null&&(!Number.isFinite(v)||v<0)){issues.push('Introduce valores numéricos positivos o cero.');$(id).setAttribute('aria-invalid','true');}if(v!==null&&['period','impressions','reach','clicks','results','lpv','messages','meta3s','thruplay','views2','views6','focused6','complete'].includes(id)&&!Number.isInteger(v)){issues.push('Los recuentos de personas, clics o eventos deben ser enteros.');$(id).setAttribute('aria-invalid','true');}}if(value('margin')!==null&&value('margin')>100)issues.push('El margen debe estar entre 0 y 100 %.');if(value('closeRate')!==null&&value('closeRate')>100)issues.push('La tasa de cierre debe estar entre 0 y 100 %.');if(value('period')!==null&&value('period')<1)issues.push('El periodo debe tener al menos un día.');if(value('reach')!==null&&value('impressions')!==null&&value('reach')>value('impressions'))issues.push('El alcance no puede superar las impresiones del mismo conjunto de datos.');if(value('spend')===null||value('impressions')===null)issues.push('Para calcular, introduce al menos el gasto y las impresiones.');const active=platform==='meta'?['lpv','messages','meta3s','thruplay']:['views2','views6','focused6','complete'];for(const id of active){const v=value(id),imp=value('impressions');if(v!==null&&imp!==null&&v>imp)issues.push('Verifica '+$(id).previousElementSibling.textContent+': supera las impresiones. Puede tener otra definición o un periodo distinto.');}return [...new Set(issues)];}
+function validate(){let issues=[];for(const id of allIds){$(id).removeAttribute('aria-invalid');const v=value(id);if(v!==null&&(!Number.isFinite(v)||v<0)){issues.push('Introduce valores numéricos positivos o cero.');$(id).setAttribute('aria-invalid','true');}if(v!==null&&['period','impressions','reach','clicks','results','lpv','messages','meta3s','thruplay','views2','views6','focused6','complete'].includes(id)&&!Number.isInteger(v)){issues.push('Los recuentos de personas, clics o eventos deben ser enteros.');$(id).setAttribute('aria-invalid','true');}}if(value('margin')!==null&&value('margin')>100)issues.push('El margen debe estar entre 0 y 100 %.');if(value('closeRate')!==null&&value('closeRate')>100)issues.push('La tasa de cierre debe estar entre 0 y 100 %.');if(value('period')!==null&&value('period')<1)issues.push('El periodo debe tener al menos un día.');if(value('reach')!==null&&value('impressions')!==null&&value('reach')>value('impressions'))issues.push('El alcance no puede superar las impresiones del mismo conjunto de datos.');if(value('spend')===null)issues.push('Introduce el gasto publicitario para comenzar.');const active=platform==='meta'?['lpv','messages','meta3s','thruplay']:['views2','views6','focused6','complete'];for(const id of active){const v=value(id),imp=value('impressions');if(v!==null&&imp!==null&&v>imp)issues.push('Verifica '+$(id).previousElementSibling.textContent+': supera las impresiones. Puede tener otra definición o un periodo distinto.');}return [...new Set(issues)];}
 function kpi(label,val,formula,highlight=false,num=null,unit=''){return {label,val,formula,highlight,num,unit};}
 
 const threshold=id=>{const el=$(id);if(!el||!el.value.trim())return null;const n=Number(el.value);return Number.isFinite(n)&&n>0?n:null;};
+// Los umbrales internos de ±15 % sirven para indicar cercanía a una meta del negocio;
+// NO son benchmarks oficiales ni promesas de rendimiento.
+const band=(actual,limit,higher=false)=>{
+ if(limit===null||limit<=0||actual===null||!Number.isFinite(actual))return 'neutral';
+ const ratioV=actual/limit;
+ return higher?(ratioV>=1?'good':ratioV>=.8?'regular':'bad'):(ratioV<=1?'good':ratioV<=1.2?'regular':'bad');
+};
+const stateName=s=>s==='good'?'BUENO':s==='regular'?'REGULAR':s==='bad'?'MALO':'SIN REFERENCIA';
+function economicalLimit(){
+ const objective=$('objective').value;
+ const explicit=threshold('maxCost')??threshold('goalCpa');
+ let natural=null;
+ if(objective==='sales'){
+   const rev=value('revenue'),res=value('results'),m=value('margin');
+   if(rev!==null&&res>0&&m!==null)natural=rev/res*m/100;
+ }else if(objective==='leads'||objective==='messages'){
+   const close=value('closeRate'),ticket=value('avgSale'),margin=value('margin');
+   if(close!==null&&ticket!==null&&margin!==null)natural=close/100*ticket*margin/100;
+ }
+ return {limit:explicit!==null&&natural!==null?Math.min(explicit,natural):explicit??natural, natural, explicit};
+}
 function evaluate(m){
  const n=m.num,l=m.label;
- if(n===null||!Number.isFinite(n))return {state:'neutral',tag:'SIN REFERENCIA',reason:'Faltan datos suficientes para evaluar.'};
- if(l==='Conversión por clic'&&n>100)return {state:'bad',tag:'MALO · REVISAR DATOS',reason:'Más de 100 %: hay más conversiones que clics. Revisa ventanas de atribución, periodos y si mides eventos repetidos; esta tasa no representa usuarios únicos.'};
- if(l==='Conversión por clic'&&n===100)return {state:'regular',tag:'REGULAR · VERIFICAR',reason:'El 100 % requiere revisar si resultados y clics son comparables.'};
- if(l==='ROAS de equilibrio')return {state:'neutral',tag:'REFERENCIA DE RENTABILIDAD',reason:'Umbral calculado desde el margen; no es un rendimiento de campaña.'};
- if(l==='Gasto diario')return {state:'neutral',tag:'SIN REFERENCIA',reason:'Es un promedio de gasto, no una señal de calidad.'};
- const margin=value('margin');
- let target=null,kind=null,detail='';
- if(l==='CPM'){target=threshold('goalCpm');kind='lower';if(target===null&&n>=1000)return {state:'regular',tag:'REVISAR DATOS',reason:'Este CPM es muy elevado en términos absolutos. Antes de juzgar si es caro para tu negocio, revisa que gasto e impresiones sean reales y del mismo periodo; con pocas impresiones el CPM se dispara. Define tu CPM máximo para calificarlo.'};}
- else if(l.startsWith('CTR de ')){target=threshold('goalCtr');kind='higher';}
- else if(l.startsWith('CPC de ')){target=threshold('goalCpc');kind='lower';}
- else if(l==='Frecuencia'){target=threshold('goalFrequency');kind='lower';}
- else if(l==='CPA por compra'||l==='CPL por lead'||l==='Coste por resultado'||l==='Coste por conversación'){target=threshold('maxCost')??threshold('goalCpa');kind='lower';}
+ if(n===null||!Number.isFinite(n))return {state:'neutral',tag:'FALTAN DATOS',reason:'No se puede calcular con los campos actuales. Deja el campo vacío si no tienes el dato.'};
+ if(l==='ROAS de equilibrio')return {state:'neutral',tag:'UMBRAL DE TU NEGOCIO',reason:'Es el ROAS mínimo que cubriría anuncios con el margen declarado; no es un resultado de la campaña.'};
+ if(l==='Gasto diario')return {state:'neutral',tag:'DATO INFORMATIVO',reason:'Muestra cuánto invertiste por día en promedio; no dice si la campaña fue buena.'};
+ if(l==='CPM' && value('impressions')!==null && value('impressions')<100 && value('spend')>0){return {state:'regular',tag:'VERIFICAR',reason:'El CPM es inusualmente alto: revisa impresiones y gasto. No significa que pagaste ese monto; es una extrapolación a 1 000 impresiones.'};}
+ if(l==='Conversión por clic'&&n>100)return {state:'regular',tag:'VERIFICAR MEDICIÓN',reason:'Hay más conversiones atribuidas que clics registrados. Puede ser por varios eventos o conversiones tras una vista; no equivale a clientes únicos.'};
+ if(l==='Contribución estimada'){
+   const spend=value('spend')||0;
+   const tolerance=Math.max(.01,spend*.10);
+   const state=n>tolerance?'good':n< -tolerance?'bad':'regular';
+   return {state,tag:stateName(state),reason:state==='good'?'Los ingresos después de costos variables y publicidad dejan una contribución positiva.':state==='bad'?'El margen de ventas no cubre los anuncios con los datos aportados.':'El resultado está cerca del punto de equilibrio (±10 % del gasto), por lo que conviene optimizar antes de escalar.'};
+ }
+ let target=null,higher=false,meaning='';
+ if(l==='CPM'){target=threshold('goalCpm');meaning='Tu límite de CPM';}
+ else if(l.startsWith('CTR de ')){
+   if(value('impressions')!==null&&value('impressions')<1000)return {state:'regular',tag:'MUESTRA PEQUEÑA',reason:'La tasa se calcula correctamente, pero con tan pocas impresiones puede cambiar mucho. No conviene calificar el anuncio todavía.'};
+   target=threshold('goalCtr');higher=true;meaning='Tu objetivo personal de CTR';
+   // Comparación externa solo para un sector+objetivo comparables; no califica la rentabilidad.
+   if(target===null&&$('businessType').value==='ecommerce'&&$('objective').value==='sales'){
+     target=platform==='meta'?2.48:.61;meaning='Referencia orientativa de ecommerce internacional (Triple Whale 2026)';
+   }
+ }
+ else if(l.startsWith('CPC de ')){target=threshold('goalCpc');meaning='Tu límite de CPC';}
+ else if(l==='Frecuencia'){target=threshold('goalFrequency');meaning='Tu frecuencia máxima';}
+ else if(['CPA por compra','CPL por lead','Coste por resultado','Coste por conversación'].includes(l)){
+   target=economicalLimit().limit;meaning='Costo máximo económico o que introdujiste';
+ }
  else if(l==='ROAS atribuido'){
-   if(n<1)return {state:'bad',tag:'MALO',reason:'Por cada unidad monetaria gastada ingresaron menos de una unidad en ingresos atribuidos. El gasto supera lo vendido según el informe, incluso antes de otros costes.'};
-   target=threshold('goalRoas');kind='higher';
-   if(margin!==null&&margin>0){const be=100/margin;target=target===null?be:Math.max(target,be);detail=' Considera también el ROAS de equilibrio según tu margen.';}
+   higher=true;
+   const margin=value('margin');const economic=margin!==null&&margin>0?100/margin:null;
+   const own=threshold('goalRoas');
+   if(economic!==null){target=economic;meaning='ROAS de equilibrio calculado con tu margen';}
+   else if(own!==null){target=own;meaning='Meta de ROAS que elegiste';}
+   else if(n<1) return {state:'bad',tag:'MALO',reason:'Lo facturado por el anuncio es menor que lo gastado en publicidad, incluso antes de descontar otros costos.'};
+   else return {state:'neutral',tag:'RENTABILIDAD NO CONFIRMADA',reason:'Sin tu margen de contribución no sabemos si este ROAS deja dinero. Añádelo para evaluarlo.'};
  }
- else if(l==='Contribución estimada'){
-   if(n>0)return {state:'good',tag:'BUENO',reason:'Contribución estimada positiva con el margen indicado. No incluye otros costes no declarados.'};
-   if(n===0)return {state:'regular',tag:'REGULAR',reason:'Estás aproximadamente en equilibrio según los datos y el margen indicado.'};
-   return {state:'bad',tag:'MALO',reason:'Contribución estimada negativa: los ingresos por margen no cubren la inversión publicitaria.'};
- }
- if(target===null)return {state:'neutral',tag:'SIN REFERENCIA',reason:'Necesitas una meta comparable para evaluar esta métrica. Puedes configurarla en «Personalizar evaluación».'};
- const positive=kind==='higher'?n>=target:n<=target;
- const middle=kind==='higher'?n>=target*.6:n<=target*1.25;
- const state=positive?'good':middle?'regular':'bad';
- const tag=state==='good'?'BUENO':state==='regular'?'REGULAR':'MALO';
- const targetText=m.unit==='money'?formatMoney(target):m.unit==='times'?formatNumber(target,2)+'×':m.unit==='percent'?fmtPct(target):formatNumber(target,2);
- let why=positive?'Cumple la meta configurada.':middle?'Está cerca de la meta, pero aún no la cumple.':'Está fuera de la meta configurada.';
- if(l==='ROAS atribuido'&&margin===null)why+=' Este ROAS no garantiza beneficio: falta el margen del producto o servicio.';
- if(l==='Frecuencia')why+=' Evalúa también duración, objetivo y fatiga creativa.';
- return {state,tag,reason:why+' Referencia: '+(kind==='higher'?'mínimo ':'máximo ')+targetText+'.'+detail};
+ if(target===null)return {state:'neutral',tag:'DATO INFORMATIVO',reason:'Esta cifra ayuda a entender la campaña, pero no indica por sí sola si fue rentable. Revisa el diagnóstico general.'};
+ const state=band(n,target,higher);
+ const extra=meaning.includes('internacional')?' Es una comparación aproximada de otras marcas, no un veredicto sobre tu negocio.':'';
+ return {state,tag:stateName(state)+(meaning.includes('internacional')?' · ORIENTATIVO':''),reason:(state==='good'?'Resultado favorable frente a esta referencia.':state==='regular'?'Resultado cercano a la referencia; revísalo.':'Se aleja de la referencia usada para comparar.')+' '+meaning+': '+(m.unit==='money'?formatMoney(target):m.unit==='times'?formatNumber(target,2)+'×':m.unit==='percent'?fmtPct(target):formatNumber(target,2))+'.'+extra};
 }
 
 const meaningFor=(label)=>{
@@ -268,73 +321,125 @@ function adviseFor(m,r){
  return 'Compáralo con un objetivo propio y revisa su efecto sobre el resultado final.';
 }
 function overallDiagnosis(metrics,objective,spend,results,revenue,margin,clicks,imp){
- const lookup=name=>metrics.find(m=>m.label===name);
- const prefix=txt=>metrics.find(m=>m.label.startsWith(txt));
- const roas=lookup('ROAS atribuido'),ctr=prefix('CTR de '),cost=prefix('CPA por')||prefix('CPL por')||lookup('Coste por resultado');
- const contribution=lookup('Contribución estimada');
- const maxCost=threshold('maxCost')??threshold('goalCpa');
- const closeRate=value('closeRate'),avgSale=value('avgSale');
- const cpm=lookup('CPM');
+ const cpa=results>0?spend/results:null;
+ const maxData=economicalLimit();
+ const expected=maxData.limit;
+ const ctr=metrics.find(x=>x.label.startsWith('CTR de '));
+ const cpm=metrics.find(x=>x.label==='CPM');
+ const period=value('period');
+ const lowSample=(period!==null&&period<3)||(imp!==null&&imp<1000)||(objective==='sales'&&results!==null&&results>0&&results<5);
+ const issues=[];
+ if(imp!==null&&imp>0&&imp<1000)issues.push('Menos de 1 000 impresiones: las tasas pueden cambiar mucho al recibir más visualizaciones.');
+ if(period!==null&&period<3)issues.push('Menos de 3 días de campaña: no conviene sacar conclusiones definitivas todavía.');
+ if(results!==null&&results>clicks&&clicks!==null)issues.push('Hay más conversiones atribuidas que clics: revisa eventos repetidos, ventanas de atribución y medición tras visualizaciones.');
+ if(cpm?.num!==null&&imp!==null&&imp<100&&spend>0)issues.push('El CPM parece desproporcionado: confirma impresiones y gasto. CPM no es gasto adicional.');
+ const delivery=ctr?.num===null||!ctr?'neutral':evaluate(ctr).state;
+ const deliveryText=ctr?.num===null||!ctr?'Añade clics e impresiones para valorar la respuesta al anuncio.':
+   (delivery==='good'?'El anuncio despierta interés frente a una referencia orientativa.':delivery==='regular'?'La tasa de clics está cerca de la referencia usada.':delivery==='bad'?'La tasa de clics está por debajo de la referencia elegida.':'El CTR está calculado, pero faltan comparaciones adecuadas.');
+ let state='neutral',headline='Todavía no hay datos para decidir',reason='No podemos afirmar si la inversión fue buena o cara sin conocer cuánto costó el resultado y cuánto vale para tu negocio.',decision='COMPLETAR INFORMACIÓN',economics='';
  const steps=[];
- let state='neutral',headline='Datos insuficientes',reason='Necesitas datos del objetivo para decidir si fue una buena campaña.',decision='COMPLETAR DATOS',economics='';
- const contradictory=results!==null&&clicks!==null&&clicks>0&&results>clicks;
- const cpmVeryHigh=cpm&&cpm.num!==null&&cpm.num>=1000;
- const baseCost=results!==null&&results>0?spend/results:null;
+ let economicText='Faltan resultados o datos económicos para saber si conseguirlos salió caro.';
  if(objective==='sales'){
-   headline='¿Fue rentable tu campaña de ventas?';
-   if(revenue!==null&&spend!==null&&spend>0){
-     const r=revenue/spend;
-     if(margin!==null){
-       const profit=revenue*margin/100-spend;
-       economics='Con el margen declarado, la contribución después de anuncios es '+formatMoney(profit)+'.';
-       state=profit>0?'good':profit===0?'regular':'bad';
-       reason=profit>0?'Los ingresos atribuidos, después del margen de contribución declarado, superan el gasto publicitario.':profit===0?'La campaña está aproximadamente en equilibrio según los datos y el margen indicado.':'El margen aportado por los ingresos atribuidos no cubre el gasto de anuncios.';
-       decision=profit>0?'MANTENER Y VERIFICAR ANTES DE ESCALAR':profit===0?'OPTIMIZAR ANTES DE INVERTIR MÁS':'REVISAR ANTES DE SEGUIR INVIRTIENDO';
-     }else if(r<1){
-       state='bad';reason='Los ingresos atribuidos ('+formatMoney(revenue)+') son inferiores al gasto ('+formatMoney(spend)+'). Incluso sin descontar el coste del producto, el retorno es insuficiente.';decision='REVISAR ANTES DE INVERTIR MÁS';
-     }else{
-       state='neutral';reason='Los ingresos atribuidos superan el gasto publicitario, pero sin margen no podemos afirmar que existan ganancias. Completa el margen para decidir si la campaña fue rentable.';decision='AÑADIR MARGEN PARA EVALUAR';
-     }
-     economics+=' ROAS: '+formatNumber(r,2)+'×. '+(baseCost!==null?'Costo por compra: '+formatMoney(baseCost)+'.':'');
-   }else if(baseCost!==null&&maxCost!==null){
-     state=baseCost<=maxCost?'good':baseCost<=maxCost*1.25?'regular':'bad';
-     reason='El costo por compra es '+formatMoney(baseCost)+' frente a tu máximo de '+formatMoney(maxCost)+'. Sin ventas e ingresos atribuidos no se puede confirmar rentabilidad.';
-     decision='COMPROBAR VALOR Y MARGEN DE LAS VENTAS';
-   }else{reason='Para saber si ganaste o perdiste, registra ingresos atribuidos y margen. Los clics, por sí solos, no muestran rentabilidad.';}
-   steps.push('Compara ROAS y costo por compra con el margen disponible de cada venta; evita escalar por tener solo muchos clics.');
-   steps.push('Si el retorno es desfavorable, revisa producto, oferta, público, página de destino y medición.');
+  headline='¿La campaña de ventas dejó dinero?';
+  if(revenue!==null&&margin!==null){
+   const contrib=revenue*margin/100-spend;
+   const tolerance=spend*.10;
+   state=contrib>tolerance?'good':contrib< -tolerance?'bad':'regular';
+   reason='Facturaste '+formatMoney(revenue)+' atribuidos a tus anuncios. Después de aplicar tu margen ('+formatNumber(margin,1)+' %) y restar publicidad, queda '+formatMoney(contrib)+'.';
+   economics='ROAS '+(spend>0?formatNumber(revenue/spend,2)+'×':'no disponible')+(cpa!==null?' · Costo por compra: '+formatMoney(cpa):'')+'.';
+   economicText=contrib>0?'Con los costos declarados, hay contribución positiva. Comprueba gastos fijos, devoluciones e impuestos por separado.':contrib===0?'Estás aproximadamente en equilibrio: no hay margen de seguridad.':'El costo del anuncio supera el margen disponible de estas ventas.';
+   decision=state==='good'?'MANTENER Y PROBAR ANTES DE ESCALAR':state==='regular'?'OPTIMIZAR ANTES DE ESCALAR':'REVISAR PRECIO, OFERTA Y COSTOS';
+  }else if(revenue!==null&&spend>0&&revenue<spend){
+   state='bad';reason='Los ingresos atribuidos ('+formatMoney(revenue)+') son inferiores al gasto publicitario ('+formatMoney(spend)+'). Ni siquiera se cubre la publicidad, antes del producto.';decision='REVISAR EL COSTO DE VENDER';
+   economicText='Ingresos menores que la inversión publicitaria.';
+  }else if(cpa!==null&&expected!==null){
+   state=band(cpa,expected);reason='Cada compra cuesta '+formatMoney(cpa)+' y el máximo de referencia para tu negocio es '+formatMoney(expected)+'. Aún falta conocer ingresos y margen para confirmar beneficio.';decision='COMPROBAR FACTURACIÓN Y MARGEN';
+   economicText='Costo de compra comparado con el límite ingresado.';
+  }else{
+   reason='Si vendiste, ingresa los ingresos atribuidos y el margen aproximado de tu producto. Sin eso, un ROAS alto no demuestra ganancias.';
+   economicText='Faltan margen e ingresos para calcular lo que realmente quedó después de publicidad.';
+  }
+  steps.push('Compara el costo por compra con lo que te deja cada venta, después de pagar el producto o servicio.');
  }else if(objective==='leads'||objective==='messages'){
-   headline=objective==='leads'?'¿Fueron caros tus leads?':'¿Fueron caras tus conversaciones?';
-   let sustainable=null;
-   if(closeRate!==null&&avgSale!==null&&margin!==null&&margin>0){sustainable=closeRate/100*avgSale*margin/100;economics='Valor de contribución estimado por lead: '+formatMoney(sustainable)+' (tasa de cierre × ticket × margen).';}
-   const limit=maxCost!==null&&sustainable!==null?Math.min(maxCost,sustainable):maxCost??sustainable;
-   if(baseCost!==null&&limit!==null){
-      state=baseCost<=limit?'good':baseCost<=limit*1.25?'regular':'bad';
-      reason='Cada '+(objective==='leads'?'lead':'resultado')+' cuesta '+formatMoney(baseCost)+'. Tu límite '+(maxCost!==null?'declarado/económico':'económico estimado')+' es '+formatMoney(limit)+'. '+(state==='good'?'Se encuentra dentro del límite; falta comprobar calidad real de los contactos.':state==='regular'?'Está ligeramente por encima del límite y necesita optimización.':'Supera el costo sostenible estimado con tus propios datos.');
-      decision=state==='good'?'MANTENER Y MEDIR CALIDAD':state==='regular'?'OPTIMIZAR CAPTACIÓN':'REVISAR COSTO Y CONVERSIÓN';
-   }else if(baseCost!==null){reason='Conseguiste resultados a '+formatMoney(baseCost)+' cada uno, pero falta un costo máximo sostenible o la combinación de tasa de cierre, ticket y margen. No se puede llamar caro o barato todavía.';decision='DEFINIR VALOR ECONÓMICO DEL LEAD';}
-   else{reason='Faltan los leads o conversaciones registrados para calcular su costo unitario.';}
-   steps.push('Mide cuántos contactos realmente se convierten en clientes, no solo cuántos formularios recibes.');
-   steps.push('Completa tasa de cierre, ticket promedio y margen para estimar cuánto puedes pagar por cada lead.');
+  const name=objective==='leads'?'lead':'conversación';headline='¿Cuánto costó conseguir cada '+name+'?';
+  if(results===0&&expected!==null&&spend>expected*3){state='bad';reason='Gastaste más de tres veces tu costo objetivo sin registrar '+(objective==='leads'?'leads':'conversaciones')+'. Revisa que el evento se esté midiendo.';decision='REVISAR MEDICIÓN Y CAPTACIÓN';}
+  else if(results===0){state='regular';reason='Ya hubo gasto y todavía no hay resultados atribuidos. Si apenas comenzó, revisa medición y deja reunir más información.';decision='REVISAR EL EVENTO Y CONTINUAR MIDIENDO';}
+  else if(cpa!==null&&expected!==null){
+   state=band(cpa,expected);reason='Cada '+name+' cuesta '+formatMoney(cpa)+'. Según los datos económicos que proporcionaste, puedes pagar aproximadamente hasta '+formatMoney(expected)+' por uno.';
+   decision=state==='good'?'MANTENER Y EVALUAR CALIDAD':state==='regular'?'MEJORAR EL COSTO O EL CIERRE':'OPTIMIZAR ANTES DE INVERTIR MÁS';
+  }else if(cpa!==null){reason='Pagaste '+formatMoney(cpa)+' por '+name+'. Para saber si fue caro necesitamos tu tasa de cierre, ticket y margen, o tu costo máximo aceptable.';decision='COMPROBAR EL VALOR DE LOS CONTACTOS';}
+  economicText=expected!==null?'Límite estimado por '+name+': '+formatMoney(expected)+'.':'Sin valor económico por contacto, el costo no puede llamarse caro ni barato de forma objetiva.';
+  if(maxData.natural!==null)economics='Costo sostenible estimado = tasa de cierre × ingreso por venta × margen = '+formatMoney(maxData.natural)+'.';
+  steps.push('Mide cuántos leads o conversaciones se convierten en clientes reales; un contacto no es una venta.');
  }else if(objective==='traffic'){
-   headline='¿Fue eficiente conseguir visitas?';
-   const cpc=prefix('CPC de '),cpcLimit=threshold('goalCpc');
-   if(cpc&&cpc.num!==null&&cpcLimit!==null){state=evaluate(cpc).state;reason='El costo por clic de destino es '+formatMoney(cpc.num)+' frente a tu máximo de '+formatMoney(cpcLimit)+'. Esto evalúa costo del tráfico, no la calidad de las visitas.';decision=state==='bad'?'OPTIMIZAR CLICS Y DESTINO':'REVISAR CALIDAD DE VISITAS';}
-   else{reason='Para decir si el tráfico salió caro debes establecer un CPC máximo y verificar visitas reales a la página de destino.';decision='DEFINIR COSTO POR VISITA ÚTIL';}
-   steps.push('Compara los clics con las visitas reales y las acciones realizadas en la web.');
+  headline='¿Cuánto te costó conseguir tráfico útil?';
+  const visit=platform==='meta'&&value('lpv')>0?value('lpv'):null;
+  const cost=visit?spend/visit:(clicks>0?spend/clicks:null);
+  const goal=threshold('goalCpc');
+  if(cost!==null&&goal!==null){state=band(cost,goal);reason='Costo por '+(visit?'visita cargada':'clic de destino')+': '+formatMoney(cost)+', frente a tu máximo de '+formatMoney(goal)+'.';decision=state==='good'?'REVISAR CONVERSIÓN DEL TRÁFICO':state==='regular'?'OPTIMIZAR ANUNCIOS Y PÁGINA':'REVISAR COSTO DE TRÁFICO';}
+  else if(cost!==null){reason='Pagaste '+formatMoney(cost)+' por '+(visit?'visita cargada':'clic')+'. Sin una meta de costo o conversiones posteriores no podemos saber si esas visitas fueron valiosas.';decision='MEDIR ACCIONES EN LA WEB';}
+  else{reason='Ingresa clics y, si es Meta, visitas a la página para valorar el tráfico.';}
+  economicText='Las visitas no son ventas. Revisa si las personas compran, preguntan o se registran después de entrar.';
+  steps.push('Si hay muchos clics y pocas visitas cargadas, comprueba velocidad de la página, enlaces y medición.');
  }else if(objective==='video'){
-   headline='¿Fueron útiles las visualizaciones?';reason='Una vista de 2, 3 o 6 segundos no indica por sí misma que el video cumplió su objetivo. Necesitas una meta de costo por vista relevante y una medida de retención.';decision='CONTRASTAR CALIDAD DE VISTAS';steps.push('Analiza duración vista, reproducciones completas y el coste por la visualización que realmente te importa.');
+  headline='¿El video logró atención útil?';
+  const videoCount=platform==='meta'?(value('thruplay')??value('meta3s')):(value('complete')??value('views6')??value('views2'));
+  const vcost=videoCount>0?spend/videoCount:null;
+  const max=threshold('goalCpa');
+  if(vcost!==null&&max!==null){state=band(vcost,max);reason='Cada visualización del tipo seleccionado costó '+formatMoney(vcost)+' frente a tu objetivo de '+formatMoney(max)+'.';decision='REVISAR RETENCIÓN Y CREATIVO';}
+  else if(vcost!==null){reason='Costo por visualización útil seleccionada: '+formatMoney(vcost)+'. Falta una referencia propia comparable para juzgar el precio.';decision='COMPARAR VIDEOS SIMILARES';}
+  else{reason='Completa las visualizaciones de video de tu plataforma para conocer el costo por vista.';}
+  economicText='Una vista de 2 segundos no equivale a una reproducción completa; revisa el tiempo visto y el objetivo real.';
+  steps.push('Compara videos de duración similar y revisa qué porcentaje terminó de verlos.');
  }else{
-   headline='¿Fue eficiente el reconocimiento?';reason='El alcance, las impresiones y la frecuencia describen exposición, pero no demuestran por sí solos impacto ni rentabilidad. Define cobertura deseada y costo máximo aceptable.';decision='REVISAR OBJETIVO DE COBERTURA';steps.push('Compara cobertura, frecuencia y CPM con campañas del mismo público y periodo.');
+  headline='¿Cuánto costó llegar a tu audiencia?';
+  const r=value('reach');const costReach=r>0?spend/r*1000:null;
+  const budget=threshold('goalCpm');
+  if(costReach!==null&&budget!==null){state=band(costReach,budget);reason='Coste por 1 000 personas alcanzadas: '+formatMoney(costReach)+' versus tu límite orientativo de '+formatMoney(budget)+'.';decision='REVISAR COBERTURA Y FRECUENCIA';}
+  else if(costReach!==null){reason='Costo por 1 000 personas alcanzadas: '+formatMoney(costReach)+'. Para decir si es caro necesitas comparar una audiencia y periodo similares.';decision='COMPARAR CAMPAÑAS DE ALCANCE';}
+  else{reason='Añade el alcance único para saber cuántas personas diferentes vieron el anuncio.';}
+  economicText='Reconocimiento mide exposición. No confirma clientes ni ventas por sí solo.';
+  steps.push('Observa alcance real, frecuencia y si necesitas llegar a personas nuevas.');
  }
- if(ctr&&evaluate(ctr).state==='good'&&state==='bad')steps.unshift('Aunque el CTR cumpla tu meta, la campaña no está cumpliendo el objetivo económico: muchos clics no garantizan ganancias.');
- if(cpmVeryHigh){
-   steps.unshift('ALERTA DE CPM: '+formatMoney(cpm.num)+' por 1000 impresiones se calcula como '+formatMoney(spend)+' ÷ '+formatNumber(imp)+' × 1000. Verifica impresiones, gasto, nivel y fechas. Un CPM extremo no es necesariamente un fallo matemático.');
-   if(!reason.includes('CPM'))reason+=' Además, el CPM es excepcionalmente elevado en valor absoluto y debe comprobarse antes de tomar decisiones.';
+ // Separar claramente una muestra pequeña de un resultado económico negativo.
+ if(lowSample){steps.unshift('MUESTRA PEQUEÑA: '+issues.filter(x=>x.includes('Menos')).join(' '));
+   if(state==='good'){state='regular';reason+=' Señal favorable por ahora, pero aún hay pocos datos para confirmarla.';decision='CONTINUAR MIDIENDO ANTES DE ESCALAR';}
  }
- if(contradictory)steps.unshift('ALERTA DE MEDICIÓN: hay más eventos que clics. Revisa atribución, eventos repetidos y comparabilidad; no interpretes esta tasa como clientes únicos.');
- if(spend===0)steps.unshift('Con gasto cero, los indicadores de costo y retorno no permiten juzgar la inversión.');
- return {state,tag:state==='good'?'BUENO':state==='regular'?'REGULAR':state==='bad'?'MALO':'SIN DATOS SUFICIENTES',headline,reason,steps,decision,economics};
+ if(issues.some(x=>x.includes('más conversiones')||x.includes('CPM parece'))){steps.unshift('CALIDAD DE DATOS: '+issues.filter(x=>x.includes('más conversiones')||x.includes('CPM parece')).join(' '));
+   if(state==='good'){state='regular';reason+=' Primero comprueba las cifras, porque hay una alerta de medición.';}
+ }
+
+ let budgetState='neutral',budgetTag='CONTEXTUAL',budgetText='El presupuesto por sí solo no indica éxito o fracaso.';
+ const pDays=value('period');
+ if(expected!==null&&expected>0){
+   const opportunities=spend/expected;
+   const evidence=formatNumber(opportunities,1);
+   if(opportunities<3){
+     budgetState='regular';budgetTag='PRUEBA INICIAL';
+     budgetText='Has invertido el equivalente a '+evidence+' veces tu costo objetivo por resultado. Puede ser poco para sacar una conclusión firme; registra más datos antes de escalar o detener.';
+   }else{
+     budgetState='good';budgetTag='VOLUMEN PARA REVISAR';
+     budgetText='El gasto equivale a '+evidence+' veces tu costo objetivo. No garantiza ese número de resultados; comprueba cuántos lograste realmente.';
+   }
+ }else if(pDays!==null&&pDays<3){budgetState='regular';budgetTag='MUY RECIENTE';budgetText='Solo analizas '+pDays+' día(s). Evita sacar conclusiones por un periodo tan corto.';}
+ else if(pDays!==null){budgetText='Gastaste '+formatMoney(spend)+' en '+pDays+' días ('+formatMoney(spend/pDays)+' al día). Sin un costo objetivo no hay un presupuesto universalmente suficiente o insuficiente.';}
+ if(platform==='tiktok'&&pDays!==null&&pDays<=7&&(objective==='sales'||objective==='leads'))budgetText+=' TikTok indica que la fase inicial puede ser inestable hasta acumular resultados o aproximadamente una semana; no implica que tu campaña ya haya salido de aprendizaje.';
+ const business={state,tag:stateName(state),text:economicText};
+ const creative={state:delivery,tag:delivery==='neutral'?'SIN REFERENCIA':stateName(delivery),text:deliveryText};
+ const budget={state:budgetState,tag:budgetTag,text:budgetText};
+ const reliable={state:issues.length?'regular':'good',tag:issues.length?'REVISAR DATOS':'DATOS COHERENTES',text:issues.length?issues.join(' '):'Sin incoherencias evidentes; confirma siempre que periodo y atribución coincidan.'};
+ if(state==='neutral'){reason+=' Este resultado no es automáticamente malo: faltan datos para compararlo de forma justa.';}
+ if(!steps.length)steps.push('Conserva el periodo, objetivo y métricas para compararlos con campañas semejantes.');
+ return {state,tag:state==='neutral'?'NO CONCLUYENTE':stateName(state),headline,reason,steps,decision,economics,business,creative,budget,reliable};
+}
+function referenceContext(){
+ const commercial=$('businessType').value==='ecommerce';
+ const name=platform==='meta'?'Meta Ads':'TikTok Ads';
+ const data=platform==='meta'?{ctr:'2,48 %',cpm:'US$ 15,72',roas:'1,88×',period:'noviembre 2025 a octubre 2026',brands:'más de 41 000 marcas',url:'https://www.triplewhale.com/blog/facebook-ads-benchmarks'}:
+  {ctr:'0,61 %',cpm:'US$ 4,08',roas:'1,51×',period:'agosto 2025 a julio 2026',brands:'más de 5 900 marcas',url:'https://triple-whale-2022.webflow.io/blog/tiktok-benchmarks'};
+ let warning=commercial?'Seleccionaste tienda online: esta muestra puede ofrecer contexto, pero puede diferir de tu país, producto y objetivo.':'La muestra es de ecommerce; como tu negocio no es una tienda online, sus cifras NO sirven como meta automática para ti.';
+ if($('currency').value!=='USD')warning+=' Tu moneda es distinta del dólar: no compares directamente los costos sin convertir moneda y contexto.';
+ return '<b>Referencia internacional orientativa · '+name+'</b> <span style="color:#b7b0aa">(Triple Whale, '+data.period+', '+data.brands+')</span><div class="ref-metrics"><span class="ref-pill">CTR: '+data.ctr+'</span><span class="ref-pill">CPM: '+data.cpm+'</span><span class="ref-pill">ROAS: '+data.roas+'</span></div><p style="margin:9px 0 0">'+htmlSafe(warning)+' <a href="'+data.url+'" target="_blank" rel="noopener noreferrer">Consultar estudio y metodología</a>.</p>';
 }
 
 function calculate(){const issues=validate();const status=$('formMsg');if(issues.length){status.className='msg error';status.textContent=issues[0]+' Revisa los campos.';clearOutput();status.className='msg error';status.textContent=issues.join(' ');return;}status.className='msg';status.textContent='Resultados calculados con los datos del periodo elegido.';
@@ -363,11 +468,13 @@ if(platform==='meta'){
  if(fv!==null)add('Coste por vista enfocada',ratio(spend,fv),'money','Gasto ÷ vistas enfocadas de 6 s');
  if(full!==null){const r=ratio(full,imp);add('Vista completa / impresión',r===null?null:r*100,'percent','Vistas al 100 % ÷ impresiones × 100');add('Coste por vista completa',ratio(spend,full),'money','Gasto ÷ vistas completas');}
 }
-const notes=[];if(cpm!==null&&cpm*1000>=1000)notes.push('CPM ELEVADO: '+formatMoney(cpm*1000)+' = '+formatMoney(spend)+' / '+formatNumber(imp)+' impresiones × 1000. Comprueba especialmente que no introdujiste 25 en vez de 25 000 impresiones. No es una tarifa ni un pago adicional.');if(clicks===null)notes.push('Añade clics pertinentes para obtener CTR, CPC y conversión por clic.');if(results===null)notes.push('Sin resultados atribuidos no se puede calcular CPA/CPL ni tasa de conversión.');if(revenue===null)notes.push('Sin ingresos atribuidos no se puede calcular ROAS.');if(reach===null)notes.push('Sin alcance no se puede calcular frecuencia.');if(spend===0)notes.push('Con gasto cero no es posible calcular ROAS mediante división; los resultados que necesitan ese denominador aparecen como «—».');if(clicks!==null&&clicks>imp)notes.push('Tus clics superan las impresiones. Es posible en algunas métricas de interacciones, pero verifica que sean clics en enlace/destino y del mismo periodo.');if(revenue!==null&&objective!=='sales')notes.push('Se calculó ROAS porque introdujiste ingresos, aunque el objetivo seleccionado no es ventas.');if(notes.length===0)notes.push('Comprueba que las cifras provengan del mismo periodo, nivel de campaña y ventana de atribución.');
+const notes=[];if(cpm!==null&&imp!==null&&imp<100&&spend>0)notes.push('CPM ELEVADO: '+formatMoney(cpm*1000)+' = '+formatMoney(spend)+' / '+formatNumber(imp)+' impresiones × 1000. Comprueba especialmente que no introdujiste 25 en vez de 25 000 impresiones. No es una tarifa ni un pago adicional.');if(clicks===null)notes.push('Añade clics pertinentes para obtener CTR, CPC y conversión por clic.');if(results===null)notes.push('Sin resultados atribuidos no se puede calcular CPA/CPL ni tasa de conversión.');if(revenue===null)notes.push('Sin ingresos atribuidos no se puede calcular ROAS.');if(reach===null)notes.push('Sin alcance no se puede calcular frecuencia.');if(spend===0)notes.push('Con gasto cero no es posible calcular ROAS mediante división; los resultados que necesitan ese denominador aparecen como «—».');if(clicks!==null&&imp!==null&&clicks>imp)notes.push('Tus clics superan las impresiones. Es posible en algunas métricas de interacciones, pero verifica que sean clics en enlace/destino y del mismo periodo.');if(revenue!==null&&objective!=='sales')notes.push('Se calculó ROAS porque introdujiste ingresos, aunque el objetivo seleccionado no es ventas.');if(notes.length===0)notes.push('Comprueba que las cifras provengan del mismo periodo, nivel de campaña y ventana de atribución.');
 const action=[];if(objective==='sales')action.push('Para valorar ventas, revisa CPA por compra y ROAS juntos. Un ROAS alto no garantiza rentabilidad si los costes del negocio son elevados.');if(objective==='leads')action.push('Para leads, contrasta el CPL con la calidad real de los contactos y la proporción que termina comprando.');if(objective==='traffic')action.push(platform==='meta'?'Si dispones de visitas LPV, compáralas con clics de enlace para detectar pérdidas entre el anuncio y la carga de la web.':'Contrasta clics de destino con visitas reales de tu herramienta de analítica; no son automáticamente iguales.');if(objective==='video')action.push(platform==='meta'?'Revisa ThruPlays o vistas de 3 s según la métrica seleccionada y la duración real del anuncio.':'Distingue vistas de 2 s, 6 s, vistas enfocadas y reproducciones completas; no se deben sumar entre sí.');if(objective==='awareness')action.push('Alcance e impresiones miden cosas diferentes. La frecuencia es un promedio, no el número de veces que cada persona vio el anuncio.');if(objective==='messages')action.push('Una conversación iniciada no equivale a una venta. Mide también cuántas consultas terminan en clientes.');action.push('No compares directamente una campaña de Meta con una de TikTok si tienen diferentes objetivos, creatividades, públicos o atribuciones.');
 const global=overallDiagnosis(metrics,objective,spend,results,revenue,margin,clicks,imp);
 $('globalDiagnosis').className='global-diagnosis '+global.state;
 $('globalDiagnosis').innerHTML='<div class="diagnosis-head"><h3>Diagnóstico general · '+htmlSafe(global.headline)+'</h3><span class="diagnosis-label">● '+htmlSafe(global.tag)+'</span></div><p class="decision"><b>Qué hacer: '+htmlSafe(global.decision)+'</b></p><p>'+htmlSafe(global.reason)+'</p>'+(global.economics?'<p><b>Economía de campaña:</b> '+htmlSafe(global.economics)+'</p>':'')+'<ul>'+global.steps.map(x=>'<li>'+htmlSafe(x)+'</li>').join('')+'</ul>';
+$('verdictGrid').innerHTML=[['Resultado del negocio',global.business],['Respuesta del anuncio',global.creative],['Lectura del presupuesto',global.budget],['Confianza en los datos',global.reliable]].map(([name,x])=>'<article class="ads-mini '+x.state+'"><strong>'+htmlSafe(name)+'</strong><div class="mini-status">● '+htmlSafe(x.tag)+'</div><span>'+htmlSafe(x.text)+'</span></article>').join('');
+$('benchmarkContext').innerHTML=referenceContext();
 $('kpis').innerHTML=metrics.map(m=>{const r=evaluate(m);m.rating=r.tag;m.ratingReason=r.reason;m.meaning=meaningFor(m.label);m.advice=adviseFor(m,r);return '<article class="kpi '+(m.highlight?'highlight ':'')+r.state+'"><small>'+htmlSafe(m.label)+'</small><strong>'+htmlSafe(m.val)+'</strong><div class="desc">'+htmlSafe(m.formula)+'</div><span class="meaning"><b>¿Qué es?</b> '+htmlSafe(m.meaning)+'</span><span class="rating">● '+htmlSafe(r.tag)+'</span><span class="rating-reason"><b>Diagnóstico:</b> '+htmlSafe(r.reason)+'</span><div class="recommendation"><b>Qué hacer:</b> '+htmlSafe(m.advice)+'</div></article>';}).join('');$('dataNote').innerHTML='<b>Lectura de datos:</b> '+notes.map(htmlSafe).join(' ');$('insights').innerHTML='<strong>Qué revisar antes de decidir:</strong><ul>'+action.map(x=>'<li>'+htmlSafe(x)+'</li>').join('')+'</ul>';
 $('emptyState').hidden=true;$('output').hidden=false;last={platform:platform==='meta'?'Meta Ads':'TikTok Ads',objective,metrics,notes,action,global,currency:$('currency').value};}
 function reportText(){if(!last)return '';return 'ACADEMIA LEONES DIGITALES · INFORME DE PUBLICIDAD\nPlataforma: '+last.platform+'\nObjetivo: '+$('objective').selectedOptions[0].textContent+'\nMoneda: '+last.currency+'\n\nDIAGNÓSTICO GENERAL: '+last.global.tag+' · '+last.global.headline+'\nAcción: '+last.global.decision+'\n'+last.global.reason+'\n'+last.global.economics+'\n'+last.global.steps.join('\n')+'\n\n'+last.metrics.map(m=>m.label+': '+m.val+' | '+(m.rating||'Sin referencia')+' | '+(m.meaning||'')+' | '+(m.ratingReason||'')+' | Acción: '+(m.advice||'')+' | '+m.formula).join('\n')+'\n\nOBSERVACIONES\n'+last.notes.join(' ')+'\n\nCONSIDERACIONES\n'+last.action.join('\n')+'\n\nResultados calculados con datos introducidos por el usuario; no son cifras obtenidas de la plataforma.';}
@@ -376,12 +483,12 @@ $('metaBtn').addEventListener('click',()=>updatePlatform('meta'));
 $('tiktokBtn').addEventListener('click',()=>updatePlatform('tiktok'));
 $('objective').addEventListener('change',()=>{updateObjective();clearOutput();});
 $('calculate').addEventListener('click',calculate);
-$('reset').addEventListener('click',()=>{allIds.forEach(id=>$(id).value='');$('objective').value='sales';$('currency').value='PEN';updateObjective();clearOutput();});
-$('example').addEventListener('click',()=>{const meta=platform==='meta';$('objective').value='sales';updateObjective();Object.entries({period:7,spend:320,impressions:24000,reach:15000,clicks:meta?540:480,results:18,revenue:1360,margin:55,lpv:meta?400:'',messages:meta?35:'',meta3s:meta?10500:'',thruplay:meta?4800:'',views2:meta?'':12500,views6:meta?'':7100,focused6:meta?'':5800,complete:meta?'':3500}).forEach(([id,v])=>$(id).value=v);$('formMsg').textContent='Ejemplo ilustrativo cargado: las cifras son ficticias y solo sirven para aprender.';calculate();$('formMsg').textContent='Ejemplo ficticio calculado. Sustituye los datos por los de tu Ads Manager.';});
+$('reset').addEventListener('click',()=>{allIds.forEach(id=>$(id).value='');$('objective').value='sales';$('currency').value='PEN';$('businessType').value='other';['goalCtr','goalRoas','goalCpm','goalCpc','goalCpa','goalFrequency'].forEach(id=>$(id).value='');updateObjective();clearOutput();});
+$('example').addEventListener('click',()=>{const meta=platform==='meta';$('objective').value='sales';updateObjective();Object.entries({period:14,spend:320,impressions:24000,reach:15000,clicks:meta?540:480,results:18,revenue:1600,margin:55,lpv:meta?400:'',messages:meta?35:'',meta3s:meta?10500:'',thruplay:meta?4800:'',views2:meta?'':12500,views6:meta?'':7100,focused6:meta?'':5800,complete:meta?'':3500}).forEach(([id,v])=>$(id).value=v);$('formMsg').textContent='Ejemplo ilustrativo cargado: las cifras son ficticias y solo sirven para aprender.';calculate();$('formMsg').textContent='Ejemplo ficticio calculado. Sustituye los datos por los de tu Ads Manager.';});
 $('copyReport').addEventListener('click',async()=>{if(!last)return;try{await navigator.clipboard.writeText(reportText());notify('Informe copiado.');}catch(_){const t=document.createElement('textarea');t.value=reportText();document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();notify('Informe copiado.');}});
 $('csvReport').addEventListener('click',()=>{if(!last)return;const q=s=>'"'+String(s).replace(/"/g,'""')+'"';const rows=[['DIAGNÓSTICO GENERAL',last.global.tag,last.global.headline,last.global.reason,last.global.decision,last.global.economics,''],['Métrica','Resultado','Evaluación','Qué es','Diagnóstico','Qué hacer','Fórmula'],...last.metrics.map(m=>[m.label,m.val,m.rating||'Sin referencia',m.meaning||'',m.ratingReason||'',m.advice||'',m.formula])];const blob=new Blob(['﻿'+rows.map(row=>row.map(q).join(';')).join('\r\n')],{type:'text/csv;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='leones-digitales-'+platform+'-metricas.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),500);notify('Archivo CSV generado.');});
 $('printReport').addEventListener('click',()=>window.print());
-['goalCtr','goalRoas','goalCpm','goalCpc','goalCpa','goalFrequency','maxCost','closeRate','avgSale'].forEach(id=>$(id).addEventListener('input',()=>{if(last)$('exportMsg').textContent='Cambiaste las metas. Recalcula para actualizar la evaluación.';}));
+['goalCtr','goalRoas','goalCpm','goalCpc','goalCpa','goalFrequency','maxCost','closeRate','avgSale','businessType'].forEach(id=>$(id).addEventListener('input',()=>{if(last)$('exportMsg').textContent='Cambiaste las metas. Recalcula para actualizar la evaluación.';}));
 allIds.forEach(id=>$(id).addEventListener('input',()=>{if(last){$('exportMsg').textContent='Los datos cambiaron. Vuelve a pulsar «Calcular métricas» para actualizar.';}}));
 $('currency').addEventListener('change',()=>{if(last)$('exportMsg').textContent='Has cambiado la moneda. Recalcula para actualizar los símbolos. No se convierte el importe.';});
 updatePlatform('meta');
