@@ -1,15 +1,20 @@
-LEO LEON MEDIA — VIDEOS REALES DE TIKTOK E INSTAGRAM
+VIDEOS EN LA WEB — LEO LEÓN MEDIA
 
-1. Copia index.html e inicio.html en la raiz de tu repositorio y reemplaza ambos archivos.
-2. GitHub Desktop → Commit to main → Push origin.
-3. Actualiza el navegador con Ctrl+F5 y baja hasta la seccion Videos.
-4. Pulsa Mostrar mis TikToks / Mostrar mi Instagram para autorizar que se descarguen los reproductores oficiales.
+Qué contiene
+- index.html e inicio.html listos para copiar a la raíz del repositorio.
+- TikTok mantiene la inserción oficial de @leoleonmedia.
+- Instagram carga automáticamente el feed real configurado por ti en Curator.io, usando el código que compartiste.
 
-TikTok: su insercion oficial de perfil presenta hasta 10 videos recientes.
-Instagram: su insercion oficial de perfil muestra las publicaciones recientes que esten disponibles para insercion (incluye Reels cuando son recientes).
+PASOS
+1. Abre GitHub Desktop > Repository > Show in Explorer.
+2. Sustituye SOLO index.html e inicio.html por los de este ZIP. No borres otros archivos ni carpetas.
+3. Commit to main > Push origin.
+4. Abre https://leoleonmedia.github.io/MARCA-PERSONAL-LEO/ y pulsa Ctrl+F5.
+5. Desplázate a «Mis videos publicados»; no necesitas pulsar ningún botón para que se inicien los reproductores/inserciones.
 
-Requisitos: perfiles publicos, opcion de insertar habilitada; el navegador y los bloqueadores deben permitir cargar los reproductores. No se han verificado las publicaciones en vivo desde este entorno.
-
-IMPORTANTE: estas inserciones no garantizan que se muestren los videos mas vistos; el criterio es recientes. Para una galeria personalizada y ordenada por vistas se necesita una conexion mediante API autorizada.
-
-El resto de la web, formularios y configuracion de Analytics quedan intactos.
+IMPORTANTE
+- El feed de Curator mostrará lo que realmente esté configurado y publicado en esa cuenta/feed. Para ver los Reels, debes tener Instagram como fuente activa en Curator y los posts aprobados/publicados. Si hay fotos, Curator puede mostrarlas también. Selecciona solo Reels en los filtros de Curator si deseas exclusivamente video y el plan lo permite.
+- En el plan gratis de Curator, las publicaciones se sincronizan de acuerdo con la frecuencia del proveedor; pueden tardar en aparecer.
+- En Brave, algunas protecciones pueden bloquear TikTok, Instagram o Curator. Si una sección se queda vacía, revisa Shields/los bloqueadores.
+- No se ha verificado que el feed remoto devuelva publicaciones reales desde esta sesión. Las inserciones tienen el código oficial recibido del propietario, pero su visibilidad final depende de los servicios externos.
+- Como se cargan componentes de terceros, actualiza tu política de privacidad para explicar estas inserciones y las posibles cookies del proveedor.

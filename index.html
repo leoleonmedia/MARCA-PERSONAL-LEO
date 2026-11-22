@@ -1,4 +1,5 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <!DOCTYPE html>
 
 <html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Leo León | Estrategia de contenido, Reels e IA</title>
@@ -738,6 +739,27 @@ a.social-link[href*="ig.me/"] svg circle:last-child { fill: currentColor !import
 #videos .leo-social-loading a{color:#ffa046}
 @media(max-width:800px){#videos .leo-social-grid{grid-template-columns:1fr;gap:18px}#videos .leo-social-panel{padding:15px}#videos .leo-social-feed{min-height:340px}#videos .leo-embed-welcome{min-height:310px}}
 </style>
+<style>
+#videos .leo-real-social-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:35px}
+#videos .leo-real-social-panel{border:1px solid #303035;border-radius:20px;padding:24px;background:linear-gradient(150deg,#19191b 0%,#0e0e10 70%);min-width:0}
+#videos .leo-real-social-panel header{margin-bottom:18px}#videos .leo-real-tag{color:#ff8900;letter-spacing:2px;font-size:11px;font-weight:800}
+#videos .leo-real-social-panel h3{font-size:29px;margin:7px 0 0;font-weight:900}#videos .leo-real-social-panel h3 small{font-size:13px;font-weight:500;color:#b7b7b7}
+#videos .leo-tiktok-frame{max-width:720px;margin:0 auto;min-height:370px;overflow:hidden;display:flex;align-items:flex-start;justify-content:center}
+#videos .leo-tiktok-frame .tiktok-embed{width:100%;max-width:720px !important;margin:0 auto !important}
+#videos .leo-instagram-frame{min-height:360px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:25px;border:1px dashed #51412c;border-radius:15px}
+#videos .leo-ig-waiting{line-height:1.65;max-width:385px;color:#d9d9d9;font-size:15px}
+#videos .leo-real-ig-link{color:#ff8b00;text-decoration:underline;text-underline-offset:4px;font-weight:800}
+#videos .leo-real-note{color:#a9a9ac;line-height:1.6;font-size:12px;margin-top:20px}
+@media(max-width:800px){#videos .leo-real-social-grid{grid-template-columns:1fr}#videos .leo-real-social-panel{padding:15px}#videos .leo-tiktok-frame{min-height:360px}}
+</style><style id="leoleon-curator-adaptation">
+/* Curator debe dibujar publicaciones reales, sin tapar su cuadrícula con placeholders. */
+#videos .leo-curator-frame {display:block;min-width:0;min-height:320px;padding:12px;border:1px solid #3d342a;border-radius:15px;background:#101012;text-align:initial;overflow:visible;}
+#videos #curator-feed-default-feed-layout {width:100%;max-width:100%;min-width:0;color:#f5f5f5;}
+#videos #curator-feed-default-feed-layout img {max-width:100%;height:auto;}
+#videos .leo-real-social-panel:has(.leo-curator-frame) {min-width:0;}
+#videos .leo-curator-explainer {color:#b9b9bc;font-size:12px;line-height:1.55;margin-top:16px;}
+@media(max-width:800px){#videos .leo-curator-frame{padding:8px;min-height:270px}}
+</style>
 </head><body><header class="nav" id="nav">
 <div class="wrap">
 <a aria-label="Leo León Media, inicio" class="logo logo-imagen" href="index.html"><img alt="Leonardo León" height="534" loading="eager" src="logo-leonardo-leon-420.webp" width="2048"/></a>
@@ -934,35 +956,20 @@ a.social-link[href*="ig.me/"] svg circle:last-child { fill: currentColor !import
 </div>
 </section>
 <!-- ================= VIDEOS ================= -->
-<section class="sec amb der" id="videos">
-  <div class="wrap">
-    <div class="head">
-      <div><span class="label r">REDES SOCIALES · VIDEOS Y PUBLICACIONES</span><h2 class="r d1">Mira lo que publico.</h2></div>
-      <div class="video-social-links r d2" aria-label="Mis perfiles oficiales">
-        <a class="btn btn-linea social-link" href="https://www.tiktok.com/@leoleonmedia" target="_blank" rel="noopener noreferrer">TikTok ↗</a>
-        <a class="btn btn-linea social-link" href="https://www.instagram.com/leoleonmedia/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
-      </div>
-    </div>
-    <p class="leo-feed-intro">Aquí verás mis <strong>publicaciones reales y recientes</strong> directamente desde mis cuentas. No son videos de muestra ni portadas de ejemplo.</p>
-    <div class="leo-social-grid">
-      <article class="leo-social-panel" aria-labelledby="leo-tiktok-heading">
-        <div class="leo-social-top"><div><span class="leo-social-eyebrow">VIDEOS RECIENTES</span><h3 id="leo-tiktok-heading">TikTok <small>@leoleonmedia</small></h3></div><span class="leo-social-dot">●</span></div>
-        <div id="leo-tiktok-feed" class="leo-social-feed" aria-live="polite">
-          <div class="leo-embed-welcome"><span class="leo-embed-mark" aria-hidden="true">♪</span><p>Videos de mi perfil de TikTok, actualizados desde la plataforma.</p><button type="button" class="leo-load-videos" data-leo-load="tiktok">Mostrar mis TikToks</button><small>Al abrirlos, TikTok podrá establecer conexiones y cookies según sus condiciones.</small></div>
-        </div>
-        <a class="leo-social-profile" href="https://www.tiktok.com/@leoleonmedia" target="_blank" rel="noopener noreferrer">Ver mi perfil en TikTok ↗</a>
-      </article>
-      <article class="leo-social-panel" aria-labelledby="leo-instagram-heading">
-        <div class="leo-social-top"><div><span class="leo-social-eyebrow">PUBLICACIONES RECIENTES</span><h3 id="leo-instagram-heading">Instagram <small>@leoleonmedia</small></h3></div><span class="leo-social-dot">●</span></div>
-        <div id="leo-instagram-feed" class="leo-social-feed" aria-live="polite">
-          <div class="leo-embed-welcome"><span class="leo-embed-mark leo-ig-mark" aria-hidden="true">◎</span><p>Reels y publicaciones recientes que Instagram permita insertar desde mi perfil público.</p><button type="button" class="leo-load-videos" data-leo-load="instagram">Mostrar mi Instagram</button><small>Al abrirlos, Instagram podrá establecer conexiones y cookies según sus condiciones.</small></div>
-        </div>
-        <a class="leo-social-profile" href="https://www.instagram.com/leoleonmedia/" target="_blank" rel="noopener noreferrer">Ver mis Reels en Instagram ↗</a>
-      </article>
-    </div>
-    <p class="leo-social-disclaimer">Se muestran publicaciones recientes, no una clasificación por reproducciones. El contenido depende de que los perfiles sean públicos, permitan inserciones y el navegador no bloquee TikTok o Instagram.</p>
-  </div>
-</section>
+<section aria-labelledby="leo-videos-title" class="sec amb der" id="videos"><div class="wrap">
+<div class="head"><div><span class="label r">VIDEOS · REDES SOCIALES</span><h2 class="r d1" id="leo-videos-title">Mis videos publicados.</h2></div>
+<div class="video-social-links"><a class="btn btn-linea social-link" href="https://www.tiktok.com/@leoleonmedia" rel="noopener noreferrer" target="_blank">TikTok ↗</a><a class="btn btn-linea social-link" href="https://www.instagram.com/leoleonmedia/" rel="noopener noreferrer" target="_blank">Instagram ↗</a></div></div>
+<div class="leo-real-social-grid">
+<article class="leo-real-social-panel"><header><span class="leo-real-tag">VIDEOS RECIENTES · TIKTOK</span><h3>TikTok <small>@leoleonmedia</small></h3></header>
+<div class="leo-tiktok-frame"><blockquote cite="https://www.tiktok.com/@leoleonmedia" class="tiktok-embed" data-embed-from="oembed" data-embed-type="creator" data-unique-id="leoleonmedia" style="max-width:720px;min-width:288px;width:100%;margin:0 auto;"><section><a href="https://www.tiktok.com/@leoleonmedia" rel="noopener noreferrer" target="_blank">Ver mis videos recientes en TikTok</a></section></blockquote></div>
+<p class="leo-real-note">Este módulo es de TikTok. Muestra hasta 10 videos recientes si la cuenta es pública y el navegador permite la inserción. No los inventa ni los ordena por vistas.</p></article>
+<article class="leo-real-social-panel"><header><span class="leo-real-tag">PUBLICACIONES REALES · INSTAGRAM</span><h3>Instagram <small>@leoleonmedia</small></h3></header>
+<div class="leo-instagram-frame leo-curator-frame" id="leo-instagram-panel">
+<div id="curator-feed-default-feed-layout"><a href="https://curator.io" target="_blank" rel="noopener noreferrer" class="crt-logo crt-tag">Powered by Curator.io</a></div>
+</div>
+<p class="leo-real-note">Estas publicaciones se cargan directamente desde el feed de Curator.io que conecté con mi cuenta. Las novedades aparecen al actualizarse el feed según la frecuencia del servicio.</p></article>
+</div>
+</div></section>
 <!-- ================= NOTAS ================= -->
 <section class="sec amb izq" id="notas" style="padding-top:0">
 <div class="wrap">
@@ -1384,83 +1391,14 @@ a.social-link[href*="ig.me/"] svg circle:last-child { fill: currentColor !import
     if(!sent)feedback.textContent='El registro no está configurado; puedes enviar el mensaje por el canal seleccionado.';
   });
 })();
-</script><script defer="" src="integraciones-config.js"></script><script defer="" src="auditoria.js"></script><script id="leo-social-embeds-script">
-/* Inserciones oficiales de los perfiles públicos @leoleonmedia.
-   No almacenamos credenciales, no inventamos IDs de videos ni consultamos APIs privadas.
-   Cada inserción se carga solo después de un clic explícito. */
+</script><script defer="" src="integraciones-config.js"></script><script defer="" src="auditoria.js"></script>
+<script async="" src="https://www.tiktok.com/embed.js"></script><!-- Feed de publicaciones reales de Curator.io (cuenta conectada por el propietario). -->
+<script type="text/javascript" id="leoleon-curator-social-feed">
+/* curator-feed-default-feed-layout */
 (function(){
-  'use strict';
-  const profiles={
-    tiktok:'https://www.tiktok.com/@leoleonmedia',
-    instagram:'https://www.instagram.com/leoleonmedia/'
-  };
-  const loadedScripts={};
-  function loadScriptOnce(network,src){
-    if(loadedScripts[network])return loadedScripts[network];
-    loadedScripts[network]=new Promise((resolve,reject)=>{
-      const script=document.createElement('script');
-      script.src=src;script.async=true;script.dataset.leoNetwork=network;
-      script.onload=()=>resolve();
-      script.onerror=()=>reject(new Error('La red social no permitió cargar su reproductor.'));
-      document.body.appendChild(script);
-    });
-    return loadedScripts[network];
-  }
-  async function show(network){
-    const root=document.getElementById('leo-'+network+'-feed');
-    if(!root||root.dataset.loaded==='true')return;
-    root.dataset.loaded='true';
-    const url=profiles[network];
-    // Nota persistente: incluso si el script de la red está bloqueado,
-    // el visitante puede ir directamente al perfil oficial.
-    const status=document.createElement('div');
-    status.className='leo-social-loading';
-    status.innerHTML='<span role="status">Abriendo publicaciones reales…</span>';
-    root.replaceChildren(status);
-    let embed;
-    if(network==='tiktok'){
-      embed=document.createElement('blockquote');
-      embed.className='tiktok-embed';
-      embed.setAttribute('cite',url);
-      embed.setAttribute('data-unique-id','leoleonmedia');
-      embed.setAttribute('data-embed-type','creator');
-      embed.setAttribute('data-embed-from','oembed');
-      embed.style.cssText='max-width:720px; min-width:288px; margin:0 auto; width:100%';
-      embed.innerHTML='<section><a target="_blank" rel="noopener noreferrer" href="'+url+'">@leoleonmedia en TikTok</a></section>';
-    } else {
-      embed=document.createElement('blockquote');
-      embed.className='instagram-media';
-      embed.setAttribute('data-instgrm-permalink',url);
-      embed.setAttribute('data-instgrm-version','14');
-      embed.style.cssText='max-width:500px; width:100%; min-width:300px; margin:0 auto; background:#fff; border-radius:8px';
-      embed.innerHTML='<a target="_blank" rel="noopener noreferrer" href="'+url+'">@leoleonmedia en Instagram</a>';
-    }
-    root.appendChild(embed);
-    try{
-      if(network==='tiktok'){
-        await loadScriptOnce(network,'https://www.tiktok.com/embed.js');
-      } else {
-        await loadScriptOnce(network,'https://www.instagram.com/embed.js');
-        if(window.instgrm&&window.instgrm.Embeds&&typeof window.instgrm.Embeds.process==='function')window.instgrm.Embeds.process();
-      }
-      status.innerHTML='<span>Si las publicaciones no aparecen, puede deberse a la privacidad de la cuenta o al bloqueo de inserciones de tu navegador.</span><a href="'+url+'" target="_blank" rel="noopener noreferrer">Abrir mis videos en '+(network==='tiktok'?'TikTok':'Instagram')+' ↗</a>';
-      // Ocultar estado cuando la plataforma reemplace el embed por su reproductor.
-      const observer=new MutationObserver(()=>{
-        const hasIframe=!!root.querySelector('iframe');
-        if(hasIframe){status.remove();observer.disconnect();}
-      });
-      observer.observe(root,{subtree:true,childList:true});
-      setTimeout(()=>observer.disconnect(),16000);
-    }catch(err){
-      status.innerHTML='<span>No se pudo mostrar aquí: el navegador o la plataforma bloqueó la inserción.</span><a href="'+url+'" target="_blank" rel="noopener noreferrer">Ver mis publicaciones en '+(network==='tiktok'?'TikTok':'Instagram')+' ↗</a>';
-    }
-  }
-  document.addEventListener('click',event=>{
-    const button=event.target.closest('[data-leo-load]');
-    if(!button)return;
-    button.disabled=true;
-    show(button.dataset.leoLoad);
-  });
+var i,e,d=document,s="script";i=d.createElement("script");i.async=1;i.charset="UTF-8";
+i.src="https://cdn.curator.io/published/2d091adf-c612-421b-8a9d-d68cd3a15404.js";
+e=d.getElementsByTagName(s)[0];e.parentNode.insertBefore(i,e);
 })();
 </script>
 </body></html>
