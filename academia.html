@@ -227,7 +227,7 @@ header.ld-header .ld-menu a{min-height:37px;padding:7px 8px;border-radius:9px;fo
   Object.entries(payload).forEach(([k,v])=>{const input=document.createElement('input');input.type='hidden';input.name=k;input.value=String(v);sub.appendChild(input);});
   document.body.appendChild(sub);pending={codigo};setBusy(true);showStatus('Enviando tu inscripción… No cierres esta página hasta que termine el envío.','');
   try{sub.submit();}catch(e){sub.remove();finishError('No pudimos enviar la solicitud. Puedes inscribirte por WhatsApp.');return;}
-  sub.remove();verifyCount=0;timer=setTimeout(()=>{if(pending&&pending.codigo===codigo)showStatus('Estamos comprobando el registro en Google Sheets…','');},12000);verificationTimer=setInterval(()=>verifyRegistration(codigo),3000);setTimeout(()=>verifyRegistration(codigo),1500);
+  setTimeout(()=>{if(sub.isConnected)sub.remove();},45000);verifyCount=0;timer=setTimeout(()=>{if(pending&&pending.codigo===codigo)showStatus('Estamos comprobando el registro en Google Sheets…','');},12000);verificationTimer=setInterval(()=>verifyRegistration(codigo),3000);setTimeout(()=>verifyRegistration(codigo),1500);
  },true);
  window.addEventListener('message',function(ev){
   if(!pending||!originOk.includes(ev.origin))return;
